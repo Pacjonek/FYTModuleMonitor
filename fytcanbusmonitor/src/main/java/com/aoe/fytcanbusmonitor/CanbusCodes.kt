@@ -86,7 +86,7 @@ object CanbusUpdateCodes {
 
     /**
      * # Basic
-     * It should be supported by every canbox
+     * It should be supported by every can-box
      */
     const val U_DOOR_BEGIN = 0
     const val U_DOOR_ENGINE = 0
@@ -98,19 +98,6 @@ object CanbusUpdateCodes {
     const val U_DOOR_END = 6
 
 
-
-    /**
-    * # "Proprietary" or not?
-    */
-    const val U_CARINFO_TIME = 49;
-    const val U_CARINFO_LANE_DEVIATION_SYS_STATE = 64;
-    const val U_CARINFO_CRASH_SWITCH = 65;
-    const val U_CARINFO_360_WORK_STATE = 67;
-    const val U_CARINFO_ACC_WORK_MODE = 69;
-    const val U_CARINFO_AUTO_BRAKE_ASSIST_SWITCH = 78;
-    const val U_CARINFO_SUPERFASTCHARGE_STATE = 87;
-    const val U_CARINFO_SUPERFASTCHARGE_NUMBER = 88;
-
     /**
     # "Proprietary" codes
     * Can vary depends on exact selected canbox manuf./model/profile/fw ver.
@@ -119,23 +106,24 @@ object CanbusUpdateCodes {
     **/
 
     // 'Fiat `All` models' (whatever that means) from Hiworld canbus box
+    // WC - HiWorld
     // (I renamed "Fieyate" to "Fiat" - the Chinese don't pay attention to typos and "WC" to "HIWORLD" conv.)
-    const val U_HIWORLD_FIAT_ALL_CARINFO_BEGIN = 98
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPCURR_AVG_FUEL_COMP = 99
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPCURR_REMAIN_FUEL_DIST = 100
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPCURR_TOTAL_MILAGE = 101
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPA_AVG_FUEL_COMP = 102
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPA_AVG_SPEED = 103
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPA_TRAVEL_MILAGE = 104
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPA_TRAVEL_TIME = 105
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPB_AVG_FUEL_COMP = 106
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPB_AVG_SPEED = 107
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPB_TRAVEL_MILAGE = 108
-    const val U_HIWORLD_FIAT_ALL_CARINFO_TRIPB_TRAVEL_TIME = 109
-    const val U_HIWORLD_FIAT_ALL_CARINFO_END = 110
+    const val U_WC_FIAT_ALL_CARINFO_BEGIN = 98
+    const val U_WC_FIAT_ALL_CARINFO_TRIPCURR_AVG_FUEL_COMP = 99
+    const val U_WC_FIAT_ALL_CARINFO_TRIPCURR_REMAIN_FUEL_DIST = 100
+    const val U_WC_FIAT_ALL_CARINFO_TRIPCURR_TOTAL_MILAGE = 101
+    const val U_WC_FIAT_ALL_CARINFO_TRIPA_AVG_FUEL_COMP = 102
+    const val U_WC_FIAT_ALL_CARINFO_TRIPA_AVG_SPEED = 103
+    const val U_WC_FIAT_ALL_CARINFO_TRIPA_TRAVEL_MILAGE = 104
+    const val U_WC_FIAT_ALL_CARINFO_TRIPA_TRAVEL_TIME = 105
+    const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_FUEL_COMP = 106
+    const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_SPEED = 107
+    const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_MILAGE = 108
+    const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_TIME = 109
+    const val U_WC_FIAT_ALL_CARINFO_END = 110
     /* # End Section */
 
-    // Some other propably car specific codes 
+    // Some other probably car specific codes
     /*const val U_CARINFO_NONSLIP_STATE = 98;
     const val U_CARINFO_STARTPROMPT = 99;
     const val U_CAR_BACKCAR = 101;
@@ -150,7 +138,7 @@ object CanbusUpdateCodes {
     */
 
     /**
-     * # "Universal" codes
+     * # Maybe more "universal" codes?
      * My guess is that they are "universal" codes and that exact codes are read by "universal" apps e.g. by DUDU UI.
      */
     const val U_CAR_ADD_START = 500
@@ -190,25 +178,25 @@ object CanbusUpdateCodes {
     const val U_CAR_TEMP_MOTOR_OIL = 523
     const val U_CAR_ENGINE_SPEED = 524
     const val U_CAR_VOLTAGE = 525
-    const val U_CAR_WIPER_LEV_ENABLE = 533
-    const val U_CAR_CUR_SPEED_ENABLE = 534
-    const val U_CAR_AVG_SPEED_ENABLE = 535
-    const val U_CAR_TOTAL_MILEAGE_ENABLE = 536
-    const val U_CAR_DRIVENABLE_MILEAGE_ENABLE = 537
-    const val U_CAR_SEAT_BELT_LEFT_ENABLE = 538
-    const val U_CAR_SEAT_BELT_RIGHT_ENABLE = 539
-    const val U_CAR_ACCON_ENABLE = 540
-    const val U_CAR_REAR_BACK_ENABLE = 542
-    const val U_CAR_HANDBRAKE_ENABLE = 543
-    const val U_CAR_CUR_FUEL_ENABLE = 544
-    const val U_CAR_AVG_FUEL_ENABLE = 545
-    const val U_CAR_TEMP_WATER_ENABLE = 546
-    const val U_CAR_TEMP_MOTOR_OIL_ENABLE = 547
-    const val U_CAR_ENGINE_SPEED_ENABLE = 548
-    const val U_CAR_VOLTAGE_ENABLE = 549
-    const val U_CAR_DOOR_ENABLE = 550
-    const val U_CAR_STEER_ANGLE_ENABLE = 551
-    const val U_CAR_TEMP_OUT_ENABLE = 552
+    const val U_CAR_WIPER_LEV_ENABLED = 533
+    const val U_CAR_CUR_SPEED_ENABLED = 534
+    const val U_CAR_AVG_SPEED_ENABLED = 535
+    const val U_CAR_TOTAL_MILEAGE_ENABLED = 536
+    const val U_CAR_DRIVEABLE_MILEAGE_ENABLED = 537
+    const val U_CAR_SEAT_BELT_LEFT_ENABLED = 538
+    const val U_CAR_SEAT_BELT_RIGHT_ENABLED = 539
+    const val U_CAR_ACCON_ENABLED = 540
+    const val U_CAR_REAR_BACK_ENABLED = 542
+    const val U_CAR_HANDBRAKE_ENABLED = 543
+    const val U_CAR_CUR_FUEL_ENABLED = 544
+    const val U_CAR_AVG_FUEL_ENABLED = 545
+    const val U_CAR_TEMP_WATER_ENABLED = 546
+    const val U_CAR_TEMP_MOTOR_OIL_ENABLED = 547
+    const val U_CAR_ENGINE_SPEED_ENABLED = 548
+    const val U_CAR_VOLTAGE_ENABLED = 549
+    const val U_CAR_DOOR_ENABLED = 550
+    const val U_CAR_STEER_ANGLE_ENABLED = 551
+    const val U_CAR_TEMP_OUT_ENABLED = 552
     const val U_DOOR_ENGINE_ADD = 553
     const val U_DOOR_FL_ADD = 554
     const val U_DOOR_FR_ADD = 555
@@ -279,7 +267,7 @@ object CanbusUpdateCodes {
      */
     const val U_BMW_CARUI_ONOFF = 1038
     const val U_CANBUS_BENZ_BUTTON = 1042
-    const val U_JAHUAR_LZ_RADAR = 1047
+    const val U_JAGUAR_LZ_RADAR = 1047
     const val U_TCROSS_ZH_BUTTON = 1048
 
     /**
@@ -381,6 +369,12 @@ object CanbusUpdateCodes {
     const val U_CNT_MAX = 1200
 }
 
+object CanbusGetCodes{
+    const val G_MCU_CANBUS_SUPPORT = 1000
+    const val G_MISC_BEGIN = 1000
+
+}
+
 object CanbusKeycodes {
     const val KEYCODE_DEFAULT = -1
 
@@ -397,9 +391,9 @@ object CanbusKeycodes {
     const val KEYCODE_ALL_APPS = 10
     const val KEYCODE_EJECT = 11
     const val KEYCODE_MUTE = 12
-    const val KEYCODE_VA = 13
-    const val KEYCODE_DIM = 14
-    const val KEYCODE_RECENT_TASK = 15
+    const val KEYCODE_VOICE_ASSISTANT = 13
+    const val KEYCODE_SCREEN_DIM = 14
+    const val KEYCODE_RECENT_TASKS = 15
     const val KEYCODE_PLAYPAUSE = 16
     const val KEYCODE_CAMERA = 17
     const val KEYCODE_PHONE = 18
@@ -439,14 +433,14 @@ object CanbusKeycodes {
     const val KEYCODE_TV = 52
     const val KEYCODE_AUX = 53
     const val KEYCODE_MEDIAPLAYER = 54
-    const val KEYCODE_CARSETTTINGS = 55
-    const val KEYCODE_TIMESETTING = 56
-    const val KEYCODE_CALI = 57
+    const val KEYCODE_CARSETTINGS = 55
+    const val KEYCODE_TIMESETTINGS = 56
+    const val KEYCODE_SCREEN_CALI = 57
     const val KEYCODE_SYSTEMINFO = 58
     const val KEYCODE_DVR = 59
     const val KEYCODE_CARUSB = 60
     const val KEYCODE_CARRADIO = 61
-    const val KEYCODE_ACCONTROL = 62
+    const val KEYCODE_AIRCONTROL = 62
     const val KEYCODE_CANBUS = 63
     const val KEYCODE_SCAN = 64
     const val KEYCODE_REPEAT = 65

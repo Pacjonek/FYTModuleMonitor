@@ -13,14 +13,14 @@ import android.os.RemoteException
 interface IModuleCallback : IInterface {
 
     @Throws(RemoteException::class)
-    fun update(message: ModuleMessage) {
+    fun update(message: UpdateMessage) {
         // By default, call the old update method, to not break existing implementations
-        update(message.ints, message.flts, message.strs, message.code)
+        update(message.ints, message.flts, message.strs, message.updateCode)
     }
 
     @Throws(RemoteException::class)
     fun update(ints: IntArray?, flts: FloatArray?, strs: Array<String?>?, updateCode: Int = -1){
-        // Empty by default to support implementing only update(ModuleMessage)
+        // Empty by default to support implementing only update(UpdateMessage)
     }
 
     abstract class Stub : Binder(), IModuleCallback {
@@ -36,11 +36,11 @@ interface IModuleCallback : IInterface {
             return when (code) {
                 TRANSACTION_update -> {
                     data.enforceInterface(DESCRIPTOR)
-                    update(ModuleMessage(
+                    update(UpdateMessage(
+                        updateCode = data.readInt(),
                         ints = data.createIntArray(),
                         flts = data.createFloatArray(),
                         strs = data.createStringArray(),
-                        code = data.readInt(),
                         ))
                     true
                 }
@@ -60,10 +60,10 @@ interface IModuleCallback : IInterface {
                 val data = Parcel.obtain()
                 try {
                     data.writeInterfaceToken(DESCRIPTOR)
+                    data.writeInt(updateCode)
                     data.writeIntArray(ints)
                     data.writeFloatArray(flts)
                     data.writeStringArray(strs)
-                    data.writeInt(updateCode)
                     mRemote.transact(TRANSACTION_update, data, null, FLAG_ONEWAY)
                 } finally {
                     data.recycle()

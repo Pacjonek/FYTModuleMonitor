@@ -2,10 +2,10 @@ package com.aoe.fytcanbusmonitor
 
 object ModuleCodes {
     const val MODULE_CODE_MAIN = 0
+    const val MODULE_CODE_BT = 2
     const val MODULE_CODE_SOUND = 4
     const val MODULE_CODE_CANBUS = 7
     const val MODULE_CODE_CANBOX = 14
-    const val MODULE_CODE_BT = 2
     const val MODULE_CODE_RADIO = 1
     const val MODULE_CODE_ADAS = 20
     const val MODULE_CODE_AMP = 15

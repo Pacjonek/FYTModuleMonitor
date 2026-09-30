@@ -1,9 +1,9 @@
 package com.aoe.fytcanbusmonitor
 
-open class ModuleCallback : IModuleCallback.Stub() {
+open class ModuleUpdateCallback : IModuleCallback.Stub() {
     var moduleId: Int = -1
 
-    override fun update(message: ModuleMessage) {
+    override fun update(message: UpdateMessage) {
         message.moduleId = moduleId
         super.update(message)
     }
