@@ -7,7 +7,7 @@ object BluetoothUpdateCodes {
     const val U_BTAV_PLAY_TRACK = 3
     const val U_BTAV_TOTAL_TRACK = 4
     const val U_PAIR_LIST = 5
-    const val U_PHONE_MAC_ADDR = 6
+    const val U_PHONE_MAC_ADDRESS = 6
     const val U_PHONE_NAME = 7
     const val U_PHONE_NUMBER = 8
     const val U_PHONE_STATE = 9
@@ -15,7 +15,7 @@ object BluetoothUpdateCodes {
     const val U_RING_TIME = 11
     const val U_TALK_TIME = 12
     const val U_BTAV_PLAY_STATE = 13
-    const val U_LOCAL_MAC_ADDR = 14
+    const val U_LOCAL_MAC_ADDRESS = 14
     const val U_LOCAL_NAME = 15
     const val U_PIN_CODE = 16
     const val U_BT_VER = 17
