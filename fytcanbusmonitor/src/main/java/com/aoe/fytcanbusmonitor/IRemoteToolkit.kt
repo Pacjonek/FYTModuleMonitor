@@ -61,6 +61,7 @@ interface IRemoteToolkit : IInterface {
             }
         }
 
+        @Suppress("ConstPropertyName")
         companion object {
             private const val DESCRIPTOR = "com.syu.ipc.IRemoteToolkit"
             const val TRANSACTION_getRemoteModule = 1
