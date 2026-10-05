@@ -55,7 +55,7 @@ class RemoteModuleProxy : IRemoteModule.Stub() {
         ints: IntArray?,
         flts: FloatArray?,
         strs: Array<String?>?
-    ): ModuleObject? {
+    ): ModulePayload? {
         val module = remoteModule
         if (module != null) {
             try {
@@ -67,7 +67,7 @@ class RemoteModuleProxy : IRemoteModule.Stub() {
         return null
     }
 
-    operator fun get(getCode: Int, value: Int): ModuleObject? {
+    operator fun get(getCode: Int, value: Int): ModulePayload? {
         val module = remoteModule
         return if (module != null) {
             try {

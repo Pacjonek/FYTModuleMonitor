@@ -30,7 +30,7 @@ internal object UpdateCodeNameResolver {
             else -> null
         }
         return if(moduleName != null){
-            "$updateCode:$moduleName"
+            "$updateCode: $moduleName"
         } else {
             null
         }

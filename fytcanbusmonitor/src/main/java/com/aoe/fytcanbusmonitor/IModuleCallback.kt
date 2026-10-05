@@ -13,14 +13,14 @@ import android.os.RemoteException
 interface IModuleCallback : IInterface {
 
     @Throws(RemoteException::class)
-    fun update(message: UpdateMessage) {
+    fun update(message: ModulePayload) {
         // By default, call the old update method, to not break existing implementations
-        update(message.ints, message.flts, message.strs, message.updateCode)
+        update(message.ints, message.flts, message.strs, message.targetCode)
     }
 
     @Throws(RemoteException::class)
     fun update(ints: IntArray?, flts: FloatArray?, strs: Array<String?>?, updateCode: Int = -1){
-        // Empty by default to support implementing only update(UpdateMessage)
+        // Empty by default to support implementing only update(ModulePayload)
     }
 
     abstract class Stub : Binder(), IModuleCallback {
@@ -36,8 +36,8 @@ interface IModuleCallback : IInterface {
             return when (code) {
                 TRANSACTION_update -> {
                     data.enforceInterface(DESCRIPTOR)
-                    update(UpdateMessage(
-                        updateCode = data.readInt(),
+                    update(ModulePayload(
+                        targetCode = data.readInt(),
                         ints = data.createIntArray(),
                         flts = data.createFloatArray(),
                         strs = data.createStringArray(),

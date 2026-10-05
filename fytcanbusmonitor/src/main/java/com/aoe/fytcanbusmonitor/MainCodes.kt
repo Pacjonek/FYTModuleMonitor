@@ -171,13 +171,13 @@ object MainUpdateCodes {
     /**
      * # Reserved
      */
-    const val U_RESERVE = 30
-    const val U_RESERVE2 = 44
+    const val U_RESERVED = 30
+    const val U_RESERVED2 = 44
 
     
     const val U_AMBIENT_LIGHT_O = 123
     const val U_THIRD_DVR_SETUP = 124
-    const val U_CAMERA_ALWAYS_POWER_SUPPLY = 125
+    const val U_CAMERA_POWER_ALWAYS_SUPPLIED_ENABLED = 125
     const val U_FRONT_CAMERA_ENABLED = 126
     const val U_LOCK_PASSWORD = 127
     const val U_UNLOCK_DEVICE_MAC = 128
@@ -189,7 +189,7 @@ object MainUpdateCodes {
     const val U_CAR_TURN = 134
     const val U_PREVIEW_MODE = 135
     const val U_LAMPLET_TIME = 136
-    const val U_IMAGE_IC_INITED = 137
+    const val U_IMAGE_IC_INITIALIZED = 137
     const val U_TOP_APP_CHANGED = 138
     const val U_DOUBLE_FLASH = 139
     const val U_IMAGE_IC_UPGRADE = 140
@@ -221,20 +221,20 @@ object MainUpdateCodes {
     const val U_VOICE_PKG = 164
     const val U_ENTER_UI_REMEMBER = 165
     const val U_CARLINK_CARPLAY_CALLSTATE = 170
-    const val U_CARLINK_WIRELESSED_AUTO_CONN = 166
+    const val U_CARLINK_WIRELESS_AUTO_CONN = 166
     const val U_CARLINK_WIRED_AUTO_CONN = 167
     const val U_SCREEN_ON = 168
     const val U_REVERSE_CARPLAY_CONNECTED = 169
     const val U_CARLINK_CARPLAY_CALL_STATE = 170
     const val U_BACKLIGHT_CTRL_TYPE = 171
-    const val U_EXTRA_MIC_ENABLE = 172
+    const val U_EXTRA_MIC_ENABLED = 172
     const val U_CAR_VIDEO_SIZE = 173
     const val U_IMAGE_PARAM_8918 = 174
     const val U_SINGLE_DELAY_SHUTDOWN = 175
     const val U_OBSTACLE_FLAG = 176
     const val U_SCREENSAVER_OP = 177
     const val U_UI_MODE = 178
-    const val U_LOCATION = 179
+    const val U_GNSS_POSITION = 179
     const val U_REVERSE_ANTI_SHAKING = 180
     const val U_LAMPLET_O = 181
     const val U_MOBILE_LINK_STATUS = 182
@@ -423,18 +423,18 @@ object MainGetCodes{
     const val G_EXIST_CDC = 7
     const val G_EXIST_DISC = 5
     const val G_EXIST_IPOD = 6
-    const val G_FLAGSYNCHRO = 4
+    const val G_SYNCHRO_FLAGS = 4
     const val G_GPS_LISTEN_ON = 24
     const val G_GPS_MIX_ON = 12
     const val G_GPS_MIX_PERCENT = 38
     const val G_HANDBRAKE_ENABLED = 10
-    const val G_HANDBRAKING = 11
+    const val G_HANDBRAKE_ON = 11
     const val G_IPOD_ENABLED = 32
     const val G_LAMPLET_ON = 17
     const val G_LANG = 36
     const val G_MCU_VERSION = 20
     const val G_MUTE_ON = 1
-    const val G_NAVI_APP_PACKAGE_NAME = 8
+    const val G_NAVI_APP_PKG_NAME = 8
     const val G_OSD_TIME_ON = 16
     const val G_PAGE = 33
     const val G_PLAYER_TYPE = 37
@@ -444,7 +444,19 @@ object MainGetCodes{
     const val G_RESET_DELAY_TIME = 30
     const val G_RUN_NAVI_APP_ON_BOOT = 43
     const val G_STANDBY_ON = 39
-    const val G_TV_ENABLED = 44
+    const val G_TV_ENABLE = 44
     const val G_VOL = 2
     const val G_VOL_MAIN_DEF = 42
+}
+
+object MainPlatformCodes {
+    const val PLATFORM_MONITOR = 1;
+    const val PLATFORM_3188 = 2;
+    const val PLATFORM_8700 = 3;
+    const val PLATFORM_786 = 4;
+    const val PLATFORM_SOPHIA = 5;
+    const val PLATFORM_8918 = 6;
+    const val PLATFORM_9853 = 8;
+    const val PLATFORM_PX5 = 7;
+
 }

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             MODULE_CODE_CANBUS,
             RemoteModuleProxy(),
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS"),
-            (0..300) + (500..700) + (1000..1200)
+            (0..9) + (98..300) + (500..700) + (1000..1200)
         )
         // IPCConnection(MODULE_CODE_OBD, RemoteModuleProxy(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
         // IPCConnection(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
@@ -83,16 +83,16 @@ class MainActivity : AppCompatActivity() {
         moduleCode: Long,
         moduleLabel: String,
         updatedCode: Int,
-        message: String
+        payload: String
     ) {
         val messageKey = "$moduleLabel:$updatedCode"
         val shouldLog = synchronized(payloadLock) {
-            val previousValues = lastPayloads.put(messageKey, message)
-            previousValues != message
+            val previousValues = lastPayloads.put(messageKey, payload)
+            previousValues != payload
         }
         if (shouldLog) {
             val codeLabel = UpdateCodeNameResolver.resolveOrFallback(moduleCode, updatedCode)
-            Log.w("FYT/$moduleLabel", "[$codeLabel] $message")
+            Log.w("FYT/$moduleLabel", "[$codeLabel] $payload")
         }
     }
 }

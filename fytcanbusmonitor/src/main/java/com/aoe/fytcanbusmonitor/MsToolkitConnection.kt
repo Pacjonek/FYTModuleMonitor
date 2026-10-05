@@ -38,10 +38,10 @@ class MsToolkitConnection private constructor() : ServiceConnection {
     }
 
     @Synchronized
-    fun connect(context: Context?) = connect(context, 0L)
+    fun connect(context: Context) = connect(context, 0L)
 
-    private fun connect(context: Context?, timeoutMillis: Long) {
-        if (connecting || remoteToolkit != null || context == null) return
+    private fun connect(context: Context, timeoutMillis: Long) {
+        if (connecting || remoteToolkit != null) return
         this.context = context.applicationContext
         connecting = true
         handler.postDelayed(reconnectRunnable, timeoutMillis)
@@ -81,7 +81,8 @@ class MsToolkitConnection private constructor() : ServiceConnection {
     override fun onServiceDisconnected(name: ComponentName) {
         remoteToolkit = null
         connectionObservers.forEach { observer -> handler.post { observer.onDisconnected() } }
-        connect(context, nextReconnectDelay())
+        // if(connecting) handler.removeCallbacks(reconnectRunnable)
+        context?.let { connect(it, nextReconnectDelay()) }
     }
 
     private fun nextReconnectDelay(): Long = RECONNECT_BASE_MS + Random().nextInt(RECONNECT_JITTER_MS).toLong()
@@ -93,6 +94,6 @@ class MsToolkitConnection private constructor() : ServiceConnection {
         private const val TOOLKIT_ACTION = "com.syu.ms.toolkit"
         private val TOOLKIT_COMPONENT = ComponentName("com.syu.ms", "app.ToolkitService")
         private const val RECONNECT_BASE_MS = 1000
-        private const val RECONNECT_JITTER_MS = 1_500
+        private const val RECONNECT_JITTER_MS = 2_000
     }
 }

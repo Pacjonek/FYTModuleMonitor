@@ -17,7 +17,7 @@ interface IRemoteModule : IInterface {
     fun cmd(cmdCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?)
 
     @Throws(RemoteException::class)
-    operator fun get(getCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?): ModuleObject?
+    operator fun get(getCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?): ModulePayload?
 
     @Throws(RemoteException::class)
     fun register(updateListener: IModuleCallback?, updateCode: Int, syncFlag: Int)
@@ -98,7 +98,7 @@ interface IRemoteModule : IInterface {
             }
 
             @Throws(RemoteException::class)
-            override fun get(getCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?): ModuleObject? {
+            override fun get(getCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?): ModulePayload? {
                 val data = Parcel.obtain()
                 val reply = Parcel.obtain()
                 return try {
@@ -110,11 +110,12 @@ interface IRemoteModule : IInterface {
                     module.transact(TRANSACTION_get, data, reply, 0)
                     reply.readException()
                     if (reply.readInt() != 0) {
-                        ModuleObject().apply {
-                            this.ints = reply.createIntArray()
-                            this.flts = reply.createFloatArray()!!
-                            this.strs = reply.createStringArray()
-                        }
+                        ModulePayload(
+                            targetCode = getCode,
+                            ints = reply.createIntArray(),
+                            flts = reply.createFloatArray(),
+                            strs = reply.createStringArray()
+                        )
                     } else {
                         null
                     }
@@ -158,6 +159,7 @@ interface IRemoteModule : IInterface {
             }
         }
 
+        @Suppress("ConstPropertyName")
         companion object {
             private const val DESCRIPTOR = "com.syu.ipc.IRemoteModule"
             const val TRANSACTION_cmd = 1
