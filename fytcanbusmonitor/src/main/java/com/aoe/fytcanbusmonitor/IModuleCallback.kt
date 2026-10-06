@@ -52,8 +52,8 @@ interface IModuleCallback : IInterface {
             }
         }
 
-        private class Proxy(private val mRemote: IBinder) : IModuleCallback {
-            override fun asBinder(): IBinder = mRemote
+        private class Proxy(private val callbackService: IBinder) : IModuleCallback {
+            override fun asBinder(): IBinder = callbackService
 
             @Throws(RemoteException::class)
             override fun update(ints: IntArray?, flts: FloatArray?, strs: Array<String?>?, updateCode: Int) {
@@ -64,21 +64,21 @@ interface IModuleCallback : IInterface {
                     data.writeIntArray(ints)
                     data.writeFloatArray(flts)
                     data.writeStringArray(strs)
-                    mRemote.transact(TRANSACTION_update, data, null, FLAG_ONEWAY)
+                    callbackService.transact(TRANSACTION_update, data, null, FLAG_ONEWAY)
                 } finally {
                     data.recycle()
                 }
             }
         }
 
+        @Suppress("ConstPropertyName")
         companion object {
             private const val DESCRIPTOR = "com.syu.ipc.IModuleCallback"
             const val TRANSACTION_update = 1
             const val TRANSACTION_getDescriptor = IBinder.INTERFACE_TRANSACTION
-            const val FLAG_UPDATE_SYNC = 1
+            const val UPDATE_SYNC_FLAG = 1
 
-            fun asInterface(obj: IBinder?): IModuleCallback? {
-                if (obj == null) return null
+            fun asInterface(obj: IBinder): IModuleCallback {
                 return obj.queryLocalInterface(DESCRIPTOR) as? IModuleCallback ?: Proxy(obj)
             }
         }

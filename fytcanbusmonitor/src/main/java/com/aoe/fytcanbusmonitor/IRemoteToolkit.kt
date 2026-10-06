@@ -7,13 +7,13 @@ import android.os.Parcel
 import android.os.RemoteException
 
 /**
- * Minimal replica of the FYT `com.syu.ipc.IRemoteToolkit` binder interface,
- * exposed by com.syu.ms `app.ToolkitService` (action "com.syu.ms.toolkit").
+ * Minimal replica of the FYT `com.syu.ipc.IRemoteToolkit` binder interface
+ * (action `com.syu.ms.toolkit`)
  */
 interface IRemoteToolkit : IInterface {
 
     @Throws(RemoteException::class)
-    fun getRemoteModule(moduleId: Int): IRemoteModule?
+    fun getRemoteModule(moduleId: Int): IRemoteModule
 
     abstract class Stub : Binder(), IRemoteToolkit {
 
@@ -30,7 +30,7 @@ interface IRemoteToolkit : IInterface {
                     data.enforceInterface(DESCRIPTOR)
                     val moduleId = data.readInt()
                     reply!!.writeNoException()
-                    reply.writeStrongBinder(getRemoteModule(moduleId)?.asBinder())
+                    reply.writeStrongBinder(getRemoteModule(moduleId).asBinder())
                     true
                 }
                 TRANSACTION_getDescriptor -> {
@@ -41,8 +41,8 @@ interface IRemoteToolkit : IInterface {
             }
         }
 
-        private class Proxy(private val mRemote: IBinder) : IRemoteToolkit {
-            override fun asBinder(): IBinder = mRemote
+        private class Proxy(private val connectorService: IBinder) : IRemoteToolkit {
+            override fun asBinder(): IBinder = connectorService
 
             @Throws(RemoteException::class)
             override fun getRemoteModule(moduleId: Int): IRemoteModule {
@@ -51,9 +51,9 @@ interface IRemoteToolkit : IInterface {
                 return try {
                     data.writeInterfaceToken(DESCRIPTOR)
                     data.writeInt(moduleId)
-                    mRemote.transact(TRANSACTION_getRemoteModule, data, reply, 0)
+                    connectorService.transact(TRANSACTION_getRemoteModule, data, reply, 0)
                     reply.readException()
-                    IRemoteModule.Stub.asInterface(reply.readStrongBinder())!!
+                    IRemoteModule.Stub.asInterface(reply.readStrongBinder())
                 } finally {
                     reply.recycle()
                     data.recycle()
@@ -67,8 +67,7 @@ interface IRemoteToolkit : IInterface {
             const val TRANSACTION_getRemoteModule = 1
             const val TRANSACTION_getDescriptor = IBinder.INTERFACE_TRANSACTION
 
-            fun asInterface(obj: IBinder?): IRemoteToolkit? {
-                if (obj == null) return null
+            fun asInterface(obj: IBinder): IRemoteToolkit {
                 return obj.queryLocalInterface(DESCRIPTOR) as? IRemoteToolkit ?: Proxy(obj)
             }
         }

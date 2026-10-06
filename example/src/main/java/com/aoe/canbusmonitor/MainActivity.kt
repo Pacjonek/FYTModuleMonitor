@@ -3,12 +3,11 @@ package com.aoe.canbusmonitor
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.aoe.fytcanbusmonitor.RemoteModuleProxy
 import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_MAIN
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_BT
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_CANBUS
-import com.aoe.fytcanbusmonitor.MsToolkitConnection
+import com.aoe.fytcanbusmonitor.IpcConnector
 import java.util.concurrent.ConcurrentHashMap
 
 class MainActivity : AppCompatActivity() {
@@ -21,28 +20,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
-        IPCConnection(
+        ModuleConnector(
             MODULE_CODE_MAIN,
-            RemoteModuleProxy(),
             loggingCallback(MODULE_CODE_MAIN.toLong(), "MAIN"),
             (0..76) + (78..256)
         )
-        IPCConnection(
+        ModuleConnector(
             MODULE_CODE_BT,
-            RemoteModuleProxy(),
             loggingCallback(MODULE_CODE_BT.toLong(), "BT"),
             (0..100)
         )
-        IPCConnection(
+        ModuleConnector(
             MODULE_CODE_CANBUS,
-            RemoteModuleProxy(),
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS"),
             (0..9) + (98..300) + (500..700) + (1000..1200)
         )
-        // IPCConnection(MODULE_CODE_OBD, RemoteModuleProxy(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
-        // IPCConnection(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
+        // ModuleConnector(MODULE_CODE_OBD, ModuleCommander(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
+        // ModuleConnector(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
 
-        MsToolkitConnection.instance.connect(this)
+        IpcConnector.instance.connect(this)
     }
 
     private fun loggingCallback(moduleCode: Long, moduleLabel: String) = object : IModuleCallback.Stub() {
@@ -80,19 +76,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logIfChanged(
-        moduleCode: Long,
+        moduleId: Long,
         moduleLabel: String,
         updatedCode: Int,
-        payload: String
+        data: String
     ) {
         val messageKey = "$moduleLabel:$updatedCode"
         val shouldLog = synchronized(payloadLock) {
-            val previousValues = lastPayloads.put(messageKey, payload)
-            previousValues != payload
+            val previousValues = lastPayloads.put(messageKey, data)
+            previousValues != data
         }
         if (shouldLog) {
-            val codeLabel = UpdateCodeNameResolver.resolveOrFallback(moduleCode, updatedCode)
-            Log.w("FYT/$moduleLabel", "[$codeLabel] $payload")
+            val codeLabel = UpdateCodeNameResolver.resolveOrFallback(moduleId, updatedCode)
+            Log.w("FYT/$moduleLabel", "[$codeLabel] $data")
         }
     }
 }

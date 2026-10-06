@@ -8,7 +8,7 @@ import android.os.RemoteException
 
 /**
  * Minimal replica of the FYT `com.syu.ipc.IRemoteModule` binder interface.
- * One instance per FYT module (MAIN = 0, BT = 2, CANBUS = 7, ...).
+ * One instance per FYT remote module (MAIN = 0, BT = 2, CANBUS = 7, ...).
  */
 interface IRemoteModule : IInterface {
     val moduleId: Int
@@ -20,10 +20,10 @@ interface IRemoteModule : IInterface {
     operator fun get(getCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?): ModulePayload?
 
     @Throws(RemoteException::class)
-    fun register(updateListener: IModuleCallback?, updateCode: Int, syncFlag: Int)
+    fun register(updateObserver: IModuleCallback, updateCode: Int, syncFlag: Int)
 
     @Throws(RemoteException::class)
-    fun unregister(updateListener: IModuleCallback?, updateCode: Int)
+    fun unregister(updateObserver: IModuleCallback, updateCode: Int)
 
     abstract class Stub : Binder(), IRemoteModule {
 
@@ -126,12 +126,12 @@ interface IRemoteModule : IInterface {
             }
 
             @Throws(RemoteException::class)
-            override fun register(updateListener: IModuleCallback?, updateCode: Int, syncFlag: Int) {
+            override fun register(updateObserver: IModuleCallback, updateCode: Int, syncFlag: Int) {
                 val data = Parcel.obtain()
                 val reply = Parcel.obtain()
                 try {
                     data.writeInterfaceToken(DESCRIPTOR)
-                    data.writeStrongBinder(updateListener?.asBinder())
+                    data.writeStrongBinder(updateObserver.asBinder())
                     data.writeInt(updateCode)
                     data.writeInt(syncFlag)
                     module.transact(TRANSACTION_register, data, reply, FLAG_ONEWAY)
@@ -143,12 +143,12 @@ interface IRemoteModule : IInterface {
             }
 
             @Throws(RemoteException::class)
-            override fun unregister(updateListener: IModuleCallback?, updateCode: Int) {
+            override fun unregister(updateObserver: IModuleCallback, updateCode: Int) {
                 val data = Parcel.obtain()
                 val reply = Parcel.obtain()
                 try {
                     data.writeInterfaceToken(DESCRIPTOR)
-                    data.writeStrongBinder(updateListener?.asBinder())
+                    data.writeStrongBinder(updateObserver.asBinder())
                     data.writeInt(updateCode)
                     module.transact(TRANSACTION_unregister, data, reply, FLAG_ONEWAY)
                     reply.readException()
@@ -168,8 +168,7 @@ interface IRemoteModule : IInterface {
             const val TRANSACTION_unregister = 4
             const val TRANSACTION_getDescriptor = IBinder.INTERFACE_TRANSACTION
 
-            fun asInterface(obj: IBinder?): IRemoteModule? {
-                if (obj == null) return null
+            fun asInterface(obj: IBinder): IRemoteModule {
                 return obj.queryLocalInterface(DESCRIPTOR) as? IRemoteModule ?: Proxy(obj)
             }
         }

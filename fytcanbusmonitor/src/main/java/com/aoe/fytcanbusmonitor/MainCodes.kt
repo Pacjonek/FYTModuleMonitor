@@ -56,8 +56,8 @@ object MainUpdateCodes {
     /**
      * # Vehicle status & Telemetry
      */
-    const val U_HANDBRAKE = 7
-    const val U_HANDBRAKE_ENABLED = 8
+    const val U_HANDBRAKE_ENABLED = 7
+    const val U_HANDBRAKE_ON = 8
     const val U_TEMP_OUT = 40
     const val U_STEER_ANGLE = 41
     const val U_TRUNK_CONTROL_STATE = 87
@@ -248,7 +248,7 @@ object MainUpdateCodes {
     const val U_CUSTOM_BOOT_APP = 190
     const val U_SECOND_BOOT_BLACK_SCREEN = 191
     const val U_SECOND_DISPLAY_VCOM_VOLTAGE = 192
-    const val U_RIGHTCAMERA_7870_ONOFF = 199
+    const val U_RIGHTCAMERA_7870_ON = 199
     // 200
     // const val DEBUG_LOG_TYPE_FLAG = 201;
 
@@ -286,11 +286,11 @@ object MainCommandCodes {
     const val C_FACTORY_RESET = 38
     const val C_SYSTEM_PROPERTIES = 41
     const val C_CUTACC_TURNOFF_LCDC = 42
-    const val C_ECARLINK_ON = 43
+    const val C_ECARLINK_SWITCH = 43
     const val C_ENTER_SLEEP_WAKEUP = 46
     const val C_SLEEP_AIRPLANE = 48
     const val C_ARM_RESET_SELF = 53
-    const val C_START_STOP_ENABLE = 61
+    const val C_START_STOP_SWITCH = 61
     const val C_AIRPLANE_MODE = 75
     const val C_EXIT_APP = 81
 
@@ -329,7 +329,7 @@ object MainCommandCodes {
     const val C_JUMP_PAGE = 24
     const val C_KEY = 25
     const val C_PANEL_KEY_TYPE = 29
-    const val C_GUSTURE = 39
+    const val C_GESTURE = 39
     const val C_MCU_PANEL_KEY_ENABLE = 55
     const val C_TOUCH = 56
     const val C_ROLL_KEY_TYPE = 63
@@ -442,21 +442,43 @@ object MainGetCodes{
     const val G_POWER_OPTION = 22
     const val G_RADIO_AIR_LINE = 31
     const val G_RESET_DELAY_TIME = 30
-    const val G_RUN_NAVI_APP_ON_BOOT = 43
+    const val G_RUN_NAVI_ON_BOOT = 43
     const val G_STANDBY_ON = 39
     const val G_TV_ENABLE = 44
     const val G_VOL = 2
     const val G_VOL_MAIN_DEF = 42
 }
 
-object MainPlatformCodes {
-    const val PLATFORM_MONITOR = 1;
-    const val PLATFORM_3188 = 2;
-    const val PLATFORM_8700 = 3;
-    const val PLATFORM_786 = 4;
-    const val PLATFORM_SOPHIA = 5;
-    const val PLATFORM_8918 = 6;
-    const val PLATFORM_9853 = 8;
-    const val PLATFORM_PX5 = 7;
+object MainChipCodes {
+    const val CHIP_NULL = 0
+    const val CHIP_MST786 = 1
+    const val CHIP_SPHE8700 = 2
+    const val CHIP_RKPX3 = 3
+    const val CHIP_SOFIA = 4
+    const val CHIP_SG9832 = 5
+    const val CHIP_RKPX5 = 6
+}
+
+object MainAppIds {
+    const val APP_ID_NULL = 0
+    const val APP_ID_RADIO = 1
+    const val APP_ID_BTPHONE = 2
+    const val APP_ID_BTAV = 3
+    const val APP_ID_DVD = 4
+    const val APP_ID_AUX = 5
+    const val APP_ID_TV = 6
+    const val APP_ID_IPOD = 7
+    const val APP_ID_AUDIO_PLAYER = 8
+    const val APP_ID_VIDEO_PLAYER = 9
+    const val APP_ID_THIRD_PLAYER = 10
+    const val APP_ID_CAR_RADIO = 11
+    const val APP_ID_CAR_BTPHONE = 12
+    const val APP_ID_CAR_USB = 13
+    const val APP_ID_DVR = 14
+    const val APP_ID_3GPHONE = 15
+    const val APP_ID_SPECIAL = 16
+
+    const val APP_ID_LAST = -1
+    const val APP_ID_CNT_MAX = 20
 
 }
