@@ -19,13 +19,13 @@ class IPCConnection(
     private val updateObserver: IModuleCallback,
     updateCodes: Iterable<Int>
 ) : IConnectionObserver {
-
+    private val connector = MsConnector.instance
     private val commander = ModuleCommander()
     private val updateCodes = updateCodes.toList()
     private var updateObserverRegistered = false
 
     init {
-        MsConnector.instance.addObserver(this)
+        connector.addObserver(this)
     }
 
     override fun onConnected(toolkit: IRemoteToolkit) {
