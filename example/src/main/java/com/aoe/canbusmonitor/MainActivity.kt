@@ -7,7 +7,7 @@ import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_MAIN
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_BT
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_CANBUS
-import com.aoe.fytcanbusmonitor.IpcConnector
+import com.aoe.fytcanbusmonitor.MsConnector
 import java.util.concurrent.ConcurrentHashMap
 
 class MainActivity : AppCompatActivity() {
@@ -20,25 +20,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
-        ModuleConnector(
+        IPCConnection(
             MODULE_CODE_MAIN,
             loggingCallback(MODULE_CODE_MAIN.toLong(), "MAIN"),
             (0..76) + (78..256)
         )
-        ModuleConnector(
+        IPCConnection(
             MODULE_CODE_BT,
             loggingCallback(MODULE_CODE_BT.toLong(), "BT"),
             (0..100)
         )
-        ModuleConnector(
+        IPCConnection(
             MODULE_CODE_CANBUS,
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS"),
             (0..9) + (98..300) + (500..700) + (1000..1200)
         )
-        // ModuleConnector(MODULE_CODE_OBD, ModuleCommander(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
-        // ModuleConnector(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
+        // IPCConnection(MODULE_CODE_OBD, ModuleCommander(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
+        // IPCConnection(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
 
-        IpcConnector.instance.connect(this)
+        MsConnector.instance.connect(this)
     }
 
     private fun loggingCallback(moduleCode: Long, moduleLabel: String) = object : IModuleCallback.Stub() {

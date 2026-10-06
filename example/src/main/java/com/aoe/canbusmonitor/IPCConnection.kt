@@ -4,56 +4,56 @@ import android.os.RemoteException
 import com.aoe.fytcanbusmonitor.IConnectionObserver
 import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.IRemoteToolkit
-import com.aoe.fytcanbusmonitor.MsToolkitConnection
-import com.aoe.fytcanbusmonitor.RemoteModuleProxy
+import com.aoe.fytcanbusmonitor.MsConnector
+import com.aoe.fytcanbusmonitor.ModuleCommander
 
 /**
- * Connects [remoteProxy] to the remote module [moduleId], registering
- * [callback] for every update code in [updateCodes].
+ * Connect to the remote module [moduleId], registering
+ * [updateObserver] for every update code in [updateCodes].
  *
- * Self-registers with [MsToolkitConnection] and stays registered until
- * [close] is called. Reconnection is handled by MsToolkitConnection.
+ * Self-registers with [MsConnector] and stays registered until
+ * [close] is called. Reconnection is handled by MsConnector.
  */
 class IPCConnection(
     private val moduleId: Int,
-    private val remoteProxy: RemoteModuleProxy,
-    private val callback: IModuleCallback,
+    private val updateObserver: IModuleCallback,
     updateCodes: Iterable<Int>
 ) : IConnectionObserver {
 
+    private val commander = ModuleCommander()
     private val updateCodes = updateCodes.toList()
-    private var callbacksRegistered = false
+    private var updateObserverRegistered = false
 
     init {
-        MsToolkitConnection.instance.addObserver(this)
+        MsConnector.instance.addObserver(this)
     }
 
     override fun onConnected(toolkit: IRemoteToolkit) {
-        if (callbacksRegistered) {
+        if (updateObserverRegistered) {
             onDisconnected()
         }
         try {
             val module = toolkit.getRemoteModule(moduleId)
             //module?.cmd(1043, intArrayOf(1), null, null)
-            remoteProxy.remoteModule = module
+            commander.commanderService = module
         } catch (e: RemoteException) {
             e.printStackTrace()
             return
         }
-        updateCodes.forEach { remoteProxy.register(callback, it, 1) }
-        callbacksRegistered = true
+        updateCodes.forEach { commander.register(updateObserver, it, 1) }
+        updateObserverRegistered = true
     }
 
     override fun onDisconnected() {
-        if (callbacksRegistered) {
-            updateCodes.forEach { remoteProxy.unregister(callback, it) }
-            callbacksRegistered = false
+        if (updateObserverRegistered) {
+            updateCodes.forEach { commander.unregister(updateObserver, it) }
+            updateObserverRegistered = false
         }
-        remoteProxy.remoteModule = null
+        commander.commanderService = null
     }
 
     fun close() {
         onDisconnected()
-        MsToolkitConnection.instance.removeObserver(this)
+        MsConnector.instance.removeObserver(this)
     }
 }
