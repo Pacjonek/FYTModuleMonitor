@@ -120,16 +120,16 @@ object MainUpdateCodes {
      * # Audio, Video, Media & Voice Assistant
      */
     // const val U_PLAYER_CMD = 37
-    const val U_VA_CMD = 42
+    const val U_VOICE_ASSISTANT_CMD = 42
     const val U_ID3_TITLE = 49
-    const val U_VA_AUDIO_OCCUPIED = 57
-    const val U_MCU_REQUEST_VIDEO = 59
+    const val U_VOICE_ASSISTANT_AUDIO_OCCUPIED = 57
+    const val U_MCU_VIDEO_REQUESTED = 59
     const val U_SIGNAL_ON = 69
     const val U_SIGNAL_NTSC_PAL = 70
     const val U_AUX_ENABLED = 73
-    const val U_PLAY_STATUS = 74
+    const val U_PLAYER_STATUS = 74
     const val U_CNC_AUX_ENABLED = 98
-    const val U_VA_AUDIO_OCCUPIED_BY_APP = 104
+    const val U_VOICE_ASSISTANT_AUDIO_OCCUPIED_BY_APP = 104
     const val U_VIDEO_OUTPUT_PARAMETERS = 105
     const val U_MIC_TYPE = 107
     const val U_VIDEO_AUX_TV = 108
@@ -367,9 +367,9 @@ object MainCommandCodes {
     /**
      * # Audio, Video & Voice Assistant
      */
-    const val C_VA_CMD = 20
+    const val C_VOICE_ASSISTANT_CMD = 20
     const val C_VIDEO_ID = 22
-    const val C_PLAY_INFO = 23
+    const val C_PLAYER_INFO = 23
     const val C_VIDEO_IMAGE = 36
     const val C_VIDEO_POSITION = 44
     const val C_AUX_ENABLE = 47
