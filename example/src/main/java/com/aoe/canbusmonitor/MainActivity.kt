@@ -46,10 +46,18 @@ class MainActivity : AppCompatActivity() {
             ints: IntArray?,
             flts: FloatArray?,
             strs: Array<String?>?,
-            updatedCode: Int
+            updateCode: Int
             ) {
+
+            var newInts: IntArray?;
+            if(updateCode == 1019 && ints){
+                newInts = ints.drop(2)?.dropLast(1)?.toIntArray() ?: intArrayOf()
+            } else {
+                newInts = ints
+            }
+            
             val values = formatPayloadValues(ints, flts, strs)
-            logIfChanged(moduleCode, moduleLabel, updatedCode, values)
+            logIfChanged(moduleCode, moduleLabel, updateCode, values)
         }
     }
 
