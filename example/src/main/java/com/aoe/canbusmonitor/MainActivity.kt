@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             ) {
 
             var newInts: IntArray?;
-            if(updateCode == 1019 && ints){
+            if(updateCode == 1019 && ints != null){
                 newInts = ints.drop(2)?.dropLast(1)?.toIntArray() ?: intArrayOf()
             } else {
                 newInts = ints
