@@ -16,7 +16,7 @@ import com.aoe.fytcanbusmonitor.ModuleCommander
  */
 class IPCConnection(
     private val moduleId: Int,
-    private val updateObserver: IModuleCallback,
+    private val updateListener: IModuleCallback,
     updateCodes: Iterable<Int>
 ) : IConnectionObserver {
     private val connector = MsConnector.instance
@@ -40,13 +40,13 @@ class IPCConnection(
             e.printStackTrace()
             return
         }
-        updateCodes.forEach { commander.register(updateObserver, it, 1) }
+        updateCodes.forEach { commander.register(updateListener, it, 1) }
         updateObserverRegistered = true
     }
 
     override fun onDisconnected() {
         if (updateObserverRegistered) {
-            updateCodes.forEach { commander.unregister(updateObserver, it) }
+            updateCodes.forEach { commander.unregister(updateListener, it) }
             updateObserverRegistered = false
         }
         commander.commanderService = null
@@ -54,6 +54,6 @@ class IPCConnection(
 
     fun close() {
         onDisconnected()
-        MsConnector.instance.removeObserver(this)
+        connector.removeObserver(this)
     }
 }
