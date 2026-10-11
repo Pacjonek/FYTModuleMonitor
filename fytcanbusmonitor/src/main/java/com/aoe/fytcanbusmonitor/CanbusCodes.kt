@@ -1,7 +1,7 @@
 package com.aoe.fytcanbusmonitor
 
 object CanbusCommandCodes {
-    
+
     const val C_CMD_VIDEO = 1
     const val C_CMD_360_TOUCH_LY = 2
     const val C_CMD_SPEED_ALARM = 3
@@ -41,24 +41,25 @@ object CanbusCommandCodes {
     const val C_CANBUS_FRAME_TO_MCU30 = 1030
     const val C_PARK_CMD = 1031
     const val C_CANBUSDVR_CMD = 1032
+
     /**
-    *  val i0 = (iArr[0] >> 0) & 1)
-    *  val i1 = (iArr[0] >> 1) & 1)
-    *  val i2 = (iArr[0] >> 2) & 1)
-    *  val i3 = (iArr[0] >> 3) & 1)
-    *  val i4 = (iArr[0] >> 4) & 1)
-    *  val i5 = (iArr[0] >> 5) & 1)
-    *  t0.d.H3(151, 0, i0);
-    *  t0.d.H3(151, 1, i1);
-    *  t0.d.H3(151, 2, i2);
-    *  t0.d.H3(151, 3, i3);
-    *  t0.d.H3(151, 4, i4);
-    *  t0.d.H3(151, 5, i5);
-    * kt.y0(1049, new int[]{6, ((((iArr[0] >> 0) & 1) << 2) & 4) |
-    * ((((iArr[0] >> 5) & 1) << 5) & 32) | ((((iArr[0] >> 2) & 1) << 6) & 64) |
-    * ((((iArr[0] >> 3) & 1) << 7) & 128) | (16 & (((iArr[0] >> 4) & 1) << 4)) | 
-    * ((((iArr[0] >> 1) & 1) << 3) & 8)}, null, null);
-    **/
+     *  val i0 = (iArr[0] >> 0) & 1)
+     *  val i1 = (iArr[0] >> 1) & 1)
+     *  val i2 = (iArr[0] >> 2) & 1)
+     *  val i3 = (iArr[0] >> 3) & 1)
+     *  val i4 = (iArr[0] >> 4) & 1)
+     *  val i5 = (iArr[0] >> 5) & 1)
+     *  t0.d.H3(151, 0, i0);
+     *  t0.d.H3(151, 1, i1);
+     *  t0.d.H3(151, 2, i2);
+     *  t0.d.H3(151, 3, i3);
+     *  t0.d.H3(151, 4, i4);
+     *  t0.d.H3(151, 5, i5);
+     * kt.y0(1049, new int[]{6, ((((iArr[0] >> 0) & 1) << 2) & 4) |
+     * ((((iArr[0] >> 5) & 1) << 5) & 32) | ((((iArr[0] >> 2) & 1) << 6) & 64) |
+     * ((((iArr[0] >> 3) & 1) << 7) & 128) | (16 & (((iArr[0] >> 4) & 1) << 4)) |
+     * ((((iArr[0] >> 1) & 1) << 3) & 8)}, null, null);
+     **/
     const val C_CANBUS_CAR_DOOR = 1035
     const val C_CMD_360_TURN_LIGHT_ONOFF = 1036
     const val C_CMD_360_RADAR_ACTIVATION = 1037
@@ -70,10 +71,10 @@ object CanbusCommandCodes {
     const val C_CMD_TCROSS_ZH_BUTTON = 1039
 
     const val C_CMD_6606 = 1040
+
     // const val C_... = 1041
     const val C_DUDU_OBD = 1042
     const val C_KEYCODE_STUDY = 1043 // [0/1]
-    
 
 
 }
@@ -100,10 +101,10 @@ object CanbusUpdateCodes {
 
     /**
     # "Proprietary" codes
-    * Can vary depends on exact selected canbox manuf./model/profile/fw ver.
+     * Can vary depends on exact selected canbox manuf./model/profile/fw ver.
      * Usually used by `com.syu.canbus` where every "group" of cars have their own code logic
-    * Range: (maybe) 94 - (maybe) 499
-    **/
+     * Range: (maybe) 94 - (maybe) 499
+     **/
 
     // 'Fiat `All` models' (whatever that means) from Hiworld canbus box
     // WC - HiWorld
@@ -143,7 +144,7 @@ object CanbusUpdateCodes {
      */
     const val U_CAR_ADD_START = 500
     const val U_CAR_FRAME_NUM = 501
-    
+
     /* Exterior Lighting & Indicators */
     const val U_CAR_LIGHT = 517
     const val U_CAR_LIGHT_WIDTH = 502
@@ -161,12 +162,12 @@ object CanbusUpdateCodes {
     const val U_CAR_LIGHT_RIGHT_ENABLE = 530
     const val U_CAR_LIGHT_FRONT_ENABLE = 531
     const val U_CAR_LIGHT_REAR_ENABLE = 532
-    
+
     const val U_CAR_WIPER_LEV = 509
     const val U_CAR_CUR_SPEED = 510
     const val U_CAR_AVG_SPEED = 511
     const val U_CAR_TOTAL_MILEAGE = 512
-    const val U_CAR_DRIVENABLE_MILEAGE = 513
+    const val U_CAR_REMAIN_MILEAGE = 513
     const val U_CAR_SEAT_BELT_LEFT = 514
     const val U_CAR_SEAT_BELT_RIGHT = 515
     const val U_CAR_ACCON = 516
@@ -182,7 +183,7 @@ object CanbusUpdateCodes {
     const val U_CAR_CUR_SPEED_ENABLED = 534
     const val U_CAR_AVG_SPEED_ENABLED = 535
     const val U_CAR_TOTAL_MILEAGE_ENABLED = 536
-    const val U_CAR_DRIVEABLE_MILEAGE_ENABLED = 537
+    const val U_CAR_REMAIN_MILEAGE_ENABLED = 537
     const val U_CAR_SEAT_BELT_LEFT_ENABLED = 538
     const val U_CAR_SEAT_BELT_RIGHT_ENABLED = 539
     const val U_CAR_ACCON_ENABLED = 540
@@ -246,7 +247,7 @@ object CanbusUpdateCodes {
     const val U_CAMERA_MODE = 1013
     const val U_RIGHT_CAMERA_ON_OFF = 1017
     const val U_RIGHT_CAMERA_STATE = 1020
-    const val U_ORI_CARBACK = 1021
+    const val U_ORI_BACKCAR = 1021
     const val U_SHOW_BACKCAR_HOST = 1030
     const val U_EXIST_CAR_DVR = 1034
     const val U_PARK_MODE = 1039
@@ -320,7 +321,7 @@ object CanbusUpdateCodes {
     const val U_AIR_ACMAX = 53
     const val U_AIR_AQS = 54
     const val U_AIR_MONO = 55
-    const val U_AIR_TRMP_SET_V = 56
+    const val U_AIR_TEMP_SET_V = 56
     const val U_AIR_ZONE = 57
     const val U_AIR_ION = 58
     const val U_AIR_REARVIEW_HOT = 59
@@ -366,10 +367,10 @@ object CanbusUpdateCodes {
     /**
      * # Max limit
      */
-    const val U_CNT_MAX = 1200
+    const val CNT_MAX = 1200
 }
 
-object CanbusGetCodes{
+object CanbusGetCodes {
     const val G_MCU_CANBUS_SUPPORT = 1000
     const val G_MISC_BEGIN = 1000
 
@@ -433,10 +434,10 @@ object CanbusKeycodes {
     const val KEYCODE_TV = 52
     const val KEYCODE_AUX = 53
     const val KEYCODE_MEDIAPLAYER = 54
-    const val KEYCODE_CARSETTINGS = 55
-    const val KEYCODE_TIMESETTINGS = 56
+    const val KEYCODE_CAR_SETTINGS = 55
+    const val KEYCODE_TIME_SETTINGS = 56
     const val KEYCODE_SCREEN_CALI = 57
-    const val KEYCODE_SYSTEMINFO = 58
+    const val KEYCODE_SYSTEM_INFO = 58
     const val KEYCODE_DVR = 59
     const val KEYCODE_CARUSB = 60
     const val KEYCODE_CARRADIO = 61
@@ -449,9 +450,9 @@ object CanbusKeycodes {
     const val KEYCODE_SEEK_DOWN = 68
     const val KEYCODE_STAND_BY = 69
     const val KEYCODE_DISPLAY = 70
-    const val KEYCODE_BRIGHT_DEC = 71
-    const val KEYCODE_BRIGHT_INC = 72
-    const val KEYCODE_AUDIOSETTINGS = 73
+    const val KEYCODE_BRIGHT_MINUS = 71
+    const val KEYCODE_BRIGHT_PLUS = 72
+    const val KEYCODE_AUDIO_SETTINGS = 73
     const val KEYCODE_FM = 74
     const val KEYCODE_AM = 75
     const val KEYCODE_BT_AV = 76

@@ -35,14 +35,19 @@ object MainUpdateCodes {
     /**
      * # Lighting & LEDs
      */
-    const val U_LAMPLET = 4
+    const val U_LAMPLET_U1 = 4
+    const val U_LAMPLET_O2 = 181
     const val U_LAMPLET_BY_TIME = 29
     const val U_LAMPLET_ON_BOOT = 52
     const val U_LAMPLET_ON_ALWAYS = 53
     const val U_LAMPLET_COLOR_CTRL = 54
     const val U_LAMPLET_CLEAN_ON = 78
-    const val U_AMBIENT_LIGHT = 79
+    const val U_LAMPLET_TIME = 136
+    const val U_AMBIENT_LIGHT_U1 = 79
+    const val U_AMBIENT_LIGHT_O2 = 123
+    const val U_AMBIENT_LIGHT_SWITCH = 149
     const val U_LED_COLOR = 99
+
 
     /**
      * # Navigation & GPS
@@ -85,8 +90,8 @@ object MainUpdateCodes {
     const val U_HOST_BACKCAR_ENABLED = 65
     const val U_REQUEST_CAMERA = 68
     const val U_BACKCAR_360_CAMERA = 81
-    const val U_360CAMERA_BACKCAR_ENABLED = 83
-    const val U_TRACK_REVERES_ENABLED = 102
+    const val U_BACKCAR_360_CAMERA_ENABLED = 83
+    const val U_TRACK_REVERSING_ENABLED = 102
     const val U_CAMERA_VOLTAGE = 119
     const val U_CAMERA_AHD_ENABLED = 121
     const val U_REVERSING_TYPE = 122
@@ -119,7 +124,7 @@ object MainUpdateCodes {
     /**
      * # Audio, Video, Media & Voice Assistant
      */
-    // const val U_PLAYER_CMD = 37
+    const val U_PLAYER_CMD = 37
     const val U_VOICE_ASSISTANT_CMD = 42
     const val U_ID3_TITLE = 49
     const val U_VOICE_ASSISTANT_AUDIO_OCCUPIED = 57
@@ -127,7 +132,7 @@ object MainUpdateCodes {
     const val U_SIGNAL_ON = 69
     const val U_SIGNAL_NTSC_PAL = 70
     const val U_AUX_ENABLED = 73
-    const val U_PLAYER_STATUS = 74
+    const val U_PLAYING_STATUS = 74
     const val U_CNC_AUX_ENABLED = 98
     const val U_VOICE_ASSISTANT_AUDIO_OCCUPIED_BY_APP = 104
     const val U_VIDEO_OUTPUT_PARAMETERS = 105
@@ -174,10 +179,10 @@ object MainUpdateCodes {
     const val U_RESERVED = 30
     const val U_RESERVED2 = 44
 
-    
-    const val U_AMBIENT_LIGHT_O = 123
+    const val OPTION_BASE = 123
+
     const val U_THIRD_DVR_SETUP = 124
-    const val U_CAMERA_POWER_ALWAYS_SUPPLIED_ENABLED = 125
+    const val U_CAMERA_POWER_ALWAYS_SUPPLY_ENABLED = 125
     const val U_FRONT_CAMERA_ENABLED = 126
     const val U_LOCK_PASSWORD = 127
     const val U_UNLOCK_DEVICE_MAC = 128
@@ -188,7 +193,6 @@ object MainUpdateCodes {
     const val U_ONCLICK_KEYCODE = 133
     const val U_CAR_TURN = 134
     const val U_PREVIEW_MODE = 135
-    const val U_LAMPLET_TIME = 136
     const val U_IMAGE_IC_INITIALIZED = 137
     const val U_TOP_APP_CHANGED = 138
     const val U_DOUBLE_FLASH = 139
@@ -202,7 +206,6 @@ object MainUpdateCodes {
     const val U_CPU_RUNNING_TEMP = 146
     const val U_BOOT_PLAY_VIDEO = 147
     const val U_SOFT_UPGRADE = 148
-    const val U_AMBIENT_LIGHT_SWITCH = 149
     const val U_APP_UI_WINDOW_FOCUS = 150
     const val U_DOOR_STATE = 151
 
@@ -220,7 +223,6 @@ object MainUpdateCodes {
     const val U_SERIAL_PLUGIN_DEVICE = 163
     const val U_VOICE_PKG = 164
     const val U_ENTER_UI_REMEMBER = 165
-    const val U_CARLINK_CARPLAY_CALLSTATE = 170
     const val U_CARLINK_WIRELESS_AUTO_CONN = 166
     const val U_CARLINK_WIRED_AUTO_CONN = 167
     const val U_SCREEN_ON = 168
@@ -236,7 +238,6 @@ object MainUpdateCodes {
     const val U_UI_MODE = 178
     const val U_GNSS_POSITION = 179
     const val U_REVERSE_ANTI_SHAKING = 180
-    const val U_LAMPLET_O = 181
     const val U_MOBILE_LINK_STATUS = 182
     const val U_ALTITUDE_FIX_VALUE = 183
     const val U_ANDROID_AUDIO_STATE = 184
@@ -256,7 +257,7 @@ object MainUpdateCodes {
     /**
      * # Max limit
      */
-    const val U_CNT_MAX = 256
+    const val CNT_MAX = 256
 }
 
 object MainCommandCodes {
@@ -276,7 +277,7 @@ object MainCommandCodes {
     const val C_PLAYER_NUM = 8
     const val C_PLAYER_REPEAT = 9
 
-   /**
+    /**
      * # Power, System & Sleep management
      */
     const val C_APP_ID = 0
@@ -314,7 +315,10 @@ object MainCommandCodes {
     const val C_LAMPLET_ON_ALWAYS = 31
     const val C_LAMPLET_COLOR_CTRL = 32
     const val C_LAMPLET_CLEAN_ON = 49
-    const val C_AMBIENT_LIGHT = 50
+    const val C_LAMPLET_TIME = 136
+    const val C_AMBIENT_LIGHT_C1 = 50
+    const val C_AMBIENT_LIGHT_O2 = 123
+    const val C_AMBIENT_LIGHT_SWITCH = 149
     const val C_LED_COLOR = 64
 
     /**
@@ -368,7 +372,7 @@ object MainCommandCodes {
      * # Audio, Video & Voice Assistant
      */
     const val C_VOICE_ASSISTANT_CMD = 20
-    const val C_VIDEO_ID = 22
+    const val C_VIDEO_ID_C1 = 22
     const val C_PLAYER_INFO = 23
     const val C_VIDEO_IMAGE = 36
     const val C_VIDEO_POSITION = 44
@@ -400,9 +404,83 @@ object MainCommandCodes {
     const val C_UPDATE_CONNECT_MCU = 78
     const val C_VAVDD = 79
     const val C_GPIO_JNI = 84
+
+    const val OPTION_BASE = 123
+
+    const val C_THIRD_DVR_SETUP = 124
+    const val C_CAMERA_POWER_ALWAYS_SUPPLY_ENABLED = 125
+    const val C_FRONT_CAMERA_ENABLE = 126
+    const val C_LOCK_PASSWORD = 127
+    const val C_UNLOCK_DEVICE_MAC = 128
+    const val C_LOCK_STATE = 129
+    const val C_STATIC_TRACK = 130
+    const val C_LOCK_ENABLE = 131
+    const val C_KEYCODE_2CUSTOMER = 132
+    const val C_ONCLICK_KEYCODE = 133
+    const val C_CAR_TURN = 134
+    const val C_PREVIEW_MODE = 135
+    const val C_IMAGE_IC_INITIALIZE = 137
+    const val C_TOP_APP_CHANGE = 138
+    const val C_DOUBLE_FLASH = 139
+    const val C_IMAGE_IC_UPGRADE = 140
+    const val C_IMAGE_IC_UPGRADE_PROGRESS = 141
+    const val C_MCU_SHUTDOWN_DELAY = 142
+
+    // 143
+    const val C_FAN_AUTO_MODE = 144
+    const val C_FAN_AUTO_MODE_TEMPS = 145
+    const val C_CPU_RUNNING_TEMP = 146
+    const val C_BOOT_PLAY_VIDEO = 147
+    const val C_SOFT_UPGRADE = 148
+    const val C_APP_UI_WINDOW_FOCUS = 150
+    const val C_DOOR_STATE = 151
+
+    // 152
+    const val C_VIDEO_ID_O2 = 153
+    const val C_VIDEO_FORMAT = 154
+    const val C_VIDEO_SIGNAL = 155
+    const val C_EXTRA_VOICE_AUDIO = 156
+    const val C_EXTRA_NAVI_AUDIO = 157
+    const val C_EXTRA_TIPS_AUDIO = 158
+    const val C_EXTRA_CALLING = 159
+    const val C_CAMERA_POWER = 160
+    const val C_SET_PROPERTY = 161
+    const val C_USB_DVR_SWITCH_7731 = 162
+    const val C_SERIAL_PLUGIN_DEVICE = 163
+    const val C_VOICE_PKG = 164
+    const val C_ENTER_UI_REMEMBER = 165
+    const val C_CARLINK_WIRELESS_AUTO_CONN = 166
+    const val C_CARLINK_WIRED_AUTO_CONN = 167
+    const val C_SCREEN_ON = 168
+    const val C_REVERSE_CARPLAY_CONNECT = 169
+    const val C_CARLINK_CARPLAY_CALL_STATE = 170
+    const val C_BACKLIGHT_CTRL_TYPE = 171
+    const val C_EXTRA_MIC_ENABLE = 172
+    const val C_CAR_VIDEO_SIZE = 173
+    const val C_IMAGE_PARAM_8918 = 174
+    const val C_SINGLE_DELAY_SHUTDOWN = 175
+    const val C_OBSTACLE_FLAG = 176
+    const val C_SCREENSAVER_OP = 177
+    const val C_UI_MODE = 178
+    const val C_GNSS_POSITION = 179
+    const val C_REVERSE_ANTI_SHAKING = 180
+    const val C_MOBILE_LINK_STATUS = 182
+    const val C_ALTITUDE_FIX_VALUE = 183
+    const val C_ANDROID_AUDIO_STATE = 184
+    const val C_CUSTOM_APP = 185
+    const val C_APP_TO_BE_KILLED = 186
+    const val C_SECOND_DISPLAY_BRIGHTNESS = 187
+    const val C_SECOND_DISPLAY_BLACK = 188
+    const val C_BOOT_BLACK_SCREEN = 189
+    const val C_CUSTOM_BOOT_APP = 190
+    const val C_SECOND_BOOT_BLACK_SCREEN = 191
+    const val C_SECOND_DISPLAY_VCOM_VOLTAGE = 192
+    const val C_RIGHTCAMERA_7870_ON = 199
+    // 200
+    // const val DEBUG_LOG_TYPE_FLAG = 201;
 }
 
-object MainGetCodes{
+object MainGetCodes {
     const val G_AUTO_BLACK_SCREEN = 14
     const val G_BACKCAR_RADAR_ON = 28
     const val G_BACKCAR_TRACK_ON = 29
@@ -479,6 +557,6 @@ object MainAppIds {
     const val APP_ID_SPECIAL = 16
 
     const val APP_ID_LAST = -1
-    const val APP_ID_CNT_MAX = 20
+    const val CNT_MAX = 20
 
 }
