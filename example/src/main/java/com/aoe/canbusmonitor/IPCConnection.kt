@@ -4,56 +4,62 @@ import android.os.RemoteException
 import com.aoe.fytcanbusmonitor.IConnectionObserver
 import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.IRemoteToolkit
+import com.aoe.fytcanbusmonitor.IRemoteModule
+import com.aoe.fytcanbusmonitor.MsConnector.Companion.instance as msConnectorInstance
+import com.aoe.fytcanbusmonitor.ModuleController
 import com.aoe.fytcanbusmonitor.MsConnector
-import com.aoe.fytcanbusmonitor.ModuleCommander
 
 /**
  * Connect to the remote module [moduleId], registering
- * [updateObserver] for every update code in [updateCodes].
+ * [updateListener] for every update code in [updateCodes].
  *
- * Self-registers with [MsConnector] and stays registered until
- * [close] is called. Reconnection is handled by MsConnector.
+ * (Re)connect with [MsConnector] and stays that until
+ * [close] is called.
  */
 class IPCConnection(
     private val moduleId: Int,
     private val updateListener: IModuleCallback,
-    updateCodes: Iterable<Int>
+    updateCodes: Iterable<Int>,
+    private val onConnectedListener: ((moduleController: ModuleController) -> Unit)? = null,
+    private val msConnector: MsConnector = msConnectorInstance
 ) : IConnectionObserver {
-    private val connector = MsConnector.instance
-    private val commander = ModuleCommander()
+    private var moduleController: ModuleController? = null
+
     private val updateCodes = updateCodes.toList()
     private var updateObserverRegistered = false
 
     init {
-        connector.addObserver(this)
+        msConnector.addObserver(this)
     }
 
     override fun onConnected(toolkit: IRemoteToolkit) {
         if (updateObserverRegistered) {
             onDisconnected()
         }
+        var controller: IRemoteModule? = null
         try {
-            val module = toolkit.getRemoteModule(moduleId)
+            controller = ModuleController(moduleId, toolkit)
             //module?.cmd(1043, intArrayOf(1), null, null)
-            commander.commanderService = module
         } catch (e: RemoteException) {
             e.printStackTrace()
             return
         }
-        updateCodes.forEach { commander.register(updateListener, it, 1) }
+        onConnectedListener?.invoke(controller)
+        updateCodes.forEach { controller.register(updateListener, it, 1) }
         updateObserverRegistered = true
     }
 
     override fun onDisconnected() {
-        if (updateObserverRegistered) {
-            updateCodes.forEach { commander.unregister(updateListener, it) }
+        val controller = moduleController
+        if (controller != null && updateObserverRegistered) {
+            updateCodes.forEach { controller.unregister(updateListener, it) }
             updateObserverRegistered = false
         }
-        commander.commanderService = null
+        moduleController?.close()
     }
 
     fun close() {
         onDisconnected()
-        connector.removeObserver(this)
+        msConnector.removeObserver(this)
     }
 }

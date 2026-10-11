@@ -16,19 +16,17 @@ import java.util.Random
  */
 class MsConnector private constructor() : ServiceConnection {
 
-    var connectionService: IRemoteToolkit? = null
+    var toolkitProxy: IRemoteToolkit? = null
         private set
-    private var context: Context? = null
     private var connecting = false
 
     /**
      * Connection observers (listeners)
      */
     private val observers = ArrayList<IConnectionObserver>()
-    private val handler = Handler(Looper.getMainLooper())
-    private val setConnectionRunnable = object : Runnable {
+    private val connectionTask = object : Runnable {
         override fun run() {
-            if (connectionService != null) {
+            if (toolkitProxy != null) {
                 connecting = false
                 return
             }
@@ -38,20 +36,23 @@ class MsConnector private constructor() : ServiceConnection {
         }
     }
 
+    private var context: Context? = null
+    private val handler = Handler(Looper.getMainLooper())
+
     @Synchronized
     fun connect(context: Context) = connect(context, 0L)
 
     private fun connect(context: Context, timeoutMillis: Long) {
-        if (connecting || connectionService != null) return
+        if (connecting || toolkitProxy != null) return
         this.context = context.applicationContext
         connecting = true
-        handler.postDelayed(setConnectionRunnable, timeoutMillis)
+        handler.postDelayed(connectionTask, timeoutMillis)
     }
 
     @Synchronized
     override fun onServiceConnected(name: ComponentName, service: IBinder) {
-        connectionService = IRemoteToolkit.Stub.asInterface(service)
-        val toolkit = connectionService
+        toolkitProxy = IRemoteToolkit.Stub.asInterface(service)
+        val toolkit = toolkitProxy
         if (toolkit != null) {
             observers.forEach { observer -> handler.post { observer.onConnected(toolkit) } }
         }
@@ -59,7 +60,7 @@ class MsConnector private constructor() : ServiceConnection {
 
     @Synchronized
     override fun onServiceDisconnected(name: ComponentName) {
-        connectionService = null
+        toolkitProxy = null
         observers.forEach { observer -> handler.post { observer.onDisconnected() } }
         context?.let { connect(it, getNextConnectionInterval()) }
     }
@@ -68,18 +69,18 @@ class MsConnector private constructor() : ServiceConnection {
     fun addObserver(connectionObserver: IConnectionObserver) {
         if (connectionObserver in observers) return
         observers += connectionObserver
-        connectionService?.let { toolkit -> handler.post { connectionObserver.onConnected(toolkit) } }
+        toolkitProxy?.let { toolkit -> handler.post { connectionObserver.onConnected(toolkit) } }
     }
 
     @Synchronized
     fun removeObserver(connectionObserver: IConnectionObserver) {
         observers -= connectionObserver
-        if (connectionService != null) handler.post { connectionObserver.onDisconnected() }
+        if (toolkitProxy != null) handler.post { connectionObserver.onDisconnected() }
     }
 
     @Synchronized
     public fun clearObservers() {
-        if (connectionService != null) {
+        if (toolkitProxy != null) {
             observers.forEach { observer -> handler.post { observer.onDisconnected() } }
         }
         observers.clear()
@@ -94,6 +95,7 @@ class MsConnector private constructor() : ServiceConnection {
         private val TOOLKIT_COMPONENT = ComponentName("com.syu.ms", "app.ToolkitService")
         private const val RECONNECT_BASE_MS = 1_000
         private const val RECONNECT_JITTER_MS = 2_000
-        private fun getNextConnectionInterval(): Long = RECONNECT_BASE_MS + Random().nextInt(RECONNECT_JITTER_MS).toLong()
+        private fun getNextConnectionInterval(): Long =
+            RECONNECT_BASE_MS + Random().nextInt(RECONNECT_JITTER_MS).toLong()
     }
 }
