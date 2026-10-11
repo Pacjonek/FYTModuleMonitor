@@ -11,11 +11,11 @@ import java.lang.reflect.Modifier
 import java.util.concurrent.ConcurrentHashMap
 
 internal data class ModuleUpdateKey(
-    val moduleCode: Long,
-    val updatedCode: Int
+    val moduleId: Long,
+    val updateCode: Int
 )
 
-internal object UpdateCodeNameResolver {
+internal object UpdateCodeLabelResolver {
 
     private val mainUpdateCodeNames = buildCodeNameMap(MainUpdateCodes::class.java)
     private val bluetoothUpdateCodeNames = buildCodeNameMap(BluetoothUpdateCodes::class.java)

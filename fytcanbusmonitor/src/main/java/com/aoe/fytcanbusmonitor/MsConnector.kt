@@ -11,9 +11,8 @@ import android.os.Looper
 import java.util.Random
 
 /**
- * Singleton [ServiceConnection] that maintains a connection to the FYT.
+ * Singleton [ServiceConnection] that maintains a connection to the FYT
  * toolkit service (`com.syu.ms`) and notifies [IConnectionObserver]s.
- * All observer callbacks are delivered on the main thread.
  */
 class MsConnector private constructor() : ServiceConnection {
 
@@ -27,7 +26,7 @@ class MsConnector private constructor() : ServiceConnection {
      */
     private val observers = ArrayList<IConnectionObserver>()
     private val handler = Handler(Looper.getMainLooper())
-    private val reconnectRunnable = object : Runnable {
+    private val setConnectionRunnable = object : Runnable {
         override fun run() {
             if (connectionService != null) {
                 connecting = false
@@ -35,7 +34,7 @@ class MsConnector private constructor() : ServiceConnection {
             }
             val intent = Intent(TOOLKIT_ACTION).setComponent(TOOLKIT_COMPONENT)
             context?.bindService(intent, this@MsConnector, Context.BIND_AUTO_CREATE)
-            handler.postDelayed(this, getNextReconnectDelay())
+            handler.postDelayed(this, getNextConnectionInterval())
         }
     }
 
@@ -46,7 +45,7 @@ class MsConnector private constructor() : ServiceConnection {
         if (connecting || connectionService != null) return
         this.context = context.applicationContext
         connecting = true
-        handler.postDelayed(reconnectRunnable, timeoutMillis)
+        handler.postDelayed(setConnectionRunnable, timeoutMillis)
     }
 
     @Synchronized
@@ -62,7 +61,7 @@ class MsConnector private constructor() : ServiceConnection {
     override fun onServiceDisconnected(name: ComponentName) {
         connectionService = null
         observers.forEach { observer -> handler.post { observer.onDisconnected() } }
-        context?.let { connect(it, getNextReconnectDelay()) }
+        context?.let { connect(it, getNextConnectionInterval()) }
     }
 
     @Synchronized
@@ -95,6 +94,6 @@ class MsConnector private constructor() : ServiceConnection {
         private val TOOLKIT_COMPONENT = ComponentName("com.syu.ms", "app.ToolkitService")
         private const val RECONNECT_BASE_MS = 1_000
         private const val RECONNECT_JITTER_MS = 2_000
-        private fun getNextReconnectDelay(): Long = RECONNECT_BASE_MS + Random().nextInt(RECONNECT_JITTER_MS).toLong()
+        private fun getNextConnectionInterval(): Long = RECONNECT_BASE_MS + Random().nextInt(RECONNECT_JITTER_MS).toLong()
     }
 }

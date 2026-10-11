@@ -52,14 +52,13 @@ class MainActivity : AppCompatActivity() {
             updateCode: Int
         ) {
 
-            var newInts: IntArray?;
-            if(updateCode == 1019 && ints != null){
-                newInts = ints.drop(2).dropLast(1).toIntArray() ?: intArrayOf()
+            val droppedInts: IntArray? = if(updateCode == 1019 && ints != null){
+                ints.drop(2).dropLast(1).toIntArray()
             } else {
-                newInts = ints
+                ints
             }
 
-            val values = formatPayloadValues(newInts, flts, strs)
+            val values = formatPayloadValues(droppedInts, flts, strs)
             logIfChanged(moduleCode, moduleLabel, updateCode, values)
         }
     }
@@ -98,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             previousValues != payloadValues
         }
         if (shouldLog) {
-            val codeLabel = UpdateCodeNameResolver.resolveOrFallback(moduleId, updatedCode)
+            val codeLabel = UpdateCodeLabelResolver.resolveOrFallback(moduleId, updatedCode)
             Log.w("FYT/$moduleLabel", "[$codeLabel] $payloadValues")
         }
     }
