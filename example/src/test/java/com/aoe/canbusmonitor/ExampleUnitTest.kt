@@ -14,26 +14,26 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun resolvesMainUpdateCodeName() {
-        assertEquals("U_ACC_ON", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_MAIN, 50))
+        assertEquals("U_ACC_ON", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_MAIN, 50))
     }
 
     @Test
     fun resolvesCanbusCodeNameOverRangeMarker() {
-        assertEquals("U_DOOR_ENGINE", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_CANBUS, 0))
+        assertEquals("U_DOOR_ENGINE", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_CANBUS, 0))
     }
 
     @Test
     fun fallsBackToNumericCodeWhenNameIsMissing() {
-        assertEquals("31", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_BT, 31))
+        assertEquals("31", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_BT, 31))
     }
 
     @Test
     fun keepsResolvedNamesScopedPerModule() {
-        assertEquals("U_APP_ID", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_MAIN, 0))
-        assertEquals("U_DOOR_ENGINE", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_CANBUS, 0))
-        assertEquals("0", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_BT, 0))
-        assertEquals("U_APP_ID", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_MAIN, 0))
-        assertEquals("U_DOOR_ENGINE", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_CANBUS, 0))
-        assertEquals("0", UpdateCodeNameResolver.resolveOrFallback(MODULE_CODE_BT, 0))
+        assertEquals("U_APP_ID", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_MAIN, 0))
+        assertEquals("U_DOOR_ENGINE", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_CANBUS, 0))
+        assertEquals("0", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_BT, 0))
+        assertEquals("U_APP_ID", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_MAIN, 0))
+        assertEquals("U_DOOR_ENGINE", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_CANBUS, 0))
+        assertEquals("0", UpdateCodeLabelResolver.resolveOrFallback(MODULE_CODE_BT, 0))
     }
 }
