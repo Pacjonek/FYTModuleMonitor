@@ -7,7 +7,7 @@ import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_MAIN
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_BT
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_CANBUS
-import com.aoe.fytcanbusmonitor.MsConnector
+import com.aoe.fytcanbusmonitor.MsConnector.Companion.instance as msConnectorInstance
 import com.google.android.material.color.DynamicColors
 import java.util.concurrent.ConcurrentHashMap
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         // IPCConnection(MODULE_CODE_OBD, ModuleCommander(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
         // IPCConnection(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
 
-        MsConnector.instance.connect(this)
+        msConnectorInstance.connect(this)
     }
 
     private fun loggingCallback(moduleCode: Long, moduleLabel: String) = object : IModuleCallback.Stub() {
@@ -90,16 +90,16 @@ class MainActivity : AppCompatActivity() {
         moduleId: Long,
         moduleLabel: String,
         updatedCode: Int,
-        data: String
+        payloadValues: String
     ) {
         val messageKey = "$moduleLabel:$updatedCode"
         val shouldLog = synchronized(payloadLock) {
-            val previousValues = lastPayloads.put(messageKey, data)
-            previousValues != data
+            val previousValues = lastPayloads.put(messageKey, payloadValues)
+            previousValues != payloadValues
         }
         if (shouldLog) {
             val codeLabel = UpdateCodeNameResolver.resolveOrFallback(moduleId, updatedCode)
-            Log.w("FYT/$moduleLabel", "[$codeLabel] $data")
+            Log.w("FYT/$moduleLabel", "[$codeLabel] $payloadValues")
         }
     }
 }
