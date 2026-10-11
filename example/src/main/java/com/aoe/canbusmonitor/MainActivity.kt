@@ -8,16 +8,19 @@ import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_MAIN
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_BT
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_CANBUS
 import com.aoe.fytcanbusmonitor.MsConnector
+import com.google.android.material.color.DynamicColors
 import java.util.concurrent.ConcurrentHashMap
 
 class MainActivity : AppCompatActivity() {
 
     private val lastPayloads = ConcurrentHashMap<String, String>()
     private val payloadLock = Any()
-    
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    // setContentView(R.layout.activity_main)
+
+    DynamicColors.applyToActivitiesIfAvailable(this.application)
 
 
         IPCConnection(
@@ -47,16 +50,16 @@ class MainActivity : AppCompatActivity() {
             flts: FloatArray?,
             strs: Array<String?>?,
             updateCode: Int
-            ) {
+        ) {
 
             var newInts: IntArray?;
             if(updateCode == 1019 && ints != null){
-                newInts = ints.drop(2)?.dropLast(1)?.toIntArray() ?: intArrayOf()
+                newInts = ints.drop(2).dropLast(1).toIntArray() ?: intArrayOf()
             } else {
                 newInts = ints
             }
-            
-            val values = formatPayloadValues(ints, flts, strs)
+
+            val values = formatPayloadValues(newInts, flts, strs)
             logIfChanged(moduleCode, moduleLabel, updateCode, values)
         }
     }

@@ -20,10 +20,10 @@ interface IRemoteModule : IInterface {
     operator fun get(getCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?): ModulePayload?
 
     @Throws(RemoteException::class)
-    fun register(updateObserver: IModuleCallback, updateCode: Int, syncFlag: Int)
+    fun register(updateListener: IModuleCallback, updateCode: Int, syncFlag: Int)
 
     @Throws(RemoteException::class)
-    fun unregister(updateObserver: IModuleCallback, updateCode: Int)
+    fun unregister(updateListener: IModuleCallback, updateCode: Int)
 
     abstract class Stub : Binder(), IRemoteModule {
 
@@ -126,12 +126,12 @@ interface IRemoteModule : IInterface {
             }
 
             @Throws(RemoteException::class)
-            override fun register(updateObserver: IModuleCallback, updateCode: Int, syncFlag: Int) {
+            override fun register(updateListener: IModuleCallback, updateCode: Int, syncFlag: Int) {
                 val data = Parcel.obtain()
                 val reply = Parcel.obtain()
                 try {
                     data.writeInterfaceToken(DESCRIPTOR)
-                    data.writeStrongBinder(updateObserver.asBinder())
+                    data.writeStrongBinder(updateListener.asBinder())
                     data.writeInt(updateCode)
                     data.writeInt(syncFlag)
                     module.transact(TRANSACTION_register, data, reply, FLAG_ONEWAY)
@@ -143,12 +143,12 @@ interface IRemoteModule : IInterface {
             }
 
             @Throws(RemoteException::class)
-            override fun unregister(updateObserver: IModuleCallback, updateCode: Int) {
+            override fun unregister(updateListener: IModuleCallback, updateCode: Int) {
                 val data = Parcel.obtain()
                 val reply = Parcel.obtain()
                 try {
                     data.writeInterfaceToken(DESCRIPTOR)
-                    data.writeStrongBinder(updateObserver.asBinder())
+                    data.writeStrongBinder(updateListener.asBinder())
                     data.writeInt(updateCode)
                     module.transact(TRANSACTION_unregister, data, reply, FLAG_ONEWAY)
                     reply.readException()

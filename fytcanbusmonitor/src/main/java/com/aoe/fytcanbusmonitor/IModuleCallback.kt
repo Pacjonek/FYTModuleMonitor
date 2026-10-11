@@ -76,7 +76,7 @@ interface IModuleCallback : IInterface {
             private const val DESCRIPTOR = "com.syu.ipc.IModuleCallback"
             const val TRANSACTION_update = 1
             const val TRANSACTION_getDescriptor = IBinder.INTERFACE_TRANSACTION
-            const val UPDATE_SYNC_FLAG = 1
+            const val SYNC_UPDATE_FLAG = 1
 
             fun asInterface(obj: IBinder): IModuleCallback {
                 return obj.queryLocalInterface(DESCRIPTOR) as? IModuleCallback ?: Proxy(obj)
