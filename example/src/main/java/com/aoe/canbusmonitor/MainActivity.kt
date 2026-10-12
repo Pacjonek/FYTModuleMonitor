@@ -52,12 +52,20 @@ class MainActivity : AppCompatActivity() {
         IPCConnection(
             MODULE_CODE_BT,
             loggingCallback(MODULE_CODE_BT.toLong(), "BT", "#1565C0".toColorInt()),
-            (0..100)
+            (0..100),
+            {
+                appendLogLine("BT", "#1565C0".toColorInt(), "Connected successfully")
+            }
         )
         IPCConnection(
             MODULE_CODE_CANBUS,
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS", "#C62828".toColorInt()),
-            (0..9) + (98..300) + (500..700) + (1000..1200)
+            (0..9) + (98..300) + (500..700) + (1000..1200),
+            { moduleController ->
+                appendLogLine("CANBUS", "#C62828".toColorInt(), "Connected successfully")
+                moduleController.cmd(U_CAR_LIGHT_ENABLE, 1)
+                moduleController.cmd(U_CAR_LIGHT, 1)
+            }
         )
         // IPCConnection(MODULE_CODE_OBD, ModuleCommander(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
         // IPCConnection(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
