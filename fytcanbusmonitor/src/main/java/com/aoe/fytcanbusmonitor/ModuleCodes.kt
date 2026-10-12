@@ -6,9 +6,9 @@ object ModuleCodes {
     const val MODULE_CODE_SOUND = 4
     const val MODULE_CODE_CANBUS = 7
     const val MODULE_CODE_CANBOX = 14
+    const val MODULE_CODE_AMP = 15
     const val MODULE_CODE_RADIO = 1
     const val MODULE_CODE_ADAS = 20
-    const val MODULE_CODE_AMP = 15
     const val MODULE_CODE_CUSTOMER = 11
     const val MODULE_CODE_DVD = 3
     const val MODULE_CODE_DVR = 9
@@ -22,4 +22,5 @@ object ModuleCodes {
     const val MODULE_CODE_TEST = 13
     const val MODULE_CODE_TPMS = 8
     const val MODULE_CODE_TV = 6
+    const val MODULE_CODE_CHIP = 10001
 }

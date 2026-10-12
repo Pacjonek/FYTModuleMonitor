@@ -535,6 +535,13 @@ object MainChipCodes {
     const val CHIP_SOFIA = 4
     const val CHIP_SG9832 = 5
     const val CHIP_RKPX5 = 6
+    const val CHIP_SP9853 = 7
+    const val CHIP_7731 = 8
+    const val CHIP_7862 = 9
+    const val CHIP_SP9863 = 10
+    const val CHIP_SP7870 = 11
+    const val CHIP_2386 = 12
+
 }
 
 object MainAppIds {

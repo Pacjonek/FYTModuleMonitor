@@ -39,8 +39,8 @@ object CanbusCommandCodes {
 
     const val C_CMD_360_TOUCH = 1029
     const val C_CANBUS_FRAME_TO_MCU30 = 1030
-    const val C_PARK_CMD = 1031
-    const val C_CANBUSDVR_CMD = 1032
+    const val C_CMD_PARK = 1031
+    const val C_CMD_CANBUS_DVR = 1032
 
     /**
      *  val i0 = (iArr[0] >> 0) & 1)
@@ -74,7 +74,7 @@ object CanbusCommandCodes {
 
     // const val C_... = 1041
     const val C_DUDU_OBD = 1042
-    const val C_KEYCODE_STUDY = 1043 // [0/1]
+    const val C_KEYCODE_STUDY = 1043 // [ints: [0/1]]
 
 
 }
