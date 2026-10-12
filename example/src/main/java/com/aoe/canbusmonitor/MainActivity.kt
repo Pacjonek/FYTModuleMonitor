@@ -22,6 +22,8 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorInt
 import androidx.core.graphics.toColorInt
+import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CAR_LIGHT
+import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CAR_LIGHT_ENABLE
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 val droppedInts: IntArray? =
-                    if (ints != null && updateCode == U_CANBUS_FRAME_TO_UI) {
+                    if (ints != null && updateCode == U_CANBUS_FRAME_TO_UI && ints.size > 3) {
                         ints.drop(2).dropLast(1).toIntArray()
                     } else {
                         ints
@@ -127,9 +129,19 @@ class MainActivity : AppCompatActivity() {
     private fun appendLogLine(tag: String, @ColorInt tagColor: Int, message: String) {
         Log.i("FYT/$tag", message)
         runOnUiThread {
-            val wasAtBottom = isScrolledToBottom()
-            val previousScrollX = scrollView.scrollX
-            val previousScrollY = scrollView.scrollY
+            val shouldAutoScroll = isScrolledToBottom()
+            val scrollYBefore = scrollView.scrollY
+
+            // Trim before appending so the removed height can be measured against
+            // the current layout, then shift the viewport by exactly that amount
+            // to keep the visible content steady (unless pinned to the bottom).
+            val trimmedHeight = trimLogIfNeeded()
+            if (!shouldAutoScroll && trimmedHeight > 0) {
+                scrollView.scrollTo(
+                    scrollView.scrollX,
+                    (scrollView.scrollY - trimmedHeight).coerceAtLeast(0)
+                )
+            }
 
             val line = SpannableStringBuilder(tag)
             line.setSpan(
@@ -148,14 +160,11 @@ class MainActivity : AppCompatActivity() {
             line.append(' ').append(message).append('\n')
             logView.append(line)
 
-            trimLogIfNeeded()
-
             scrollView.post {
-                if (wasAtBottom) {
+                // Auto-scroll only if the view was at the bottom and the user has
+                // not scrolled up since this line was appended.
+                if (shouldAutoScroll && scrollView.scrollY >= scrollYBefore) {
                     scrollView.fullScroll(ScrollView.FOCUS_DOWN)
-                } else if (scrollView.scrollY != previousScrollY) {
-                    // Keep the scroll position unchanged while the user reads older entries.
-                    scrollView.scrollTo(previousScrollX, previousScrollY)
                 }
             }
         }
@@ -163,13 +172,30 @@ class MainActivity : AppCompatActivity() {
 
     private fun isScrolledToBottom(): Boolean = !scrollView.canScrollVertically(1)
 
-    private fun trimLogIfNeeded() {
-        val text = logView.editableText ?: return
-        if (text.length > MAX_LOG_CHARS) {
-            val excess = text.length - MAX_LOG_CHARS
-            val nextNewline = text.indexOf('\n', excess)
-            text.delete(0, if (nextNewline >= 0) nextNewline + 1 else excess)
+    /**
+     * Removes the oldest lines when the log grows too large.
+     * @return the height of the removed text in pixels, 0 if nothing was removed.
+     */
+    private fun trimLogIfNeeded(): Int {
+        val text = logView.editableText ?: return 0
+        if (text.length <= MAX_LOG_CHARS) return 0
+
+        val excess = text.length - MAX_LOG_CHARS
+        val nextNewline = text.indexOf('\n', excess)
+        val cutEnd = if (nextNewline >= 0) nextNewline + 1 else excess
+
+        // The layout may lag behind the text during bursts; the removed prefix
+        // was laid out long ago, so only clamp for safety.
+        val layout = logView.layout
+        val removedHeight = if (layout != null && layout.text.isNotEmpty()) {
+            val safeOffset = (cutEnd - 1).coerceAtMost(layout.text.length - 1)
+            layout.getLineBottom(layout.getLineForOffset(safeOffset))
+        } else {
+            0
         }
+
+        text.delete(0, cutEnd)
+        return removedHeight
     }
 
     private companion object {
