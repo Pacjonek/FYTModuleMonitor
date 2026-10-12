@@ -61,13 +61,13 @@ object CanbusCommandCodes {
      * ((((iArr[0] >> 1) & 1) << 3) & 8)}, null, null);
      **/
     const val C_CANBUS_CAR_DOOR = 1035
-    const val C_CMD_360_TURN_LIGHT_ONOFF = 1036
+    const val C_CMD_360_TURN_LIGHT_SWITCH = 1036
     const val C_CMD_360_RADAR_ACTIVATION = 1037
 
     /* OEM / Brand Specific */
     const val C_CANBUS_AUDI_CAR_TYPE = 1033
     const val C_CANBUS_BENZ_BUTTON = 1034
-    const val C_CMD_JAHUAR_LZ = 1038
+    const val C_CMD_JAGUAR_LZ = 1038
     const val C_CMD_TCROSS_ZH_BUTTON = 1039
 
     const val C_CMD_6606 = 1040
@@ -231,7 +231,7 @@ object CanbusUpdateCodes {
     const val U_CANBUS_PM25_ENABLE = 1029
     const val U_CUR_SPEED = 1031
     const val U_ENGINE_SPEED = 1032
-    const val U_GPS_ANGLE = 1033
+    const val U_GNSS_ANGLE = 1033
     const val U_EXIST_CAR_ROTATING = 1035
     const val U_UISERVR_TYPE = 1037
     const val U_NEW_AIREIXT_SP = 1041
