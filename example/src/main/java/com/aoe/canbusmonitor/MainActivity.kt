@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         scrollView = findViewById(R.id.scroll_view)
         logView = findViewById(R.id.text_view)
+        // A focused selectable TextView holds a cursor that follows text appended at
+        // the end and forces the ScrollView to scroll to it on every insert. Keep it
+        // unfocused in touch mode so taps can't place a cursor (selection still works).
+        logView.isFocusableInTouchMode = false
 
         IPCConnection(
             MODULE_CODE_MAIN,
@@ -172,13 +176,23 @@ class MainActivity : AppCompatActivity() {
                 // Auto-scroll only if the view was at the bottom and the user has
                 // not scrolled up since this line was appended.
                 if (shouldAutoScroll && scrollView.scrollY >= scrollYBefore) {
-                    scrollView.fullScroll(ScrollView.FOCUS_DOWN)
+                    scrollToBottom()
                 }
             }
         }
     }
 
     private fun isScrolledToBottom(): Boolean = !scrollView.canScrollVertically(1)
+
+    /**
+     * Scrolls instantly to the very bottom. Unlike [ScrollView.fullScroll], this does
+     * not move focus (which would place a cursor at the end of the text and make the
+     * framework auto-scroll to it on every append) and does not animate.
+     */
+    private fun scrollToBottom() {
+        val child = scrollView.getChildAt(0) ?: return
+        scrollView.scrollTo(0, (child.height - scrollView.height).coerceAtLeast(0))
+    }
 
     /**
      * Removes the oldest lines when the log grows too large.
