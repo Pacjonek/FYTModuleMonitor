@@ -5,8 +5,13 @@ object MainUpdateCodes {
     const val U_APP_ID = 0
     const val U_MCU_ON = 1
     const val U_STANDBY = 2
+    const val U_BLACK_SCREEN = 3
     const val U_ANY_KEY_BOOT = 5
     const val U_CUT_ACC_POWER = 25
+    const val U_OSD_TIME = 26
+    const val U_BRIGHT_LEVEL = 31
+    const val U_BRIGHT_LEVEL_DAY = 32
+    const val U_BRIGHT_LEVEL_NIGHT = 33
     const val U_AUTO_BLACK_SCREEN = 36
     const val U_APP_VISIBILITY = 39
     const val U_ARM_SLEEP_WAKEUP = 43
@@ -15,21 +20,12 @@ object MainUpdateCodes {
     const val U_MCU_BOOT_ON = 62
     const val U_CUTACC_TURNOFF_LCDC = 66
     const val U_ECARLINK_ON = 67
-    const val U_CUTACC_DELAY_CLOSE_SCREEN = 71
-    const val U_SLEEP_AIRPLANE = 76
+    const val U_CUTACC_SCREEN_TURNOFF_DELAY = 71
+    const val U_SLEEP_TURNON_AIRPLANE_MODE = 76
+    const val U_SCREEN_TOUCH_EVENT_POS = 77 // [ints: x, y]
     const val U_START_STOP_ENABLED = 88
     const val U_SYSTEM_SLEEP_STATE = 103
     const val U_BLACK_STANDBY = 110
-
-    /**
-     * # Screen & Display
-     */
-    const val U_BLACK_SCREEN = 3
-    const val U_OSD_TIME = 26
-    const val U_BRIGHT_LEVEL = 31
-    const val U_BRIGHT_LEVEL_DAY = 32
-    const val U_BRIGHT_LEVEL_NIGHT = 33
-    const val U_SCREEN_TOUCH_EVENT = 77 // [ints: x, y]
     const val U_STATUS_SCREENSHOTS_ENABLED = 117
 
     /**
@@ -54,9 +50,11 @@ object MainUpdateCodes {
      */
     const val U_NAVI_ON_BOOT = 6
     const val U_NAVI_PACKAGE = 28
-    const val U_GPS_SPEED = 101
+    const val U_GNSS_SPEED = 101
     const val U_NAVI_SOUND = 111
-    const val U_NAVI_TOP = 113
+    const val U_NAVI_IN_FOREGROUND = 113
+    const val U_GNSS_POSITION = 179
+    const val U_GNSS_ALTITUDE_FIX_VALUE = 183
 
     /**
      * # Vehicle status & Telemetry
@@ -68,6 +66,8 @@ object MainUpdateCodes {
     const val U_TRUNK_CONTROL_STATE = 87
     const val U_CAR_BATTERY_VOLTAGE = 114
     const val U_STEER_TYPE = 120
+    const val U_CAR_TURN = 134
+    const val U_DOOR_STATE = 151
 
     /**
      * # Storage & USB
@@ -87,7 +87,7 @@ object MainUpdateCodes {
     const val U_BACKCAR_TYPE = 47
     const val U_PANORAMA_ON = 55
     const val U_MIRROR_UP_DOWN = 58
-    const val U_HOST_BACKCAR_ENABLED = 65
+    const val U_BACKCAR_HOST_ENABLED = 65
     const val U_REQUEST_CAMERA = 68
     const val U_BACKCAR_360_CAMERA = 81
     const val U_BACKCAR_360_CAMERA_ENABLED = 83
@@ -95,6 +95,13 @@ object MainUpdateCodes {
     const val U_CAMERA_VOLTAGE = 119
     const val U_CAMERA_AHD_ENABLED = 121
     const val U_REVERSING_TYPE = 122
+    const val U_CAMERA_POWER_ALWAYS_SUPPLY_ENABLED = 125
+    const val U_FRONTCAMERA_ENABLED = 126
+    const val U_STATIC_TRACK = 130
+    const val U_CAMERA_POWER = 160
+    const val U_REVERSE_CARPLAY_CONNECTED = 169
+    const val U_REVERSE_ANTI_SHAKING = 180
+    const val U_RIGHTCAMERA_7870_ON = 199
 
     /**
      * # Parking Radars & Distance Sensors
@@ -132,13 +139,22 @@ object MainUpdateCodes {
     const val U_SIGNAL_ON = 69
     const val U_SIGNAL_NTSC_PAL = 70
     const val U_AUX_ENABLED = 73
-    const val U_PLAYING_STATUS = 74
+    const val U_PLAYING_OPTIONS = 74
     const val U_CNC_AUX_ENABLED = 98
     const val U_VOICE_ASSISTANT_AUDIO_OCCUPIED_BY_APP = 104
     const val U_VIDEO_OUTPUT_PARAMETERS = 105
     const val U_MIC_TYPE = 107
     const val U_VIDEO_AUX_TV = 108
     const val U_AUX_IPOD_AUDIO_CHANNEL = 112
+    const val U_IMAGE_IC_INITIALIZED = 137
+    const val U_IMAGE_IC_UPGRADE = 140
+    const val U_IMAGE_IC_UPGRADE_PROGRESS = 141
+    const val U_VIDEO_ID = 153
+    const val U_VIDEO_FORMAT = 154
+    const val U_VIDEO_SIGNAL = 155
+    const val U_EXTRA_MIC_ENABLED = 172
+    const val U_CAR_VIDEO_SIZE = 173
+    const val U_IMAGE_PARAM_8918 = 174
 
     /**
      * # Controls, Keys & Gestures
@@ -153,7 +169,7 @@ object MainUpdateCodes {
     /**
      * # Climate / HVAC
      */
-    const val U_AIR_CONTROL_SUPPORT_CMD = 72
+    const val U_AIR_CONTROL_SUPPORT = 72
 
     /**
      * # MCU Hardware, Diagnostics & Power Rails
@@ -182,22 +198,15 @@ object MainUpdateCodes {
     const val OPTION_BASE = 123
 
     const val U_THIRD_DVR_SETUP = 124
-    const val U_CAMERA_POWER_ALWAYS_SUPPLY_ENABLED = 125
-    const val U_FRONT_CAMERA_ENABLED = 126
     const val U_LOCK_PASSWORD = 127
     const val U_UNLOCK_DEVICE_MAC = 128
     const val U_LOCK_STATE = 129
-    const val U_STATIC_TRACK = 130
     const val U_LOCK_ENABLED = 131
     const val U_KEYCODE_2CUSTOMER = 132
     const val U_ONCLICK_KEYCODE = 133
-    const val U_CAR_TURN = 134
     const val U_PREVIEW_MODE = 135
-    const val U_IMAGE_IC_INITIALIZED = 137
-    const val U_TOP_APP_CHANGED = 138
+    const val U_FOREGROUND_APP_CHANGED = 138
     const val U_DOUBLE_FLASH = 139
-    const val U_IMAGE_IC_UPGRADE = 140
-    const val U_IMAGE_IC_UPGRADE_PROGRESS = 141
     const val U_MCU_SHUTDOWN_DELAY = 142
 
     // 143
@@ -207,39 +216,27 @@ object MainUpdateCodes {
     const val U_BOOT_PLAY_VIDEO = 147
     const val U_SOFT_UPGRADE = 148
     const val U_APP_UI_WINDOW_FOCUS = 150
-    const val U_DOOR_STATE = 151
 
-    // 150
-    const val U_VIDEO_ID = 153
-    const val U_VIDEO_FORMAT = 154
-    const val U_VIDEO_SIGNAL = 155
-    const val U_EXTRA_VOICE_AUDIO = 156
-    const val U_EXTRA_NAVI_AUDIO = 157
-    const val U_EXTRA_TIPS_AUDIO = 158
-    const val U_EXTRA_CALLING = 159
-    const val U_CAMERA_POWER = 160
+    // 152
+    const val U_VOICE_EXTRA_AUDIO = 156
+    const val U_NAVI_EXTRA_AUDIO = 157
+    const val U_TIPS_EXTRA_AUDIO = 158
+    const val U_CALLING_EXTRA = 159
     const val U_SET_PROPERTY = 161
-    const val U_USB_DVR_SWITCH_7731 = 162
+    const val U_USB_DVR_7731_SWITCH = 162
     const val U_SERIAL_PLUGIN_DEVICE = 163
     const val U_VOICE_PKG = 164
     const val U_ENTER_UI_REMEMBER = 165
     const val U_CARLINK_WIRELESS_AUTO_CONN = 166
     const val U_CARLINK_WIRED_AUTO_CONN = 167
     const val U_SCREEN_ON = 168
-    const val U_REVERSE_CARPLAY_CONNECTED = 169
     const val U_CARLINK_CARPLAY_CALL_STATE = 170
     const val U_BACKLIGHT_CTRL_TYPE = 171
-    const val U_EXTRA_MIC_ENABLED = 172
-    const val U_CAR_VIDEO_SIZE = 173
-    const val U_IMAGE_PARAM_8918 = 174
     const val U_SINGLE_DELAY_SHUTDOWN = 175
     const val U_OBSTACLE_FLAG = 176
     const val U_SCREENSAVER_OP = 177
     const val U_UI_MODE = 178
-    const val U_GNSS_POSITION = 179
-    const val U_REVERSE_ANTI_SHAKING = 180
     const val U_MOBILE_LINK_STATUS = 182
-    const val U_ALTITUDE_FIX_VALUE = 183
     const val U_ANDROID_AUDIO_STATE = 184
     const val U_CUSTOM_APP = 185
     const val U_APP_TO_BE_KILLED = 186
@@ -249,7 +246,7 @@ object MainUpdateCodes {
     const val U_CUSTOM_BOOT_APP = 190
     const val U_SECOND_BOOT_BLACK_SCREEN = 191
     const val U_SECOND_DISPLAY_VCOM_VOLTAGE = 192
-    const val U_RIGHTCAMERA_7870_ON = 199
+
     // 200
     // const val DEBUG_LOG_TYPE_FLAG = 201;
 
@@ -407,6 +404,7 @@ object MainCommandCodes {
 
     const val OPTION_BASE = 123
 
+    // 123
     const val C_THIRD_DVR_SETUP = 124
     const val C_CAMERA_POWER_ALWAYS_SUPPLY_ENABLED = 125
     const val C_FRONT_CAMERA_ENABLE = 126
@@ -420,7 +418,7 @@ object MainCommandCodes {
     const val C_CAR_TURN = 134
     const val C_PREVIEW_MODE = 135
     const val C_IMAGE_IC_INITIALIZE = 137
-    const val C_TOP_APP_CHANGE = 138
+    const val C_FOREGROUND_APP_CHANGE = 138
     const val C_DOUBLE_FLASH = 139
     const val C_IMAGE_IC_UPGRADE = 140
     const val C_IMAGE_IC_UPGRADE_PROGRESS = 141
@@ -439,10 +437,10 @@ object MainCommandCodes {
     const val C_VIDEO_ID_O2 = 153
     const val C_VIDEO_FORMAT = 154
     const val C_VIDEO_SIGNAL = 155
-    const val C_EXTRA_VOICE_AUDIO = 156
-    const val C_EXTRA_NAVI_AUDIO = 157
-    const val C_EXTRA_TIPS_AUDIO = 158
-    const val C_EXTRA_CALLING = 159
+    const val C_VOICE_EXTRA_AUDIO = 156
+    const val C_NAVI_EXTRA_AUDIO = 157
+    const val C_TIPS_EXTRA_AUDIO = 158
+    const val C_CALLING_EXTRA = 159
     const val C_CAMERA_POWER = 160
     const val C_SET_PROPERTY = 161
     const val C_USB_DVR_SWITCH_7731 = 162
@@ -465,7 +463,7 @@ object MainCommandCodes {
     const val C_GNSS_POSITION = 179
     const val C_REVERSE_ANTI_SHAKING = 180
     const val C_MOBILE_LINK_STATUS = 182
-    const val C_ALTITUDE_FIX_VALUE = 183
+    const val C_GNSS_ALTITUDE_FIX_VALUE = 183
     const val C_ANDROID_AUDIO_STATE = 184
     const val C_CUSTOM_APP = 185
     const val C_APP_TO_BE_KILLED = 186
@@ -545,7 +543,10 @@ object MainChipCodes {
 }
 
 object MainAppIds {
+
+    const val APP_ID_LAST = -1
     const val APP_ID_NULL = 0
+
     const val APP_ID_RADIO = 1
     const val APP_ID_BTPHONE = 2
     const val APP_ID_BTAV = 3
@@ -563,7 +564,6 @@ object MainAppIds {
     const val APP_ID_3GPHONE = 15
     const val APP_ID_SPECIAL = 16
 
-    const val APP_ID_LAST = -1
     const val CNT_MAX = 20
 
 }
