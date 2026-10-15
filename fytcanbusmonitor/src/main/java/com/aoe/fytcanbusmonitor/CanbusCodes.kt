@@ -84,7 +84,7 @@ object CanbusUpdateCodes {
     // DataCanbus.canbusId = value & 65535;
     // DataCanbus.carId = (value >> 16) & 65535;
     const val U_CANBUS_ID = 1000
-    const val U_CANBOX_FRAME_TO_UI = 1019
+    const val U_CANBOX_RAW_FRAME_TO_UI = 1019
 
 
     /**
