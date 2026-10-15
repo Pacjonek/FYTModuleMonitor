@@ -221,6 +221,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private companion object {
-        const val MAX_LOG_CHARS = 50_000
+        const val MAX_LOG_CHARS = 40_000
     }
 }
