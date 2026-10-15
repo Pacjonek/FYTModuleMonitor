@@ -17,8 +17,8 @@ object CanbusCommandCodes {
     const val C_CMD_START_REQ_ADD = 100
     const val C_CMD_SET_ADD = 101
 
-    const val C_CANBUS_ID = 1000
     const val C_MISC_BEGIN = 1000
+    const val C_CANBUS_ID = 1000
 
     const val C_DRIVER_ON_RIGHT = 1001
     const val C_SHOW_AIR_WINDOW = 1002
@@ -81,8 +81,10 @@ object CanbusCommandCodes {
 
 object CanbusUpdateCodes {
 
+    // DataCanbus.canbusId = value & 65535;
+    // DataCanbus.carId = (value >> 16) & 65535;
     const val U_CANBUS_ID = 1000
-    const val U_CANBUS_FRAME_TO_UI = 1019
+    const val U_CANBOX_FRAME_TO_UI = 1019
 
 
     /**
@@ -106,37 +108,33 @@ object CanbusUpdateCodes {
      * Range: (maybe) 94 - (maybe) 499
      **/
 
-    // 'Fiat `All` models' (whatever that means) from Hiworld canbus box
-    // WC - HiWorld
-    // (I renamed "Fieyate" to "Fiat" - the Chinese don't pay attention to typos and "WC" to "HIWORLD" conv.)
+
+    /**
+    ## CARINFO codes
+     * Stats data from the onboard computer screen
+     *
+     * `Range` : Vary depending on the car
+     *
+     * `WC` : Codename for HiWorld canbox family
+     *
+     * 'FIAT_ALL' : Codename for all Fiats (whatever that means) from Hiworld canbus box
+     *
+     * (I renamed "WC" to "HIWORLD" and "Fieyate" to "Fiat")
+     **/
     const val U_WC_FIAT_ALL_CARINFO_BEGIN = 98
-    const val U_WC_FIAT_ALL_CARINFO_TRIPCURR_AVG_FUEL_COMP = 99
-    const val U_WC_FIAT_ALL_CARINFO_TRIPCURR_REMAIN_FUEL_DIST = 100
-    const val U_WC_FIAT_ALL_CARINFO_TRIPCURR_TOTAL_MILAGE = 101
-    const val U_WC_FIAT_ALL_CARINFO_TRIPA_AVG_FUEL_COMP = 102
+    const val U_WC_FIAT_ALL_CARINFO_AVG_FUEL_CON = 99
+    const val U_WC_FIAT_ALL_CARINFO_FUEL_RANGE = 100
+    const val U_WC_FIAT_ALL_CARINFO_TOTAL_MILEAGE = 101
+    const val U_WC_FIAT_ALL_CARINFO_TRIPA_AVG_FUEL_CON = 102
     const val U_WC_FIAT_ALL_CARINFO_TRIPA_AVG_SPEED = 103
-    const val U_WC_FIAT_ALL_CARINFO_TRIPA_TRAVEL_MILAGE = 104
+    const val U_WC_FIAT_ALL_CARINFO_TRIPA_TRAVEL_MILEAGE = 104
     const val U_WC_FIAT_ALL_CARINFO_TRIPA_TRAVEL_TIME = 105
-    const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_FUEL_COMP = 106
+    const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_FUEL_CON = 106
     const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_SPEED = 107
-    const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_MILAGE = 108
+    const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_MILEAGE = 108
     const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_TIME = 109
     const val U_WC_FIAT_ALL_CARINFO_END = 110
     /* # End Section */
-
-    // Some other probably car specific codes
-    /*const val U_CARINFO_NONSLIP_STATE = 98;
-    const val U_CARINFO_STARTPROMPT = 99;
-    const val U_CAR_BACKCAR = 101;
-    const val U_CARINFO_NONSLIP_STATE_ENABLE = 102;
-    const val U_CARINFO_INCAR_AUTOVENTILATION_ONOFF = 104;
-    const val U_CARINFO_INCAR_AUTOVENTILATION_ENABLE = 105;
-    const val U_CARINFO_BCM_ENABLE = 106;
-    const val U_CARINFO_INCAR_AUTOLOCK_ONOFF = 107;
-    const val U_CARINFO_NONSLIP_STATE_NEW = 111;
-    const val U_CARINFO_AIR_AUTOClEAN_ONOFF = 112;
-    const val U_CARINFO_RAMP_START = 114;
-    */
 
     /**
      * # Maybe more "universal" codes?

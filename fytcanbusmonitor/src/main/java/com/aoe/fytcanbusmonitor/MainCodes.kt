@@ -152,6 +152,10 @@ object MainUpdateCodes {
     const val U_VIDEO_ID = 153
     const val U_VIDEO_FORMAT = 154
     const val U_VIDEO_SIGNAL = 155
+    const val U_VOICE_EXTRA_AUDIO = 156
+    const val U_NAVI_EXTRA_AUDIO = 157
+    const val U_TIPS_EXTRA_AUDIO = 158
+    const val U_VOICE_PKG = 164
     const val U_EXTRA_MIC_ENABLED = 172
     const val U_CAR_VIDEO_SIZE = 173
     const val U_IMAGE_PARAM_8918 = 174
@@ -218,14 +222,10 @@ object MainUpdateCodes {
     const val U_APP_UI_WINDOW_FOCUS = 150
 
     // 152
-    const val U_VOICE_EXTRA_AUDIO = 156
-    const val U_NAVI_EXTRA_AUDIO = 157
-    const val U_TIPS_EXTRA_AUDIO = 158
     const val U_CALLING_EXTRA = 159
     const val U_SET_PROPERTY = 161
     const val U_USB_DVR_7731_SWITCH = 162
     const val U_SERIAL_PLUGIN_DEVICE = 163
-    const val U_VOICE_PKG = 164
     const val U_ENTER_UI_REMEMBER = 165
     const val U_CARLINK_WIRELESS_AUTO_CONN = 166
     const val U_CARLINK_WIRED_AUTO_CONN = 167
@@ -246,6 +246,7 @@ object MainUpdateCodes {
     const val U_CUSTOM_BOOT_APP = 190
     const val U_SECOND_BOOT_BLACK_SCREEN = 191
     const val U_SECOND_DISPLAY_VCOM_VOLTAGE = 192
+    const val U_HJ_BAIDU_IN_FRONT = 198
 
     // 200
     // const val DEBUG_LOG_TYPE_FLAG = 201;
@@ -370,7 +371,7 @@ object MainCommandCodes {
      */
     const val C_VOICE_ASSISTANT_CMD = 20
     const val C_VIDEO_ID_C1 = 22
-    const val C_PLAYER_INFO = 23
+    const val C_PLAYING_OPTIONS = 23
     const val C_VIDEO_IMAGE = 36
     const val C_VIDEO_POSITION = 44
     const val C_AUX_ENABLE = 47
@@ -539,6 +540,27 @@ object MainChipCodes {
     const val CHIP_SP9863 = 10
     const val CHIP_SP7870 = 11
     const val CHIP_2386 = 12
+}
+
+object MainPlatformCodes {
+    const val PLATFORM_E7 = 1
+    const val PLATFORM_3188 = 2
+    const val PLATFORM_8700 = 3
+    const val PLATFORM_786 = 4
+    const val PLATFORM_SOPHIA = 5
+    const val PLATFORM_6025 = 6
+    const val PLATFORM_PX5 = 7
+    const val PLATFORM_9853 = 8
+    const val PLATFORM_7731 = 9
+    const val PLATFORM_7731_2 = 10
+    const val PLATFORM_7862 = 11
+    const val PLATFORM_8541 = 12
+    const val PLATFORM_9863 = 13
+    const val PLATFORM_7870 = 14
+    const val PLATFORM_9863N = 15
+    const val PLATFORM_2386 = 16
+    const val PLATFORM_7865 = 17
+    const val PLATFORM_6225 = 18
 
 }
 
