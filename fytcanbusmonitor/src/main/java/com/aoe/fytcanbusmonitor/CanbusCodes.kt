@@ -84,29 +84,16 @@ object CanbusUpdateCodes {
     // DataCanbus.canbusId = value & 65535;
     // DataCanbus.carId = (value >> 16) & 65535;
     const val U_CANBUS_ID = 1000
-    const val U_CANBOX_FRAME_TO_UI = 1019
+    const val U_CANBUS_RAW_FRAME_TO_UI = 1019
 
-
-    /**
-     * # Basic
-     * It should be supported by every can-box
-     */
-    const val U_DOOR_BEGIN = 0
+    const val DOORS_BEGIN = 0
     const val U_DOOR_ENGINE = 0
     const val U_DOOR_FL = 1
     const val U_DOOR_FR = 2
     const val U_DOOR_RL = 3
     const val U_DOOR_RR = 4
     const val U_DOOR_BACK = 5
-    const val U_DOOR_END = 6
-
-
-    /**
-    # "Proprietary" codes
-     * Can vary depends on exact selected canbox manuf./model/profile/fw ver.
-     * Usually used by `com.syu.canbus` where every "group" of cars have their own code logic
-     * Range: (maybe) 94 - (maybe) 499
-     **/
+    const val DOORS_END = 6
 
 
     /**
@@ -119,9 +106,9 @@ object CanbusUpdateCodes {
      *
      * 'FIAT_ALL' : Codename for all Fiats (whatever that means) from Hiworld canbus box
      *
-     * (I renamed "WC" to "HIWORLD" and "Fieyate" to "Fiat")
+     * Renames: "WC" -> "HIWORLD" and "Fieyate" -> "Fiat"
      **/
-    const val U_WC_FIAT_ALL_CARINFO_BEGIN = 98
+    const val WC_FIAT_ALL_CARINFO_BEGIN = 98
     const val U_WC_FIAT_ALL_CARINFO_AVG_FUEL_CON = 99
     const val U_WC_FIAT_ALL_CARINFO_FUEL_RANGE = 100
     const val U_WC_FIAT_ALL_CARINFO_TOTAL_MILEAGE = 101
@@ -133,14 +120,13 @@ object CanbusUpdateCodes {
     const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_SPEED = 107
     const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_MILEAGE = 108
     const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_TIME = 109
-    const val U_WC_FIAT_ALL_CARINFO_END = 110
+    const val WC_FIAT_ALL_CARINFO_END = 110
     /* # End Section */
 
     /**
-     * # Maybe more "universal" codes?
-     * My guess is that they are "universal" codes and that exact codes are read by "universal" apps e.g. by DUDU UI.
+     * # Extended range codes
      */
-    const val U_CAR_ADD_START = 500
+    const val CAR_EXTENDED_START = 500
     const val U_CAR_FRAME_NUM = 501
 
     /* Exterior Lighting & Indicators */
@@ -152,16 +138,16 @@ object CanbusUpdateCodes {
     const val U_CAR_LIGHT_RIGHT = 506
     const val U_CAR_LIGHT_FRONT = 507
     const val U_CAR_LIGHT_REAR = 508
-    const val U_CAR_LIGHT_ENABLE = 541
-    const val U_CAR_LIGHT_WIDTH_ENABLE = 526
-    const val U_CAR_LIGHT_NEAR_ENABLE = 527
-    const val U_CAR_LIGHT_FAR_ENABLE = 528
-    const val U_CAR_LIGHT_LEFT_ENABLE = 529
-    const val U_CAR_LIGHT_RIGHT_ENABLE = 530
-    const val U_CAR_LIGHT_FRONT_ENABLE = 531
-    const val U_CAR_LIGHT_REAR_ENABLE = 532
+    const val U_CAR_LIGHT_ENABLED = 541
+    const val U_CAR_LIGHT_WIDTH_ENABLED = 526
+    const val U_CAR_LIGHT_NEAR_ENABLED = 527
+    const val U_CAR_LIGHT_FAR_ENABLED = 528
+    const val U_CAR_LIGHT_LEFT_ENABLED = 529
+    const val U_CAR_LIGHT_RIGHT_ENABLED = 530
+    const val U_CAR_LIGHT_FRONT_ENABLED = 531
+    const val U_CAR_LIGHT_REAR_ENABLED = 532
 
-    const val U_CAR_WIPER_LEV = 509
+    const val U_CAR_WIPER_LEVEL = 509
     const val U_CAR_CUR_SPEED = 510
     const val U_CAR_AVG_SPEED = 511
     const val U_CAR_TOTAL_MILEAGE = 512
@@ -177,7 +163,7 @@ object CanbusUpdateCodes {
     const val U_CAR_TEMP_MOTOR_OIL = 523
     const val U_CAR_ENGINE_SPEED = 524
     const val U_CAR_VOLTAGE = 525
-    const val U_CAR_WIPER_LEV_ENABLED = 533
+    const val U_CAR_WIPER_LEVEL_ENABLED = 533
     const val U_CAR_CUR_SPEED_ENABLED = 534
     const val U_CAR_AVG_SPEED_ENABLED = 535
     const val U_CAR_TOTAL_MILEAGE_ENABLED = 536
@@ -203,76 +189,68 @@ object CanbusUpdateCodes {
     const val U_DOOR_RR_ADD = 557
     const val U_DOOR_BACK_ADD = 558
     const val U_SPEED_UNIT = 559
-    const val U_CAR_ADD_END = 560
+    const val U_CAR_EXTENDED_END = 560
 
-    /* Probably a reserve for future codes (561-...) */
-
-    const val U_AIR_WINDOW_ENABLE = 1001
-    const val U_DOOR_WINDOW_ENABLE = 1002
-    const val U_DRIVER_ON_RIGHT = 1003
-    const val U_EXIST_DOOR = 1004
+    const val MISC_BEGIN = 1000
+    const val U_AIR_WINDOW_ENABLED = 1001
+    const val U_DOOR_WINDOW_ENABLED = 1002
+    const val U_DRIVER_RIGHT_SIDE = 1003
+    const val U_DOOR_SUPPORT = 1004
     const val U_CANBUS_VER = 1005
     const val U_TIP_ID = 1006
     const val U_EXIST_AIR = 1007
     const val U_SHOW_AIR_WINDOW = 1008
     const val U_MCU_CANBUS_SUPPORT_CNT = 1010
     const val U_SHOW_DOOR_WINDOW = 1011
-    const val U_EXIST_TEMP_OUT = 1012
+    const val U_OUTSIDE_TEMP_SUPPORT = 1012
     const val U_AIR_CONTROL_PAGE = 1014
-    const val U_EXIST_AIR_CONTROL = 1018
+    const val U_AIR_CONTROL_SUPPORT = 1018
     const val U_CANBUS_AIR_VER = 1023
     const val U_CANBUS_FRAME_TO_MTU = 1024
     const val U_CANBUS_SLAVECAR_TOUCH_CALI = 1025
     const val U_CANBUS_SLAVECAR_BACKLIGHT = 1026
     const val U_CANBUS_PM25_CAR_IN = 1027
     const val U_CANBUS_PM25_CAR_OUT = 1028
-    const val U_CANBUS_PM25_ENABLE = 1029
+    const val U_CANBUS_PM25_ENABLED = 1029
     const val U_CUR_SPEED = 1031
     const val U_ENGINE_SPEED = 1032
     const val U_GNSS_ANGLE = 1033
-    const val U_EXIST_CAR_ROTATING = 1035
-    const val U_UISERVR_TYPE = 1037
+    const val U_CAR_ROTATING_SUPPORT = 1035
+    const val U_UISERVER_TYPE = 1037
     const val U_NEW_AIREIXT_SP = 1041
     const val U_CANBUS_CAR_DOOR = 1043
     const val U_CANBUS_CAR_AIR = 1044
-    const val U_6606_CARINF = 1049
-    const val U_EXIST_CARTIRE = 1050
+    const val U_6606_CARINFO = 1049
+    const val U_CAR_TIRE_SUPPORT = 1050
 
     /**
      * # Cameras, Parking & Radars
      */
-    const val U_EXIST_PANORAMA = 1009
+    const val U_PANORAMA_SUPPORT = 1009
     const val U_CAMERA_MODE = 1013
-    const val U_RIGHT_CAMERA_ON_OFF = 1017
-    const val U_RIGHT_CAMERA_STATE = 1020
-    const val U_ORI_BACKCAR = 1021
-    const val U_SHOW_BACKCAR_HOST = 1030
-    const val U_EXIST_CAR_DVR = 1034
+    const val U_RIGHTCAMERA_SUPPORT = 1017
+    const val U_RIGHTCAMERA_STATE = 1020
+    const val U_CAR_BACKCAR_SUPPORT = 1021
+    const val U_CAR_BACKCAR_SHOW_STATE = 1030
+    const val U_CAR_DVR_SUPPORT = 1034
     const val U_PARK_MODE = 1039
     const val U_REAR_MOVE_TYPE = 1040
-    const val U_EXIST_SIDERADAR = 1046
+    const val U_SIDERADAR_SUPPORT = 1046
 
     /**
      * # Audio, Radio, Bluetooth & OnStar
      */
     const val U_CAR_BT_ON = 1015
-    const val U_EXIST_CAR_RADIO = 1016
+    const val U_CAR_RADIO_SUPPORT = 1016
     const val U_ONSTAR_SYNC_ON = 1022
     const val U_HIDE_RADIO = 1036
     const val U_BT_RECORD_5LIST = 1045
 
-    /**
-     * # OEM / Brand Specific
-     */
-    const val U_BMW_CARUI_ONOFF = 1038
-    const val U_CANBUS_BENZ_BUTTON = 1042
-    const val U_JAGUAR_LZ_RADAR = 1047
-    const val U_TCROSS_ZH_BUTTON = 1048
 
     /**
      * # Air condition status
      */
-    const val U_AIR_BEGIN = 10
+    const val AIR_BEGIN = 10
     const val U_AIR_POWER = 10
     const val U_AIR_AC = 11
     const val U_AIR_CYCLE = 12
@@ -360,7 +338,15 @@ object CanbusUpdateCodes {
     const val U_AIR_MASSAGESEAT_RIGHT = 94
     const val U_AIR_LUMBARSEAT_LEFT = 95
     const val U_AIR_LUMBARSEAT_RIGHT = 96
-    const val U_AIR_END = 97
+    const val AIR_END = 97
+
+    /**
+     * # OEM / Brand Specific
+     */
+    const val U_BMW_CARUI_SUPPORT = 1038
+    const val U_MERCEDES_BUTTON = 1042
+    const val U_JAGUAR_LZ_RADAR = 1047
+    const val U_TCROSS_ZH_BUTTON = 1048
 
     /**
      * # Max limit
