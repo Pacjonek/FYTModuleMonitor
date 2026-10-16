@@ -65,9 +65,10 @@ class MainActivity : AppCompatActivity() {
         IPCConnection(
             MODULE_CODE_CANBUS,
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS", "#C62828".toColorInt()),
-            (0..9) + (98..300) + (500..700) + (1000..1032) + (1034..1200),
+            (0..9) + (98..177) + (500..700) + (1000..1032) + (1034..1200),
             { moduleController ->
                 appendLogLine("CANBUS", "#C62828".toColorInt(), connectedMessage)
+                moduleController.cmd(1010, 1000)
                 moduleController.cmd(U_CAR_LIGHT_ENABLE, 1)
                 moduleController.cmd(U_CAR_LIGHT, 1)
                 moduleController.cmd(536, 1)
