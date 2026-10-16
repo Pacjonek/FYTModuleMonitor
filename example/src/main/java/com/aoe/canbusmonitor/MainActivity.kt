@@ -45,12 +45,13 @@ class MainActivity : AppCompatActivity() {
         // unfocused in touch mode so taps can't place a cursor (selection still works).
         logView.isFocusableInTouchMode = false
 
+        val connectedMessage = "--- CONNECTED SUCCESSFULLY ---"
         IPCConnection(
             MODULE_CODE_MAIN,
             loggingCallback(MODULE_CODE_MAIN.toLong(), "MAIN", "#2E7D32".toColorInt()),
             (0..76) + (78..178) + (180..256),
             {
-                appendLogLine("MAIN", "#2E7D32".toColorInt(), "Connected successfully")
+                appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
             }
         )
         IPCConnection(
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             loggingCallback(MODULE_CODE_BT.toLong(), "BT", "#1565C0".toColorInt()),
             (0..100),
             {
-                appendLogLine("BT", "#1565C0".toColorInt(), "Connected successfully")
+                appendLogLine("BT", "#1565C0".toColorInt(), connectedMessage)
             }
         )
         IPCConnection(
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS", "#C62828".toColorInt()),
             (0..9) + (98..300) + (500..700) + (1000..1032) + (1034..1200),
             { moduleController ->
-                appendLogLine("CANBUS", "#C62828".toColorInt(), "Connected successfully")
+                appendLogLine("CANBUS", "#C62828".toColorInt(), connectedMessage)
                 moduleController.cmd(U_CAR_LIGHT_ENABLE, 1)
                 moduleController.cmd(U_CAR_LIGHT, 1)
                 moduleController.cmd(536, 1)
@@ -119,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         val combined = buildList<Any?> {
             ints?.forEach { add(it) }
             if (intsBitwise != null) {
-                add(" //b")
+                add(" //&")
                 intsBitwise.forEach { add(it) }
             }
             flts?.forEach { add(it) }
@@ -152,15 +153,9 @@ class MainActivity : AppCompatActivity() {
             val shouldAutoScroll = isScrolledToBottom()
             val scrollYBefore = scrollView.scrollY
 
-            // Trim before appending so the removed height can be measured against
-            // the current layout, then shift the viewport by exactly that amount
-            // to keep the visible content steady (unless pinned to the bottom).
-            val trimmedHeight = trimLogIfNeeded()
-            if (!shouldAutoScroll && trimmedHeight > 0) {
-                scrollView.scrollTo(
-                    scrollView.scrollX,
-                    (scrollView.scrollY - trimmedHeight).coerceAtLeast(0)
-                )
+            val cleared = clearLogIfNeeded()
+            if (cleared) {
+                scrollView.scrollTo(0, 0)
             }
 
             val line = SpannableStringBuilder(tag)
@@ -204,31 +199,17 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Removes the oldest lines when the log grows too large.
-     * @return the height of the removed text in pixels, 0 if nothing was removed.
+     * @return true if any text was cleared, false otherwise.
      */
-    private fun trimLogIfNeeded(): Int {
-        val text = logView.editableText ?: return 0
-        if (text.length <= MAX_LOG_CHARS) return 0
+    private fun clearLogIfNeeded(): Boolean {
+        val text = logView.editableText ?: return false
+        if (text.length <= MAX_LOG_CHARS) return false
 
-        val excess = text.length - MAX_LOG_CHARS
-        val nextNewline = text.indexOf('\n', excess)
-        val cutEnd = if (nextNewline >= 0) nextNewline + 1 else excess
-
-        // The layout may lag behind the text during bursts; the removed prefix
-        // was laid out long ago, so only clamp for safety.
-        val layout = logView.layout
-        val removedHeight = if (layout != null && layout.text.isNotEmpty()) {
-            val safeOffset = (cutEnd - 1).coerceAtMost(layout.text.length - 1)
-            layout.getLineBottom(layout.getLineForOffset(safeOffset))
-        } else {
-            0
-        }
-
-        text.delete(0, cutEnd)
-        return removedHeight
+        text.clear()
+        return true
     }
 
     private companion object {
-        const val MAX_LOG_CHARS = 40_000
+        const val MAX_LOG_CHARS = 35_000
     }
 }
