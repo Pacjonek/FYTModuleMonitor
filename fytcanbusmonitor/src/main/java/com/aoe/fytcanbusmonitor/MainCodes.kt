@@ -67,7 +67,7 @@ object MainUpdateCodes {
     const val U_TRUNK_CONTROL_STATE = 87
     const val U_CAR_BATTERY_VOLTAGE = 114
     const val U_STEER_TYPE = 120
-    const val U_CAR_TURN = 134
+    const val U_CAR_TURN_INDICATORS = 134
     const val U_DOOR_STATE = 151
 
     /**
@@ -95,14 +95,14 @@ object MainUpdateCodes {
     const val U_TRACK_REVERSING_ENABLED = 102
     const val U_CAMERA_VOLTAGE = 119
     const val U_CAMERA_AHD_ENABLED = 121
-    const val U_REVERSING_TYPE = 122
+    const val U_REVERSE_APP_PKG = 122
     const val U_CAMERA_POWER_ALWAYS_SUPPLY_ENABLED = 125
     const val U_FRONTCAMERA_ENABLED = 126
-    const val U_STATIC_TRACK = 130
+    const val U_REVERSE_STATIC_TRACK = 130
     const val U_CAMERA_POWER = 160
     const val U_REVERSE_CARPLAY_CONNECTED = 169
     const val U_REVERSE_ANTI_SHAKING = 180
-    const val U_RIGHTCAMERA7870_ON = 199
+    const val U_RIGHTCAMERA7870_SWITCH = 199
 
     /**
      * # Parking Radars & Distance Sensors
@@ -417,7 +417,7 @@ object MainCommandCodes {
     const val C_LOCK_ENABLE = 131
     const val C_KEYCODE_2CUSTOMER = 132
     const val C_ONCLICK_KEYCODE = 133
-    const val C_CAR_TURN = 134
+    const val C_CAR_TURN_INDICATORS = 134
     const val C_PREVIEW_MODE = 135
     const val C_IMAGE_IC_INITIALIZE = 137
     const val C_FOREGROUND_APP_CHANGE = 138
