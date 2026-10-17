@@ -7,7 +7,7 @@ import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_MAIN
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_BT
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_CANBUS
-import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CANBUS_FRAME_TO_UI
+import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CANBOX_RAW_FRAME_TO_UI
 import com.aoe.fytcanbusmonitor.MsConnector.Companion.instance as msConnectorInstance
 import com.google.android.material.color.DynamicColors
 import java.util.concurrent.ConcurrentHashMap
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 val droppedInts: IntArray? =
-                    if (ints != null && updateCode == U_CANBUS_FRAME_TO_UI && ints.size > 3) {
+                    if (ints != null && updateCode == U_CANBOX_RAW_FRAME_TO_UI && ints.size > 3) {
                         ints.drop(2).dropLast(1).toIntArray()
                     } else {
                         ints
