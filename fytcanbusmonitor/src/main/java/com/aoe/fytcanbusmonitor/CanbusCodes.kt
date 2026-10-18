@@ -17,7 +17,7 @@ object CanbusCommandCodes {
     const val C_CMD_START_REQ_ADD = 100
     const val C_CMD_SET_ADD = 101
 
-    const val C_MISC_BEGIN = 1000
+    const val MISC_BEGIN = 1000
     const val C_CANBUS_ID = 1000
 
 
@@ -33,7 +33,11 @@ object CanbusCommandCodes {
     const val C_CANBUS_FRAME_TO_MTU = 1012
     const val C_CANBUS_FRAME_TO_MCU_0X10 = 1013
     const val C_CANBUS_KEY_FUNC = 1014
-    const val C_CANBUS_BACKCAR_FUNC = 1015
+
+    /**
+     *  7 - indicators
+     */
+    const val C_CANBUS_BROADCAST_FUNC = 1015
     const val C_SHOW_RIGHTCAMERA = 1016
     const val C_CANBUS_KEY_FUNC_WC = 1017
     const val C_CANBUS_RC_FUNC_WC = 1018

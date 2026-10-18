@@ -324,7 +324,7 @@ object MainCommandCodes {
      * # Navigation
      */
     const val C_NAVI_ON_BOOT = 3
-    const val C_NAVI_PACKAGE = 9
+    const val C_NAVI_PKG_NAME = 9
 
     /**
      * # Keys, Touch & Controls
@@ -358,7 +358,7 @@ object MainCommandCodes {
     const val C_360CAMERA_OFF = 76
     const val C_CAMERA_VOLTAGE = 85
     const val C_CAMERA_AHD_ENABLE = 87
-    const val C_REVERSING_TYPE = 88
+    const val C_REVERSING_PKG_NAME = 88
 
     /**
      * # Parking Radars
@@ -372,12 +372,15 @@ object MainCommandCodes {
      */
     const val C_VOICE_ASSISTANT_CMD = 20
     const val C_VIDEO_ID_C1 = 22
-    const val C_PLAYING_OPTIONS = 23
+    /**
+        Setting media playback title: `{ints: [$appId], flts: null, strs: [$id3Title]}`
+     **/
+    const val C_PLAYBACK_PARAMS = 23
     const val C_VIDEO_IMAGE = 36
     const val C_VIDEO_POSITION = 44
     const val C_AUX_ENABLE = 47
     const val C_VIDEO_OUT_ON = 51
-    const val C_VIDEO_OUTPUT_PARAMETERS = 69
+    const val C_VIDEO_OUTPUT_PARAMS = 69
     const val C_MIC_TYPE = 71
     const val C_VIDEO_AUX_TV = 72
     const val C_AUDIO_TV_IPOD_CHANNEL = 77

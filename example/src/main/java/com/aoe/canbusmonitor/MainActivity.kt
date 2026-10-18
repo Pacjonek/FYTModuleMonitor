@@ -22,8 +22,6 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorInt
 import androidx.core.graphics.toColorInt
-import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CAR_LIGHT
-import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CAR_LIGHT_ENABLED
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             (0..76) + (78..178) + (180..256),
             { mainController ->
                 appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
-                mainController.cmd(134, 1)
+                // mainController.cmd(134, 1)
             }
         )
         IPCConnection(
@@ -66,21 +64,21 @@ class MainActivity : AppCompatActivity() {
         IPCConnection(
             MODULE_CODE_CANBUS,
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS", "#C62828".toColorInt()),
-            (0..9) + (98..177) + (500..700) + (1000..1032) + (1034..1200),
+            /*(0..9) + (98..177) + */(0..300) + (1000..1032) + (1034..1200),
             { moduleController ->
                 appendLogLine("CANBUS", "#C62828".toColorInt(), connectedMessage)
-                moduleController.cmd(1010, 1000)
-                moduleController.cmd(1035, 1)
-                moduleController.cmd(U_CAR_LIGHT_ENABLED, 1)
-                moduleController.cmd(U_CAR_LIGHT, 1)
-                moduleController.cmd(536, 1)
-                moduleController.cmd(537, 1)
-                moduleController.cmd(538, 1)
-                moduleController.cmd(539, 1)
-                moduleController.cmd(512, 666)
-                moduleController.cmd(513, 666)
-                moduleController.cmd(514, 1)
-                moduleController.cmd(515, 1)
+//                moduleController.cmd(1010, 1000)
+//                moduleController.cmd(1035, 1)
+//                moduleController.cmd(U_CAR_LIGHT_ENABLED, 1)
+//                moduleController.cmd(U_CAR_LIGHT, 1)
+//                moduleController.cmd(536, 1)
+//                moduleController.cmd(537, 1)
+//                moduleController.cmd(538, 1)
+//                moduleController.cmd(539, 1)
+//                moduleController.cmd(512, 666)
+//                moduleController.cmd(513, 666)
+//                moduleController.cmd(514, 1)
+//                moduleController.cmd(515, 1)
             }
         )
         // IPCConnection(MODULE_CODE_OBD, ModuleCommander(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
@@ -139,13 +137,16 @@ class MainActivity : AppCompatActivity() {
         moduleName: String,
         @ColorInt tagColor: Int
     ) {
-        val labelKey = "$moduleName:$updateCode"
+        val key = "$moduleName:$updateCode"
         val shouldLog = synchronized(payloadLock) {
-            val previousValues = lastPayloads.put(labelKey, payloadValues)
+            val previousValues = lastPayloads.put(key, payloadValues)
             previousValues != payloadValues
         }
         if (shouldLog) {
             val label = UpdateCodeLabelResolver.resolveOrFallback(moduleId, updateCode)
+            if (label == updateCode.toString() && payloadValues == "[0]") {
+                return
+            }
             appendLogLine(moduleName, tagColor, "[$label] $payloadValues")
         }
     }
