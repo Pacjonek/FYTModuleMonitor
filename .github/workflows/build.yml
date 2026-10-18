@@ -45,10 +45,10 @@ jobs:
       - name: Build debug APK
         run: ./gradlew :example:assembleDebug --no-daemon
 
-      - name: Upload debug APK artifact (example)
+      - name: Upload debug APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: canbusmonitor-example-debug-apk
+          name: fytmonitor-debug
           path: example/build/outputs/apk/debug/*.apk
           if-no-files-found: error
 
