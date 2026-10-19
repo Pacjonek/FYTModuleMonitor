@@ -247,6 +247,7 @@ object MainUpdateCodes {
     const val U_CUSTOM_BOOT_APP = 190
     const val U_SECOND_BOOT_BLACK_SCREEN = 191
     const val U_SECOND_DISPLAY_VCOM_VOLTAGE = 192
+    const val U_THIRD_PLAYER_PKG_NAME = 195
     const val U_HJ_BAIDU_IN_FRONT = 198
 
     // 200
