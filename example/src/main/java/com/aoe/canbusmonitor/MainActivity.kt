@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             (0..76) + (78..178) + (180..256),
             { mainController ->
                 appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
-                mainController.cmd(23, [10], null, ["Skręć w lewo"])
+                mainController.cmd(intArrayOf(10), , null, arrayOf("Skręć w lewo"))
             }
         )
         IPCConnection(
