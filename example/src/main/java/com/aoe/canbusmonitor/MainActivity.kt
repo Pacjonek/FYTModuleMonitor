@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             loggingCallback(MODULE_CODE_MAIN.toLong(), "MAIN", "#2E7D32".toColorInt()),
             (0..76) + (78..178) + (180..256),
             { mainController ->
-                appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
+                appendLogLine("  MAIN", "#2E7D32".toColorInt(), connectedMessage)
                 // mainController.cmd(134, 1)
             }
         )
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             loggingCallback(MODULE_CODE_BT.toLong(), "BT", "#1565C0".toColorInt()),
             (0..100),
             {
-                appendLogLine("BT", "#1565C0".toColorInt(), connectedMessage)
+                appendLogLine("    BT", "#1565C0".toColorInt(), connectedMessage)
             }
         )
         IPCConnection(

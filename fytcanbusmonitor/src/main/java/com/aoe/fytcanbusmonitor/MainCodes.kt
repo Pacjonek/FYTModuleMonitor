@@ -2,7 +2,7 @@ package com.aoe.fytcanbusmonitor
 
 object MainUpdateCodes {
 
-    const val U_APP_ID = 0
+    const val U_CURRENT_APP_ID = 0
     const val U_MCU_ON = 1
     const val U_STANDBY = 2
     const val U_BLACKSCREEN = 3
@@ -14,17 +14,17 @@ object MainUpdateCodes {
     const val U_BRIGHT_LEVEL_NIGHT = 33
     const val U_BLACKSCREEN_AUTO = 36
     const val U_APP_IS_VISIBLE = 39
-    const val U_SLEEP_DEVICE_WAKEUP = 43
+    const val U_SLEEP_IS_WAKEUP = 43
     const val U_ACC_ON = 50
-    const val U_DEVICE_RESTART_LATER = 61
+    const val U_HEADUNIT_RESTART_LATER = 61
     const val U_MCU_BOOT_ON = 62
     const val U_ACCCUT_TURN_OFF_LCDC = 66
     const val U_ECARLINK_ON = 67
     const val U_ACCCUT_TURN_OFF_SCREEN_DELAY = 71
     const val U_SLEEP_ENTER_AIRPLANE_MODE = 76
     const val U_SCREEN_TOUCH_EVENT_POS = 77 // [ints: x, y]
-    const val U_CAR_STARTSTOP_ENABLED = 88
-    const val U_DEVICE_SLEEP_STATE = 103
+    const val U_STARTSTOP_ENABLED = 88
+    const val U_HEADUNIT_SLEEP_STATE = 103
     const val U_BLACKSCREEN_STANDBY = 110
     const val U_STATUSBAR_SCREENSHOT_SHORTCUT_ENABLED = 117
 
@@ -73,9 +73,9 @@ object MainUpdateCodes {
     /**
      * # Storage & USB
      */
-    const val U_DEVICE_SD1_EXIST = 9
-    const val U_DEVICE_SD2_EXIST = 10
-    const val U_DEVICE_USB_EXIST = 11
+    const val U_HEADUNIT_SD1_EXIST = 9
+    const val U_HEADUNIT_SD2_EXIST = 10
+    const val U_HEADUNIT_USB_EXIST = 11
     const val U_USB_ERROR_ENABLED = 100
     const val U_USB_INDEX = 118
 
@@ -87,7 +87,7 @@ object MainUpdateCodes {
     const val U_BACKCAR_MIRROR = 24
     const val U_BACKCAR_TYPE = 47
     const val U_PANORAMA_ON = 55
-    const val U_MIRROR_UP_DOWN = 58
+    const val U_VIEW_MIRROR_UP_DOWN = 58
     const val U_BACKCAR_HOST_ENABLED = 65
     const val U_CAMERA_REQUESTED = 68
     const val U_BACKCAR360_CAMERA = 81
@@ -191,7 +191,7 @@ object MainUpdateCodes {
     const val U_SPI_MCU_VER = 85
     const val U_MCU_MEMORY_CONTROL = 106
     const val U_VCOM_VOLTAGE = 109
-    const val U_DEVICE_VOLTAGE = 115
+    const val U_HEADUNIT_VOLTAGE = 115
     const val U_AVDD = 116
 
     /**
@@ -345,7 +345,7 @@ object MainCommandCodes {
     const val C_BACKCAR_MIRROR = 7
     const val C_BACKCAR_TYPE = 28
     const val C_PANORAMA_ON = 33
-    const val C_MIRROR_UP_DOWN = 35
+    const val C_VIEW_MIRROR_UP_DOWN = 35
     const val C_OUT_BACKCAR = 37
     const val C_HOST_BACKCAR_ENABLE = 40
     const val C_BACKCAR_360_CAMERA = 54
