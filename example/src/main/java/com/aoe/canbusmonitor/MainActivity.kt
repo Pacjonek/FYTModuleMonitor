@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
             loggingCallback(MODULE_CODE_MAIN.toLong(), "MAIN", "#2E7D32".toColorInt()),
             (0..76) + (78..178) + (180..256),
             { mainController ->
-                appendLogLine("  MAIN", "#2E7D32".toColorInt(), connectedMessage)
-                // mainController.cmd(134, 1)
+                appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
+                mainController.cmd(74, intArrayOf(10), null, arrayOf("Skręć w lewo"))
             }
         )
         IPCConnection(
@@ -64,9 +64,10 @@ class MainActivity : AppCompatActivity() {
         IPCConnection(
             MODULE_CODE_CANBUS,
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS", "#C62828".toColorInt()),
-            /*(0..9) + (98..177) + */(0..300) + (1000..1032) + (1034..1200),
-            { moduleController ->
+            (0..9) + (98..177) + (0..300) + (1000..1032) + (1034..1200),
+            { canbusController ->
                 appendLogLine("CANBUS", "#C62828".toColorInt(), connectedMessage)
+                canbusController.cmd(1010, 1000)
 //                moduleController.cmd(1010, 1000)
 //                moduleController.cmd(1035, 1)
 //                moduleController.cmd(U_CAR_LIGHT_ENABLED, 1)

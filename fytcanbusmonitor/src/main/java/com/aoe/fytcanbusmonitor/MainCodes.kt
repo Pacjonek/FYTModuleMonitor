@@ -2,7 +2,7 @@ package com.aoe.fytcanbusmonitor
 
 object MainUpdateCodes {
 
-    const val U_CURRENT_APP_ID = 0
+    const val U_APP_ID = 0
     const val U_MCU_ON = 1
     const val U_STANDBY = 2
     const val U_BLACKSCREEN = 3
@@ -18,9 +18,9 @@ object MainUpdateCodes {
     const val U_ACC_ON = 50
     const val U_HEADUNIT_RESTART_LATER = 61
     const val U_MCU_BOOT_ON = 62
-    const val U_ACCCUT_TURN_OFF_LCDC = 66
+    const val U_ACCCUT_LCDC_TURNOFF = 66
     const val U_ECARLINK_ON = 67
-    const val U_ACCCUT_TURN_OFF_SCREEN_DELAY = 71
+    const val U_ACCCUT_HEADUNIT_TURNOFF_DELAY = 71
     const val U_SLEEP_ENTER_AIRPLANE_MODE = 76
     const val U_SCREEN_TOUCH_EVENT_POS = 77 // [ints: x, y]
     const val U_STARTSTOP_ENABLED = 88
@@ -60,7 +60,7 @@ object MainUpdateCodes {
     /**
      * # Vehicle status & Telemetry
      */
-    const val U_HANDBRAKE_ACTIVATED = 7
+    const val U_HANDBRAKE_STATE = 7
     const val U_HANDBRAKE_SWITCH = 8
     const val U_OUTSIDE_TEMP = 40
     const val U_STEER_ANGLE = 41
@@ -87,29 +87,29 @@ object MainUpdateCodes {
     const val U_BACKCAR_MIRROR = 24
     const val U_BACKCAR_TYPE = 47
     const val U_PANORAMA_ON = 55
-    const val U_VIEW_MIRROR_UP_DOWN = 58
+    const val U_VIEW_UP_DOWN = 58
     const val U_BACKCAR_HOST_ENABLED = 65
     const val U_CAMERA_REQUESTED = 68
     const val U_BACKCAR360_CAMERA = 81
     const val U_BACKCAR360_CAMERA_ENABLED = 83
-    const val U_REVERSING_TRACK_ENABLED = 102
+    const val U_TRACK_REVERSE_ENABLED = 102
     const val U_CAMERA_VOLTAGE = 119
     const val U_CAMERA_AHD_ENABLED = 121
-    const val U_REVERSING_APP_PKG = 122
+    const val U_REVERSE_APP_PKG = 122
     const val U_CAMERA_POWER_ALWAYS_SUPPLY_ENABLED = 125
     const val U_FRONTCAMERA_ENABLED = 126
-    const val U_REVERSING_STATIC_TRACK = 130
+    const val U_REVERSE_STATIC_TRACK = 130
     const val U_CAMERA_POWER = 160
-    const val U_REVERSING_CARPLAY_CONNECTED = 169
-    const val U_REVERSING_ANTI_SHAKING = 180
-    const val U_RIGHTCAMERA7870_SWITCH = 199
+    const val U_REVERSE_CARPLAY_CONNECTED = 169
+    const val U_REVERSE_ANTI_SHAKING = 180
+    const val U_RIGHTCAMERA7870_ENABLE = 199
 
     /**
      * # Parking Radars & Distance Sensors
      */
     const val U_RADAR = 13
-    const val U_RADAR_FL = 14 // F - front; L - left
-    const val U_RADAR_FML = 15 // F - front; M - middle; L - left
+    const val U_RADAR_FL = 14
+    const val U_RADAR_FML = 15
     const val U_RADAR_FMR = 16
     const val U_RADAR_FR = 17
     const val U_RADAR_RL = 18
@@ -118,9 +118,11 @@ object MainUpdateCodes {
     const val U_RADAR_RR = 21
     const val U_BACKCAR_RADAR = 22
     const val U_BACKCAR_RADAR_ENABLED = 27
+
     const val U_RADAR_POWER = 75
     const val U_RADAR_PARK_ENABLED = 86
-    const val U_RADAR_RSF = 90 // Radar Sensor Front
+
+    const val U_RADAR_RSF = 90
     const val U_RADAR_RSMF = 91
     const val U_RADAR_RSMB = 92
     const val U_RADAR_RSB = 93
@@ -233,7 +235,7 @@ object MainUpdateCodes {
     const val U_SCREEN_ON = 168
     const val U_CARLINK_CARPLAY_CALL_STATE = 170
     const val U_BACKLIGHT_CTRL_TYPE = 171
-    const val U_SINGLE_DELAY_SHUTDOWN = 175
+    const val U_SHUTDOWN_SINGLE_DELAY = 175
     const val U_OBSTACLE_FLAG = 176
     const val U_SCREENSAVER_OP = 177
     const val U_UI_MODE = 178
@@ -247,11 +249,8 @@ object MainUpdateCodes {
     const val U_CUSTOM_BOOT_APP = 190
     const val U_SECOND_BOOT_BLACK_SCREEN = 191
     const val U_SECOND_DISPLAY_VCOM_VOLTAGE = 192
-    const val U_THIRD_PLAYER_PKG_NAME = 198
+    const val U_THIRD_PLAYER_APP_PKG = 195
     const val U_HJ_BAIDU_IN_FRONT = 198
-
-    // const val DEBUG_LOG_TYPE_FLAG = 201;
-
 
     /**
      * # Max limit
@@ -282,14 +281,14 @@ object MainCommandCodes {
     const val C_APP_ID = 0
     const val C_ANY_KEY_BOOT = 2
     const val C_STANDBY = 18
-    const val C_RESTART_DEVICE_LATER = 19
+    const val C_HEADUNIT_RESTART_LATER = 19
     const val C_FACTORY_RESET = 38
     const val C_SYSTEM_PROPERTIES = 41
-    const val C_ACCCUT_TURN_OFF_LCDC = 42
+    const val C_CUTACC_TURNOFF_LCDC = 42
     const val C_ECARLINK_SWITCH = 43
-    const val C_SLEEP_WAKEUP = 46
-    const val C_SLEEP_ACTIVE_AIRPLANE = 48
-    const val C_RESTART_DEVICE = 53
+    const val C_ENTER_SLEEP_WAKEUP = 46
+    const val C_SLEEP_AIRPLANE = 48
+    const val C_HEADUNIT_RESTART_NOW = 53
     const val C_START_STOP_SWITCH = 61
     const val C_AIRPLANE_MODE = 75
     const val C_EXIT_APP = 81
@@ -301,9 +300,9 @@ object MainCommandCodes {
     const val C_BRIGHT_LEVEL = 10
     const val C_BRIGHT_LEVEL_DAY = 11
     const val C_BRIGHT_LEVEL_NIGHT = 12
-    const val C_BLACKSCREEN_AUTO = 13
+    const val C_AUTO_BLACK_SCREEN = 13
     const val C_BLACKSCREEN = 16
-    const val C_ENABLE_STATUSBAR_SCREENSHOT_SHORTCUT = 82
+    const val C_STATUS_SCREENSHOTS_ENABLE = 82
     const val C_ROTATE_SCREEN = 83
 
     /**
@@ -345,7 +344,7 @@ object MainCommandCodes {
     const val C_BACKCAR_MIRROR = 7
     const val C_BACKCAR_TYPE = 28
     const val C_PANORAMA_ON = 33
-    const val C_VIEW_MIRROR_UP_DOWN = 35
+    const val C_VIEW_UP_DOWN = 35
     const val C_OUT_BACKCAR = 37
     const val C_HOST_BACKCAR_ENABLE = 40
     const val C_BACKCAR_360_CAMERA = 54
@@ -393,14 +392,14 @@ object MainCommandCodes {
     const val C_HANDBRAKE_SWITCH = 4
     const val C_MCU_SERIAL = 14
     const val C_MCU_POWER_OPTION = 15
-    const val C_MCU_SWITCH_ON = 17
+    const val C_MCU_ON = 17
     const val C_MCU_ERROR_CODE = 21
     const val C_LANGUAGE = 26
     const val C_MCU_UPGRADE = 27
     const val C_FAN_CYCLE = 34
     const val C_SHOW_FLASH_WRITE_ON = 52
     const val C_TRUNK_CONTROL_CMD = 58
-    const val C_ACCCUT_CONTROLLED_BY_MCU = 62
+    const val C_MOTOR_DOWN_UP_BY_MCU = 62
     const val C_USB_ERROR_ENABLE = 65
     const val C_MCU_MEMORY_CONTROL = 70
     const val C_VCOM_VOLTAGE = 73
@@ -421,7 +420,7 @@ object MainCommandCodes {
     const val C_LOCK_ENABLE = 131
     const val C_KEYCODE_2CUSTOMER = 132
     const val C_ONCLICK_KEYCODE = 133
-    const val C_CAR_TURN_INDICATORS = 134
+    const val C_TURN_INDICATORS = 134
     const val C_PREVIEW_MODE = 135
     const val C_IMAGE_IC_INITIALIZE = 137
     const val C_FOREGROUND_APP_CHANGE = 138
@@ -479,9 +478,9 @@ object MainCommandCodes {
     const val C_CUSTOM_BOOT_APP = 190
     const val C_SECOND_BOOT_BLACK_SCREEN = 191
     const val C_SECOND_DISPLAY_VCOM_VOLTAGE = 192
-    const val C_RIGHTCAMERA7870_STATE = 199
+    const val C_ENABLE_RIGHTCAMERA7870 = 199
     // 200
-    // const val DEBUG_LOG_TYPE_FLAG = 201;
+    const val C_DEBUG_LOG_TYPE = 201;
 }
 
 object MainGetCodes {
@@ -532,7 +531,7 @@ object MainGetCodes {
     const val G_VOL_MAIN_DEF = 42
 }
 
-object MainChipCodes {
+object ChipCode {
     const val CHIP_NULL = 0
     const val CHIP_MST786 = 1
     const val CHIP_SPHE8700 = 2
@@ -548,7 +547,7 @@ object MainChipCodes {
     const val CHIP_2386 = 12
 }
 
-object MainPlatformCodes {
+object PlatformCode {
     const val PLATFORM_E7 = 1
     const val PLATFORM_3188 = 2
     const val PLATFORM_8700 = 3
@@ -570,7 +569,7 @@ object MainPlatformCodes {
 
 }
 
-object MainAppIds {
+object MainAppId {
 
     const val APP_ID_LAST = -1
     const val APP_ID_NULL = 0
