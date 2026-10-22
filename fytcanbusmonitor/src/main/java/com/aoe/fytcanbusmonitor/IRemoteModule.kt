@@ -214,6 +214,8 @@ interface IRemoteModule : IInterface {
             const val TRANSACTION_unregister = 4
             const val TRANSACTION_getDescriptor = IBinder.INTERFACE_TRANSACTION
 
+            const val UPDATE_SYNC_FLAG = 1
+
             fun asInterface(obj: IBinder): IRemoteModule {
                 return obj.queryLocalInterface(DESCRIPTOR) as? IRemoteModule ?: Proxy(obj)
             }

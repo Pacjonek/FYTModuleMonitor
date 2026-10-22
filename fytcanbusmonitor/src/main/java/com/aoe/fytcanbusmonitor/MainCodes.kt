@@ -260,20 +260,16 @@ object MainUpdateCodes {
 
 object MainCommandCodes {
 
-    /**
-     * # Player commands
-     * @renamed from `PLAYER_COMMAND_...`
-     */
-    const val C_PLAYER_PLAY = 0
-    const val C_PLAYER_PLAYPAUSE = 1
-    const val C_PLAYER_PAUSE = 2
-    const val C_PLAYER_STOP = 3
-    const val C_PLAYER_PREV = 4
-    const val C_PLAYER_NEXT = 5
-    const val C_PLAYER_FF = 6
-    const val C_PLAYER_FB = 7
-    const val C_PLAYER_NUM = 8
-    const val C_PLAYER_REPEAT = 9
+    const val PLAYER_PLAY = 0
+    const val PLAYER_PLAYPAUSE = 1
+    const val PLAYER_PAUSE = 2
+    const val PLAYER_STOP = 3
+    const val PLAYER_PREV = 4
+    const val PLAYER_NEXT = 5
+    const val PLAYER_FF = 6
+    const val PLAYER_FB = 7
+    const val PLAYER_NUM = 8
+    const val PLAYER_REPEAT = 9
 
     /**
      * # Power, System & Sleep management
@@ -281,14 +277,14 @@ object MainCommandCodes {
     const val C_APP_ID = 0
     const val C_ANY_KEY_BOOT = 2
     const val C_STANDBY = 18
-    const val C_HEADUNIT_RESTART_LATER = 19
+    const val C_RESTART_LATER = 19
     const val C_FACTORY_RESET = 38
     const val C_SYSTEM_PROPERTIES = 41
     const val C_CUTACC_TURNOFF_LCDC = 42
     const val C_ECARLINK_SWITCH = 43
-    const val C_ENTER_SLEEP_WAKEUP = 46
-    const val C_SLEEP_AIRPLANE = 48
-    const val C_HEADUNIT_RESTART_NOW = 53
+    const val C_SLEEP_STATE = 46
+    const val C_SLEEP_AIRPLANE_SWITCH = 48
+    const val C_RESTART_NOW = 53
     const val C_START_STOP_SWITCH = 61
     const val C_AIRPLANE_MODE = 75
     const val C_EXIT_APP = 81
@@ -373,7 +369,7 @@ object MainCommandCodes {
     const val C_VIDEO_ID_C1 = 22
 
     /**
-    Setting media playback title: `{ints: [$appId], flts: null, strs: [$id3Title]}`
+    Setting media playback title: `{ints: [$appId, $playbackStatus], flts: null, strs: [$id3Title]}`
      **/
     const val C_PLAYBACK_PARAMS = 23
     const val C_VIDEO_IMAGE = 36
@@ -479,12 +475,13 @@ object MainCommandCodes {
     const val C_SECOND_BOOT_BLACK_SCREEN = 191
     const val C_SECOND_DISPLAY_VCOM_VOLTAGE = 192
     const val C_ENABLE_RIGHTCAMERA7870 = 199
+
     // 200
-    const val C_DEBUG_LOG_TYPE = 201;
+    const val C_DEBUG_LOG_TYPE = 201
 }
 
 object MainGetCodes {
-    const val G_APP_ID = 0;
+    const val G_APP_ID = 0
     const val G_AUTO_BLACK_SCREEN = 14
     const val G_BACKCAR_RADAR_ON = 28
     const val G_BACKCAR_TRACK_ON = 29
@@ -569,27 +566,31 @@ object PlatformCode {
 
 }
 
+/**
+ * Integer literals described as "APP_ID" used in FYT related context often means SYU apps or their configured equivalents.
+ */
 object MainAppId {
 
     const val APP_ID_LAST = -1
     const val APP_ID_NULL = 0
 
-    const val APP_ID_RADIO = 1
+    const val APP_ID_RADIO = 1 // default: com.syu.radio
     const val APP_ID_BTPHONE = 2
     const val APP_ID_BTAV = 3
-    const val APP_ID_DVD = 4
-    const val APP_ID_AUX = 5
-    const val APP_ID_TV = 6
-    const val APP_ID_IPOD = 7
-    const val APP_ID_AUDIO_PLAYER = 8
+    const val APP_ID_DEFAULT_AUDIO_PLAYER = 8
     const val APP_ID_VIDEO_PLAYER = 9
-    const val APP_ID_THIRD_PLAYER = 10
+    const val APP_ID_THIRD_PLAYER = 10 // can be configured by user e.g. com.spotify.music
     const val APP_ID_CAR_RADIO = 11
     const val APP_ID_CAR_BTPHONE = 12
     const val APP_ID_CAR_USB = 13
     const val APP_ID_DVR = 14
     const val APP_ID_3GPHONE = 15
     const val APP_ID_SPECIAL = 16
+
+    const val APP_ID_AUX = 5
+    const val APP_ID_TV = 6
+    const val APP_ID_IPOD = 7
+    const val APP_ID_DVD = 4
 
     const val CNT_MAX = 20
 

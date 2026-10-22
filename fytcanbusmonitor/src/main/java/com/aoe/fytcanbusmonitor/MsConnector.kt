@@ -91,8 +91,8 @@ class MsConnector private constructor() : ServiceConnection {
         @SuppressLint("StaticFieldLeak")
         val instance = MsConnector()
 
-        private const val TOOLKIT_ACTION = "com.syu.ms.toolkit"
         private val TOOLKIT_COMPONENT = ComponentName("com.syu.ms", "app.ToolkitService")
+        private const val TOOLKIT_ACTION = "com.syu.ms.toolkit"
         private const val RECONNECT_BASE_MS = 1_000
         private const val RECONNECT_JITTER_MS = 2_000
         private fun getNextConnectionInterval(): Long =

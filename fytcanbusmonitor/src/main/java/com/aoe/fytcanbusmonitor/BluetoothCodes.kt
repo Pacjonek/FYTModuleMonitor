@@ -45,7 +45,7 @@ object BluetoothUpdateCodes {
     const val U_PHONE_SIGNAL = 45 // [ints: 1..5]
     const val U_PHONE_OPERATOR = 46
     const val U_BLUETOOTH_CODING = 47
-    const val U_ODB_DEV_CONNECTSTATE = 48
+    const val U_SERIAL_ODB_STATE = 48
     const val U_PHONE_MESSAGE_HANDLE = 49
     const val U_PHONE_MESSAGE = 50
     const val U_BTAV_ALBUM_IMG = 51
@@ -54,7 +54,7 @@ object BluetoothUpdateCodes {
     const val U_CALLING_PIP_ENABLED = 55
     const val U_STOP_DOWNLOAD_BOOK = 56
     const val U_TERMINAL_CMD = 57
-    const val U_BLE_STEER_DEV_STATE = 58
+    const val U_BLESTEER_SERIAL_STATE = 58
     const val U_TRANSFER = 59
     const val U_CALL_NUMBER = 60
     const val U_HFP_STATUS = 61
@@ -95,10 +95,10 @@ object BluetoothCommandCodes {
     const val C_CONNECT_DEVICE = 24
     const val C_CONNECT_OBD = 25
     const val C_DOWNLOAD_BOOK = 26
-    const val C_BTAV_PLAY = 27  
+    const val C_BTAV_PLAY = 27
     const val C_AUTOPICK = 28
     const val C_BT_POWER_ON = 29
-    const val C_BTRING_PERCENT = 30
+    const val C_BT_RING_PERCENT = 30
     const val C_BTAV_LINK_CUT = 31
     const val C_BT_HOLD = 32
     const val C_BT_HOLD_HANG = 33
@@ -109,41 +109,43 @@ object BluetoothCommandCodes {
     const val C_BT_DEVICE_UPDATE_FILE = 38
     const val C_CONSOLIDATED_CALLS = 39
     const val C_BT_DEL_RECORD_ONE = 40
-    const val C_BT_DEL_RECORD_ALL = 41    
+    const val C_BT_DEL_RECORD_ALL = 41
 }
 
-  /**
-  * No known Bluetooth module get codes
-  **/
+/**
+ * No known Bluetooth module get codes
+ **/
 object BluetoothGetCodes {}
 
 object BluetoothOptions {
-            const val BASE = 42
-            
-            const val MUTE_MIC = 42
-            const val PHONE_VOICE = 43
-            const val PHONE_BATTERY = 44
-            const val PHONE_SIGNAL = 45
-            const val PHONE_OPERATOR = 46
-            const val BLUETOOTH_CODING = 47
-            const val ODB_DEV_CONNECTSTATE = 48
-            const val PHONE_MESSAGE_HANDLE = 49
-            const val PHONE_MESSAGE = 50
-            const val BTAV_ALBUM_IMG = 51
-            // C_
-            const val BT_RECORD_5LIST = 52
-            // C_
-            const val BT_NUMBER_NAME = 53
-            const val CALLING_PIP_ENABLE = 55
-            const val STOP_DOWNLOAD_BOOK = 56
-            const val TERMINAL_CMD = 57
-            const val BLE_STEER_DEV_STATE = 58
-            const val TRANSFER = 59
-            const val CALL_NUMBER = 60
-            const val HFP_STATUS = 61
-            const val A2DP_STATUS = 62
-            const val WAITING_NUMBER = 63
-            const val SUPPORT_MULTI = 64
-            const val ANSWERING_DEVICE = 65
-            const val SWAP_DEVICES_INDEX = 66
-        }
+    const val BASE_BEGIN = 42
+
+    const val MUTE_MIC = 42
+    const val PHONE_VOICE = 43
+    const val PHONE_BATTERY = 44
+    const val PHONE_SIGNAL = 45
+    const val PHONE_OPERATOR = 46
+    const val BLUETOOTH_CODING = 47
+    const val ODB_SERIAL_CONNECTION_STATE = 48
+    const val PHONE_MESSAGE_HANDLE = 49
+    const val PHONE_MESSAGE = 50
+    const val BTAV_ALBUM_IMG = 51
+
+    // C_
+    const val BT_RECORD_5LIST = 52
+
+    // C_
+    const val BT_NUMBER_NAME = 53
+    const val CALLING_PIP_ENABLE = 55
+    const val STOP_DOWNLOAD_BOOK = 56
+    const val TERMINAL_CMD = 57
+    const val BLESTEER_SERIAL_STATE = 58
+    const val TRANSFER = 59
+    const val CALL_NUMBER = 60
+    const val HFP_STATUS = 61
+    const val A2DP_STATUS = 62
+    const val WAITING_NUMBER = 63
+    const val SUPPORT_MULTI_SIM = 64
+    const val ANSWERING_DEVICE = 65
+    const val SWAP_DEVICES_INDEX = 66
+}

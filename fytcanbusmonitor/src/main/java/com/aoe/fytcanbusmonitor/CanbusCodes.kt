@@ -181,7 +181,7 @@ object CanbusUpdateCodes {
     const val U_CAR_VOLTAGE_ENABLED = 549
     const val U_CAR_DOOR_ENABLED = 550
     const val U_CAR_STEER_ANGLE_ENABLED = 551
-    const val U_CAR_TEMP_OUT_ENABLED = 552
+    const val U_CAR_OUTSIDE_TEMP_ENABLED = 552
     const val U_DOOR_ENGINE_ADD = 553
     const val U_DOOR_FL_ADD = 554
     const val U_DOOR_FR_ADD = 555
@@ -195,8 +195,8 @@ object CanbusUpdateCodes {
     // DataCanbus.carId = (value >> 16) & 65535;
     const val U_CANBUS_ID = 1000
     const val U_CANBUS_VER = 1005
-    const val U_CANBUS_FRAME_TO_UI = 1019
-    const val U_6606_CARINFO = 1049
+    const val U_CANBUS_TO_SERVICE_UI_FRAME = 1019
+    const val U_6606_CARINFO_FRAME = 1049
 
     const val MISC_BEGIN = 1000
 
@@ -234,7 +234,7 @@ object CanbusUpdateCodes {
     const val U_VEHICLE_SPEED = 1031
     const val U_ENGINE_RPM = 1032
     const val U_GNSS_ANGLE = 1033
-    const val U_UISERVER_TYPE = 1037
+    const val U_SERVER_UI_TYPE = 1037
 
     const val U_NEW_AIREIXT_SP = 1041
     const val U_CANBUS_CAR_DOOR = 1043
@@ -254,7 +254,7 @@ object CanbusUpdateCodes {
     /**
      * # Audio, Radio, Bluetooth & OnStar
      */
-    const val U_CAR_BT_ON = 1015
+    const val U_CAR_BT_STATE = 1015
     const val U_ONSTAR_SYNC_ON = 1022
     const val U_HIDE_RADIO = 1036
     const val U_BT_RECORD_5LIST = 1045
@@ -356,7 +356,7 @@ object CanbusUpdateCodes {
     /**
      * # OEM / Brand Specific
      */
-    const val U_BMW_CARUI_SUPPORT = 1038
+    const val U_CAR_BMW_UI_SUPPORT = 1038
     const val U_MERCEDES_BUTTON = 1042
     const val U_JAGUAR_LZ_RADAR = 1047
     const val U_TCROSS_ZH_BUTTON = 1048
@@ -395,8 +395,8 @@ object CanbusKeycodes {
     const val KEYCODE_PLAYPAUSE = 16
     const val KEYCODE_CAMERA = 17
     const val KEYCODE_PHONE = 18
-    const val KEYCODE_TONE_PLUS = 19
-    const val KEYCODE_TONE_MINUS = 20
+    const val KEYCODE_TONE_UP = 19
+    const val KEYCODE_TONE_DOWN = 20
     const val KEYCODE_BAND = 21
     const val KEYCODE_DVD = 22
     const val KEYCODE_PANORAMA = 23
@@ -433,7 +433,7 @@ object CanbusKeycodes {
     const val KEYCODE_MEDIAPLAYER = 54
     const val KEYCODE_CAR_SETTINGS = 55
     const val KEYCODE_TIME_SETTINGS = 56
-    const val KEYCODE_SCREEN_CALI = 57
+    const val KEYCODE_SCREEN_CALIBRATION = 57
     const val KEYCODE_SYSTEM_INFO = 58
     const val KEYCODE_DVR = 59
     const val KEYCODE_CARUSB = 60
@@ -445,14 +445,14 @@ object CanbusKeycodes {
     const val KEYCODE_RANDOM = 66
     const val KEYCODE_SEEK_UP = 67
     const val KEYCODE_SEEK_DOWN = 68
-    const val KEYCODE_STAND_BY = 69
+    const val KEYCODE_STANDBY = 69
     const val KEYCODE_DISPLAY = 70
-    const val KEYCODE_BRIGHT_MINUS = 71
-    const val KEYCODE_BRIGHT_PLUS = 72
+    const val KEYCODE_BRIGHT_UP = 71
+    const val KEYCODE_BRIGHT_DOWN = 72
     const val KEYCODE_AUDIO_SETTINGS = 73
     const val KEYCODE_FM = 74
     const val KEYCODE_AM = 75
-    const val KEYCODE_BT_AV = 76
+    const val KEYCODE_BTAV = 76
     const val KEYCODE_NC = 77
     const val KEYCODE_TA = 78
 }

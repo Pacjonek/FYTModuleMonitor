@@ -7,7 +7,7 @@ import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_MAIN
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_BT
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_CANBUS
-import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CANBUS_FRAME_TO_UI
+import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CANBUS_TO_SERVICE_UI_FRAME
 import com.aoe.fytcanbusmonitor.MsConnector.Companion.instance as msConnectorInstance
 import com.google.android.material.color.DynamicColors
 import java.util.concurrent.ConcurrentHashMap
@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
             (0..76) + (78..178) + (180..256),
             { mainController ->
                 appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
-                mainController.cmd(74, intArrayOf(10), null, arrayOf("Skręć w lewo"))
+                mainController.cmd(62, 1)
+                mainController.cmd(74, intArrayOf(10, 0), null, arrayOf("Skręć w lewo"))
             }
         )
         IPCConnection(
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 //                moduleController.cmd(515, 1)
             }
         )
-        // IPCConnection(MODULE_CODE_OBD, ModuleCommander(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
+        // IPCConnection(MODULE_CODE_OBD, ModuleController(), loggingCallback(MODULE_CODE_OBD.toLong(), "OBD"), 1000..1200)
         // IPCConnection(MODULE_CODE_BT, DataProxy.btProxy, loggingCallback(MODULE_CODE_BT.toLong(), "BT"), 0..30)
 
         msConnectorInstance.connect(this)
@@ -98,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 val droppedInts: IntArray? =
-                    if (ints != null && updateCode == U_CANBUS_FRAME_TO_UI && ints.size > 3) {
+                    if (ints != null && updateCode == U_CANBUS_TO_SERVICE_UI_FRAME && ints.size > 3) {
                         ints.drop(2).dropLast(1).toIntArray()
                     } else {
                         ints

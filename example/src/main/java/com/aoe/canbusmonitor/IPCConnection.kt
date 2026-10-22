@@ -5,6 +5,7 @@ import com.aoe.fytcanbusmonitor.IConnectionObserver
 import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.IRemoteToolkit
 import com.aoe.fytcanbusmonitor.IRemoteModule
+import com.aoe.fytcanbusmonitor.IRemoteModule.Stub.Companion.UPDATE_SYNC_FLAG
 import com.aoe.fytcanbusmonitor.MsConnector.Companion.instance as msConnectorInstance
 import com.aoe.fytcanbusmonitor.ModuleController
 import com.aoe.fytcanbusmonitor.MsConnector
@@ -26,36 +27,36 @@ class IPCConnection(
     private var moduleController: ModuleController? = null
 
     private val updateCodes = updateCodes.toList()
-    private var updateObserverRegistered = false
+    private var updateListenerRegistered = false
 
     init {
         msConnector.addObserver(this)
     }
 
     override fun onConnected(toolkit: IRemoteToolkit) {
-        if (updateObserverRegistered) {
+        if (updateListenerRegistered) {
             onDisconnected()
         }
         var controller: IRemoteModule? = null
         try {
             controller = ModuleController(moduleId, toolkit)
-            //module?.cmd(1043, intArrayOf(1), null, null)
         } catch (e: RemoteException) {
             e.printStackTrace()
             return
         }
+        moduleController = controller
         onConnectedListener?.invoke(controller)
-        updateCodes.forEach { controller.register(updateListener, it, 1) }
-        updateObserverRegistered = true
+        updateCodes.forEach { controller.register(updateListener, it, UPDATE_SYNC_FLAG) }
+        updateListenerRegistered = true
     }
 
     override fun onDisconnected() {
         val controller = moduleController
-        if (controller != null && updateObserverRegistered) {
+        if (controller != null && updateListenerRegistered) {
             updateCodes.forEach { controller.unregister(updateListener, it) }
-            updateObserverRegistered = false
+            updateListenerRegistered = false
         }
-        moduleController?.close()
+        controller?.close()
     }
 
     fun close() {
