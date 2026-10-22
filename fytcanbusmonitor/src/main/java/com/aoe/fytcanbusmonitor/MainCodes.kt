@@ -67,7 +67,7 @@ object MainUpdateCodes {
     const val U_TRUNK_CONTROL_STATE = 87
     const val U_CAR_BATTERY_VOLTAGE = 114
     const val U_STEER_TYPE = 120
-    const val U_TURN_INDICATORS = 134
+    const val U_TURN_SIGNALS = 134
     const val U_DOOR_STATE = 151
 
     /**
@@ -142,7 +142,7 @@ object MainUpdateCodes {
     const val U_SIGNAL_ON = 69
     const val U_SIGNAL_NTSC_PAL = 70
     const val U_AUX_ENABLED = 73
-    const val U_MEDIA_PLAYBACK_PARAMS = 74
+    const val U_PLAYBACK_PARAMS = 74
     const val U_CNC_AUX_ENABLED = 98
     const val U_VOICE_ASSISTANT_AUDIO_OCCUPIED_BY_APP = 104
     const val U_VIDEO_OUTPUT_PARAMS = 105
@@ -416,7 +416,7 @@ object MainCommandCodes {
     const val C_LOCK_ENABLE = 131
     const val C_KEYCODE_2CUSTOMER = 132
     const val C_ONCLICK_KEYCODE = 133
-    const val C_TURN_INDICATORS = 134
+    const val C_TURN_SIGNALS = 134
     const val C_PREVIEW_MODE = 135
     const val C_IMAGE_IC_INITIALIZE = 137
     const val C_FOREGROUND_APP_CHANGE = 138

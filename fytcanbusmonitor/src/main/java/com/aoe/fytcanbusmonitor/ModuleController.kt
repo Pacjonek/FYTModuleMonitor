@@ -13,6 +13,10 @@ class ModuleController(override var moduleId: Int, toolkit: IRemoteToolkit) : IR
         moduleProxy!!.cmd(cmdCode, null, null, null)
     }
 
+    fun cmd(cmdCode: Int, value: IntArray) {
+        moduleProxy!!.cmd(cmdCode, value, null, null)
+    }
+
     fun cmd(cmdCode: Int, value: Int) {
         moduleProxy!!.cmd(cmdCode, intArrayOf(value), null, null)
     }

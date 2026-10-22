@@ -7,7 +7,8 @@ import com.aoe.fytcanbusmonitor.IModuleCallback
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_MAIN
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_BT
 import com.aoe.fytcanbusmonitor.ModuleCodes.MODULE_CODE_CANBUS
-import com.aoe.fytcanbusmonitor.CanbusUpdateCodes.U_CANBUS_TO_SERVICE_UI_FRAME
+import com.aoe.fytcanbusmonitor.MainCommandCodes
+import com.aoe.fytcanbusmonitor.CanbusUpdateCodes
 import com.aoe.fytcanbusmonitor.MsConnector.Companion.instance as msConnectorInstance
 import com.google.android.material.color.DynamicColors
 import java.util.concurrent.ConcurrentHashMap
@@ -47,11 +48,24 @@ class MainActivity : AppCompatActivity() {
         IPCConnection(
             MODULE_CODE_MAIN,
             loggingCallback(MODULE_CODE_MAIN.toLong(), "MAIN", "#2E7D32".toColorInt()),
-            (0..76) + (78..178) + (180..256),
+            (0..76) + (78..100) + (102..178) + (180..256),
             { mainController ->
                 appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
-                mainController.cmd(62, 1)
-                mainController.cmd(74, intArrayOf(10, 0), null, arrayOf("Skręć w lewo"))
+                // mainController.cmd(42, 1)
+                mainController.cmd(
+                    MainCommandCodes.C_PLAYBACK_PARAMS,
+                    intArrayOf(10, 0),
+                    null,
+                    arrayOf("Skręć w lewo")
+                )
+                mainController.cmd(201, intArrayOf(0, 1))
+                mainController.cmd(201, intArrayOf(4, 1))
+                mainController.cmd(201, intArrayOf(8, 1))
+                mainController.cmd(201, intArrayOf(11, 1))
+                mainController.cmd(201, intArrayOf(12, 1))
+                mainController.cmd(201, intArrayOf(13, 1))
+                mainController.cmd(201, intArrayOf(14, 1))
+
             }
         )
         IPCConnection(
@@ -99,7 +113,7 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 val droppedInts: IntArray? =
-                    if (ints != null && updateCode == U_CANBUS_TO_SERVICE_UI_FRAME && ints.size > 3) {
+                    if (ints != null && updateCode == CanbusUpdateCodes.U_CANBUS_TO_SERVICE_UI_FRAME && ints.size > 3) {
                         ints.drop(2).dropLast(1).toIntArray()
                     } else {
                         ints
