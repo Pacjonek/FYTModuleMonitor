@@ -6,35 +6,15 @@ class ModuleController(override var moduleId: Int, toolkit: IRemoteToolkit) : IR
     var moduleProxy: IRemoteModule? = toolkit.getRemoteModule(moduleId)
 
     override fun cmd(cmdCode: Int, ints: IntArray?, flts: FloatArray?, strs: Array<String?>?) {
-        try {
-            moduleProxy!!.cmd(cmdCode, ints, flts, strs)
-        } catch (e: RemoteException) {
-            e.printStackTrace()
-        }
+        moduleProxy!!.cmd(cmdCode, ints, flts, strs)
     }
 
     fun cmd(cmdCode: Int) {
-        try {
-            moduleProxy!!.cmd(cmdCode, null, null, null)
-        } catch (e: RemoteException) {
-            e.printStackTrace()
-        }
+        moduleProxy!!.cmd(cmdCode, null, null, null)
     }
 
     fun cmd(cmdCode: Int, value: Int) {
-        try {
-            moduleProxy!!.cmd(cmdCode, intArrayOf(value), null, null)
-        } catch (e: RemoteException) {
-            e.printStackTrace()
-        }
-    }
-
-    fun cmd(cmdCode: Int, value1: Int, value2: Int) {
-        try {
-            moduleProxy!!.cmd(cmdCode, intArrayOf(value1, value2), null, null)
-        } catch (e: RemoteException) {
-            e.printStackTrace()
-        }
+        moduleProxy!!.cmd(cmdCode, intArrayOf(value), null, null)
     }
 
     override operator fun get(
@@ -43,44 +23,21 @@ class ModuleController(override var moduleId: Int, toolkit: IRemoteToolkit) : IR
         flts: FloatArray?,
         strs: Array<String?>?
     ): ModulePayload? {
-        val proxy = moduleProxy
-        if (proxy != null) {
-            try {
-                return proxy[getCode, ints, flts, strs]
-            } catch (e: RemoteException) {
-                e.printStackTrace()
-            }
-        }
-        return null
+        return moduleProxy!![getCode, ints, flts, strs]
+
     }
 
     operator fun get(getCode: Int, value: Int): ModulePayload? {
-        val proxy = moduleProxy
-        return if (proxy != null) {
-            try {
-                proxy[getCode, intArrayOf(value), null, null]
-            } catch (e: RemoteException) {
-                e.printStackTrace()
-                null
-            }
-        } else null
+        return moduleProxy!![getCode, intArrayOf(value), null, null]
     }
 
 
     override fun register(updateObserver: IModuleCallback, updateCode: Int, syncFlag: Int) {
-        try {
-            moduleProxy!!.register(updateObserver, updateCode, syncFlag)
-        } catch (e: RemoteException) {
-            e.printStackTrace()
-        }
+        moduleProxy!!.register(updateObserver, updateCode, syncFlag)
     }
 
     override fun unregister(updateObserver: IModuleCallback, updateCode: Int) {
-        try {
-            moduleProxy!!.unregister(updateObserver, updateCode)
-        } catch (e: RemoteException) {
-            e.printStackTrace()
-        }
+        moduleProxy!!.unregister(updateObserver, updateCode)
     }
 
     fun close() {
