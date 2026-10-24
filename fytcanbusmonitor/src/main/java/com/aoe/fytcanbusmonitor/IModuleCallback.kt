@@ -19,7 +19,7 @@ interface IModuleCallback : IInterface {
     }
 
     @Throws(RemoteException::class)
-    fun update(ints: IntArray?, flts: FloatArray?, strs: Array<String?>?, updateCode: Int = -1){
+    fun update(ints: IntArray?, flts: FloatArray?, strs: Array<String?>?, updateCode: Int = -1) {
         // Empty by default to support implementing only update(ModulePayload)
     }
 
@@ -32,22 +32,31 @@ interface IModuleCallback : IInterface {
         override fun asBinder(): IBinder = this
 
         @Throws(RemoteException::class)
-        public override fun onTransact(code: Int, data: Parcel, reply: Parcel?, flags: Int): Boolean {
+        public override fun onTransact(
+            code: Int,
+            data: Parcel,
+            reply: Parcel?,
+            flags: Int
+        ): Boolean {
             return when (code) {
                 TRANSACTION_update -> {
                     data.enforceInterface(DESCRIPTOR)
-                    update(ModulePayload(
-                        targetCode = data.readInt(),
-                        ints = data.createIntArray(),
-                        flts = data.createFloatArray(),
-                        strs = data.createStringArray(),
-                        ))
+                    update(
+                        ModulePayload(
+                            targetCode = data.readInt(),
+                            ints = data.createIntArray(),
+                            flts = data.createFloatArray(),
+                            strs = data.createStringArray(),
+                        )
+                    )
                     true
                 }
+
                 TRANSACTION_getDescriptor -> {
                     reply!!.writeString(DESCRIPTOR)
                     true
                 }
+
                 else -> super.onTransact(code, data, reply, flags)
             }
         }
@@ -56,7 +65,12 @@ interface IModuleCallback : IInterface {
             override fun asBinder(): IBinder = callbackService
 
             @Throws(RemoteException::class)
-            override fun update(ints: IntArray?, flts: FloatArray?, strs: Array<String?>?, updateCode: Int) {
+            override fun update(
+                ints: IntArray?,
+                flts: FloatArray?,
+                strs: Array<String?>?,
+                updateCode: Int
+            ) {
                 val data = Parcel.obtain()
                 try {
                     data.writeInterfaceToken(DESCRIPTOR)
@@ -76,7 +90,7 @@ interface IModuleCallback : IInterface {
             private const val DESCRIPTOR = "com.syu.ipc.IModuleCallback"
             const val TRANSACTION_update = 1
             const val TRANSACTION_getDescriptor = IBinder.INTERFACE_TRANSACTION
-            const val SYNC_UPDATE_FLAG = 1
+            const val SYNC_VALUE_FLAG = 1
 
             fun asInterface(obj: IBinder): IModuleCallback {
                 return obj.queryLocalInterface(DESCRIPTOR) as? IModuleCallback ?: Proxy(obj)

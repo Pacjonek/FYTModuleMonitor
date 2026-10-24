@@ -3,9 +3,9 @@ package com.aoe.canbusmonitor
 import android.os.RemoteException
 import com.aoe.fytcanbusmonitor.IConnectionObserver
 import com.aoe.fytcanbusmonitor.IModuleCallback
+import com.aoe.fytcanbusmonitor.IModuleCallback.Stub.Companion.SYNC_VALUE_FLAG
 import com.aoe.fytcanbusmonitor.IRemoteToolkit
 import com.aoe.fytcanbusmonitor.IRemoteModule
-import com.aoe.fytcanbusmonitor.IRemoteModule.Stub.Companion.UPDATE_SYNC_FLAG
 import com.aoe.fytcanbusmonitor.MsConnector.Companion.instance as msConnectorInstance
 import com.aoe.fytcanbusmonitor.ModuleController
 import com.aoe.fytcanbusmonitor.MsConnector
@@ -15,7 +15,7 @@ import com.aoe.fytcanbusmonitor.MsConnector
  * [updateListener] for every update code in [updateCodes].
  *
  * (Re)connect with [MsConnector] and stays that until
- * [close] is called.
+ * [disconnect] is called.
  */
 class IPCConnection(
     private val moduleId: Int,
@@ -46,21 +46,21 @@ class IPCConnection(
         }
         moduleController = controller
         onConnectedListener?.invoke(controller)
-        updateCodes.forEach { controller.register(updateListener, it, UPDATE_SYNC_FLAG) }
+        updateCodes.forEach { controller.register(updateListener, it, SYNC_VALUE_FLAG) }
         updateListenerRegistered = true
     }
 
     override fun onDisconnected() {
+        disconnect()
+    }
+
+    fun disconnect() {
         val controller = moduleController
         if (controller != null && updateListenerRegistered) {
             updateCodes.forEach { controller.unregister(updateListener, it) }
             updateListenerRegistered = false
         }
         controller?.close()
-    }
-
-    fun close() {
-        onDisconnected()
         msConnector.removeObserver(this)
     }
 }

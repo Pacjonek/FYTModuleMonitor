@@ -569,7 +569,7 @@ object PlatformCode {
 /**
  * Integer literals described as "APP_ID" used in FYT related context often means SYU apps or their configured equivalents.
  */
-object MainAppId {
+object SyuAppId {
 
     const val APP_ID_LAST = -1
     const val APP_ID_NULL = 0

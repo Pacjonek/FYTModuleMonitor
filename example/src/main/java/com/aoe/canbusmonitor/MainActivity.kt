@@ -59,8 +59,10 @@ class MainActivity : AppCompatActivity() {
                     arrayOf("Skręć w lewo")
                 )
                 mainController.cmd(201, intArrayOf(0, 1))
-                mainController.cmd(201, intArrayOf(4, 1))
-                mainController.cmd(201, intArrayOf(8, 1))
+                mainController.cmd(201, intArrayOf(10, 1))
+                // mainController.cmd(201, intArrayOf(4, 1))
+                // mainController.cmd(201, intArrayOf(8, 1))
+                // LOG1 - LOG4
                 mainController.cmd(201, intArrayOf(11, 1))
                 mainController.cmd(201, intArrayOf(12, 1))
                 mainController.cmd(201, intArrayOf(13, 1))

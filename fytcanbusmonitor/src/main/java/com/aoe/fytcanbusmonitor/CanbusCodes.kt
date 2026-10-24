@@ -1,5 +1,6 @@
 package com.aoe.fytcanbusmonitor
 
+
 object CanbusCommandCodes {
 
     const val C_CMD_VIDEO = 1
@@ -66,14 +67,14 @@ object CanbusCommandCodes {
      * ((((iArr[0] >> 1) & 1) << 3) & 8)}, null, null);
      **/
     const val C_CANBUS_DOOR_SUPPORT = 1035
-    const val C_TURNLIGHT360_SUPPORT = 1036
+    const val C_TURN_SIGNAL_SUPPORT = 1036
     const val C_RADAR360_SUPPORT = 1037
 
     /* OEM / Brand Specific */
     const val C_CANBUS_AUDI_CAR_TYPE = 1033
-    const val C_CANBUS_MERCEDESBENZ_BUTTON = 1034
+    const val C_CANBUS_MERCEDES_BENZ_BUTTON = 1034
     const val C_CMD_JAGUAR_LZ = 1038
-    const val C_CMD_TCROSS_ZH_BUTTON = 1039
+    const val C_CMD_CROSS_ZH_BUTTON = 1039
 
     const val C_CMD_6606 = 1040
 
@@ -108,25 +109,47 @@ object CanbusUpdateCodes {
      *
      * Renames: "WC" -> "HIWORLD" and "Fieyate" -> "Fiat"
      **/
-    const val WC_FIAT_ALL_CARINFO_BEGIN = 98
-    const val U_WC_FIAT_ALL_CARINFO_AVG_FUEL_CON = 99
-    const val U_WC_FIAT_ALL_CARINFO_FUEL_RANGE = 100
-    const val U_WC_FIAT_ALL_CARINFO_TOTAL_MILEAGE = 101
-    const val U_WC_FIAT_ALL_CARINFO_TRIPA_AVG_FUEL_CON = 102
-    const val U_WC_FIAT_ALL_CARINFO_TRIPA_AVG_SPEED = 103
-    const val U_WC_FIAT_ALL_CARINFO_TRIPA_TRAVEL_MILEAGE = 104
-    const val U_WC_FIAT_ALL_CARINFO_TRIPA_TRAVEL_TIME = 105
-    const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_FUEL_CON = 106
-    const val U_WC_FIAT_ALL_CARINFO_TRIPB_AVG_SPEED = 107
-    const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_MILEAGE = 108
-    const val U_WC_FIAT_ALL_CARINFO_TRIPB_TRAVEL_TIME = 109
-    const val WC_FIAT_ALL_CARINFO_END = 110
+    const val CARINFO_WC_FIAT_ALL_BEGIN = 98
+    const val U_CARINFO_WC_FIAT_ALL_AVG_FUEL_CON = 99
+    const val U_CARINFO_WC_FIAT_ALL_FUEL_RANGE = 100
+    const val U_CARINFO_WC_FIAT_ALL_TOTAL_MILEAGE = 101
+    const val U_CARINFO_WC_FIAT_ALL_TRIPA_AVG_FUEL_CON = 102
+    const val U_CARINFO_WC_FIAT_ALL_TRIPA_AVG_SPEED = 103
+    const val U_CARINFO_WC_FIAT_ALL_TRIPA_TRAVEL_MILEAGE = 104
+    const val U_CARINFO_WC_FIAT_ALL_TRIPA_TRAVEL_TIME = 105
+    const val U_CARINFO_WC_FIAT_ALL_TRIPB_AVG_FUEL_CON = 106
+    const val U_CARINFO_WC_FIAT_ALL_TRIPB_AVG_SPEED = 107
+    const val U_CARINFO_WC_FIAT_ALL_TRIPB_TRAVEL_MILEAGE = 108
+    const val U_CARINFO_WC_FIAT_ALL_TRIPB_TRAVEL_TIME = 109
+    const val CARINFO_WC_FIAT_ALL_END = 110
+
+    const val CARSET_WC_FIAT_ALL_BEGIN = 111
+    const val U_CARSET_WC_FIAT_ALL_MILAGE_UNIT = 112
+    const val U_CARSET_WC_FIAT_ALL_FUEL_USAGE_UNIT = 113
+    const val U_CARSET_WC_FIAT_ALL_TEMP_UNIT = 114
+    const val U_CARSET_WC_FIAT_ALL_DOOR_AUTOLOCK = 115
+    const val U_CARSET_WC_FIAT_ALL_DAY_LIGHT = 116
+    const val U_CARSET_WC_FIAT_ALL_TRIB_ACTIVE = 117
+    const val U_CARSET_WC_FIAT_ALL_MEASURE_UNIT = 118
+    const val U_CARSET_WC_FIAT_ALL_REARV_GUID = 119
+    const val U_CARSET_WC_FIAT_ALL_REARPARK_VOL = 120
+    const val U_CARSET_WC_FIAT_ALL_FLAHLIGHT_LOCK = 121
+    const val U_CARSET_WC_FIAT_ALL_CORNER_LIGHTS = 122
+    const val U_CARSET_WC_FIAT_ALL_COURTESY_LIGHTS = 123
+    const val U_CARSET_WC_FIAT_ALL_PARKSENSE = 124
+    const val U_CARSET_WC_FIAT_ALL_REARVIEW_DELAY = 125
+    const val U_CARSET_WC_FIAT_ALL_HEADLIGHT_DELAY = 126
+    const val U_CARSET_WC_FIAT_ALL_COURTESY_LIGHTS_DELAY = 127
+    const val U_CARSET_WC_FIAT_ALL_U_CARSET_D79_D6_B74 = 147
+    const val U_CARSET_WC_FIAT_ALL_PRESSURE_UNIT = 151
+    const val CARSET_WC_FIAT_ALL_END = 111
+
     /* # End Section */
 
     /**
      * # Extended range codes
      */
-    const val CAR_EXTENDED_START = 500
+    const val CAR_EXTENDED_BEGIN = 500
     const val U_CAR_FRAME_NUM = 501
 
     /* Exterior Lighting & Indicators */
@@ -191,14 +214,14 @@ object CanbusUpdateCodes {
     const val U_SPEED_UNIT = 559
     const val CAR_EXTENDED_END = 560
 
+    const val MISC_BEGIN = 1000
+
     // DataCanbus.canbusId = value & 65535;
     // DataCanbus.carId = (value >> 16) & 65535;
     const val U_CANBUS_ID = 1000
     const val U_CANBUS_VER = 1005
     const val U_CANBUS_TO_SERVICE_UI_FRAME = 1019
     const val U_6606_CARINFO_FRAME = 1049
-
-    const val MISC_BEGIN = 1000
 
     const val U_AIR_POPUP_SWITCH = 1001
     const val U_DOOR_POPUP_SWITCH = 1002
@@ -215,7 +238,7 @@ object CanbusUpdateCodes {
     const val U_CARRADIO_SUPPORT = 1016
     const val U_AIRCONTROL_SUPPORT = 1018
     const val U_CARDVR_SUPPORT = 1034
-    const val U_CARTURNLIGHT_SUPPORT = 1035
+    const val U_TURN_SIGNAL_SUPPORT = 1035
     const val U_SIDERADAR_SUPPORT = 1046
     const val U_CARTIRE_SUPPPORT = 1050
 
@@ -360,6 +383,7 @@ object CanbusUpdateCodes {
     const val U_MERCEDES_BUTTON = 1042
     const val U_JAGUAR_LZ_RADAR = 1047
     const val U_TCROSS_ZH_BUTTON = 1048
+    const val U_KEYCODE_STUDY = 1053
 
     /**
      * # Max limit

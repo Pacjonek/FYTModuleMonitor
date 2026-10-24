@@ -9,10 +9,6 @@ class ModuleController(override var moduleId: Int, toolkit: IRemoteToolkit) : IR
         moduleProxy!!.cmd(cmdCode, ints, flts, strs)
     }
 
-    fun cmd(cmdCode: Int) {
-        moduleProxy!!.cmd(cmdCode, null, null, null)
-    }
-
     fun cmd(cmdCode: Int, value: IntArray) {
         moduleProxy!!.cmd(cmdCode, value, null, null)
     }

@@ -7,8 +7,7 @@ import android.os.Parcel
 import android.os.RemoteException
 
 /**
- * Minimal replica of the FYT `com.syu.ipc.IRemoteToolkit` binder interface
- * (action `com.syu.ms.toolkit`)
+ * Minimal replica of the FYT `com.syu.ipc.IRemoteToolkit` binder interface; action: `com.syu.ms.toolkit`
  */
 interface IRemoteToolkit : IInterface {
 
@@ -24,7 +23,12 @@ interface IRemoteToolkit : IInterface {
         override fun asBinder(): IBinder = this
 
         @Throws(RemoteException::class)
-        public override fun onTransact(code: Int, data: Parcel, reply: Parcel?, flags: Int): Boolean {
+        public override fun onTransact(
+            code: Int,
+            data: Parcel,
+            reply: Parcel?,
+            flags: Int
+        ): Boolean {
             return when (code) {
                 TRANSACTION_getRemoteModule -> {
                     data.enforceInterface(DESCRIPTOR)
@@ -33,10 +37,12 @@ interface IRemoteToolkit : IInterface {
                     reply.writeStrongBinder(getRemoteModule(moduleId).asBinder())
                     true
                 }
+
                 TRANSACTION_getDescriptor -> {
                     reply!!.writeString(DESCRIPTOR)
                     true
                 }
+
                 else -> super.onTransact(code, data, reply, flags)
             }
         }
