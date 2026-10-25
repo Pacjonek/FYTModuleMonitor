@@ -51,7 +51,8 @@ class MainActivity : AppCompatActivity() {
             (0..76) + (78..100) + (102..178) + (180..256),
             { mainController ->
                 appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
-                // mainController.cmd(42, 1)
+                mainController.cmd(2, 0)
+                mainController.cmd(42, 1)
                 mainController.cmd(
                     MainCommandCodes.C_PLAYBACK_PARAMS,
                     intArrayOf(10, 0),

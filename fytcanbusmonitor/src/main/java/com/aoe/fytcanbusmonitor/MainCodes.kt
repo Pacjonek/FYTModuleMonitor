@@ -16,15 +16,15 @@ object MainUpdateCodes {
     const val U_APP_IS_VISIBLE = 39
     const val U_SLEEP_IS_WAKEUP = 43
     const val U_ACC_ON = 50
-    const val U_HEADUNIT_RESTART_LATER = 61
+    const val U_RESTART_LATER = 61
     const val U_MCU_BOOT_ON = 62
     const val U_ACCCUT_LCDC_TURNOFF = 66
     const val U_ECARLINK_ON = 67
-    const val U_ACCCUT_HEADUNIT_TURNOFF_DELAY = 71
+    const val U_ACCCUT_TURNOFF_DELAY = 71
     const val U_SLEEP_ENTER_AIRPLANE_MODE = 76
     const val U_SCREEN_TOUCH_EVENT_POS = 77 // [ints: x, y]
     const val U_STARTSTOP_ENABLED = 88
-    const val U_HEADUNIT_SLEEP_STATE = 103
+    const val U_SLEEP_STATE = 103
     const val U_BLACKSCREEN_STANDBY = 110
     const val U_STATUSBAR_SCREENSHOT_SHORTCUT_ENABLED = 117
 
@@ -73,9 +73,9 @@ object MainUpdateCodes {
     /**
      * # Storage & USB
      */
-    const val U_HEADUNIT_SD1_EXIST = 9
-    const val U_HEADUNIT_SD2_EXIST = 10
-    const val U_HEADUNIT_USB_EXIST = 11
+    const val U_DEVICE_SD1_EXIST = 9
+    const val U_DEVICE_SD2_EXIST = 10
+    const val U_DEVICE_USB_EXIST = 11
     const val U_USB_ERROR_ENABLED = 100
     const val U_USB_INDEX = 118
 
@@ -193,7 +193,7 @@ object MainUpdateCodes {
     const val U_SPI_MCU_VER = 85
     const val U_MCU_MEMORY_CONTROL = 106
     const val U_VCOM_VOLTAGE = 109
-    const val U_HEADUNIT_VOLTAGE = 115
+    const val U_DEVICE_VOLTAGE = 115
     const val U_AVDD = 116
 
     /**
