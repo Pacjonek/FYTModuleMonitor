@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
 }
 def getVersionName = { ->
-    return "0.0.2"
+    return "1.0.0"
 }
 
 android {
@@ -33,7 +33,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.19.0'
+    implementation 'androidx.core:core-ktx:1.19.1'
     implementation 'androidx.appcompat:appcompat:1.8.0'
     implementation 'com.google.android.material:material:1.14.0'
 
@@ -57,7 +57,7 @@ def getArtifactId = { ->
 publishing {
     publications {
         bar(MavenPublication) {
-            groupId 'com.aoe' // Replace with group ID
+            groupId 'com.pacjonek'
             artifactId getArtifactId()
             version getVersionName()
             artifact("${layout.buildDirectory.get()}/outputs/aar/${getArtifactId()}-release.aar")
@@ -70,7 +70,7 @@ publishing {
             /** Configure path of your package repository on Github
              *  Replace GITHUB_USERID with your/organisation Github userID and REPOSITORY with the repository name on GitHub
              */
-            url = uri("https://maven.pkg.github.com/AxesOfEvil/FYTCanbusMonitor")
+            url = uri("https://maven.pkg.github.com/Pacjonek/FYTModuleMonitor")
 
             credentials {
                 /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
@@ -80,4 +80,3 @@ publishing {
         }
     }
 }
-
