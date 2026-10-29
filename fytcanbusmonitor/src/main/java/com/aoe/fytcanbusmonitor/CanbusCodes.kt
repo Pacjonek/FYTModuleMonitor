@@ -3,72 +3,75 @@ package com.aoe.fytcanbusmonitor
 
 object CanbusCommandCodes {
 
-    const val C_CMD_VIDEO = 1
-    const val C_CMD_360_TOUCH_LY = 2
-    const val C_CMD_SPEED_ALARM = 3
-    const val C_CMD_TIME_SETTINGS = 7
-    const val C_CMD_SAFE_DRIVER = 8
-    const val C_CMD_NONSLIP_SET = 9
-    const val C_CMD_STARTPROMPT = 10
-    const val C_CMD_AIR_AUTOCLEAN = 11
-    const val C_CMD_INCAR_AUTOVENTILATION = 12
-    const val C_CMD_INCAR_AUTOLOCK = 13
-    const val C_CMD_RAMP_START = 14
-
     const val C_CMD_START_REQ_ADD = 100
     const val C_CMD_SET_ADD = 101
 
     const val MISC_BEGIN = 1000
     const val C_CANBUS_ID = 1000
 
-
-    const val C_SWITCH_RIGHT_SIDE_DRIVER = 1001
     const val C_SHOW_AIR_POPUP = 1002
     const val C_CHANGE_PANORAMA = 1003
     const val C_SHOW_DOOR_POPUP = 1004
     const val C_CAMERA_MODE = 1005
-    const val C_CANBUS_FRAME_TO_MCU1 = 1008
     const val C_SWITCH_AIR_POPUP = 1009
     const val C_SWITCH_DOOR_POPUP = 1010
-    const val C_ONSTAR_SYNC_ON = 1011
-    const val C_CANBUS_FRAME_TO_MTU = 1012
-    const val C_CANBUS_FRAME_TO_MCU_0X10 = 1013
-    const val C_CANBUS_KEY_FUNC = 1014
-
-    /**
-     *  7 - indicators
-     */
-    const val C_CANBUS_BROADCAST_FUNC = 1015
     const val C_SHOW_RIGHTCAMERA = 1016
+
+    const val C_CANBUS_KEY_FUNC = 1014
     const val C_CANBUS_KEY_FUNC_WC = 1017
     const val C_CANBUS_RC_FUNC_WC = 1018
 
+
+    const val C_FRAME_TO_MCU_PACKED_233 = 1008
+
+    // 1009
+    // 1010
+    // 1011
+    const val C_FRAME_TO_MCU_145 = 1012
+    const val C_FRAME_TO_MCU_16 = 1013
+    // 1014
+
+    /**
+     * ints[0]:
+     *  0 - STEER. ANGLE
+     *  1 - RADAR
+     *  2 - OUTSIDE TEMPERATURE
+     *  3 - CANBUS VERSION
+     *  4 - IS CAR SUPPORT...
+     *     1 - VOLUME
+     *     2 - FIELD
+     *     3 - EQ
+     *  5 - CAMERA MODE
+     *  6 - DOORS
+     *  7 - TURN SIGNALS
+     *  8 - SPEED
+     */
+    const val C_CANBUS_SET_FUNC = 1015
+    const val C_CANBUS_FRAME_TO_MTU = 1030
+
+    // 1035
+    // 1036
+    // 1037
+    // 1038
+    // 1039
+    // 1040
+    // 1041
+    const val C_CMD_DUDU_OBD = 1042
+    const val C_SWITCH_KEYCODE_STUDY = 1043 // [ints: [0/1]]
+    const val C_CMD_CARINFO_PACKED_FRAME = 1044
+
+
+    const val C_ONSTAR_SYNC_ON = 1011
     const val C_CMD_360_TOUCH = 1029
-    const val C_CANBUS_FRAME_TO_MCU2 = 1030
     const val C_CMD_PARK = 1031
     const val C_CMD_CANBUS_DVR = 1032
 
-    /**
-     *  val i0 = (iArr[0] >> 0) & 1)
-     *  val i1 = (iArr[0] >> 1) & 1)
-     *  val i2 = (iArr[0] >> 2) & 1)
-     *  val i3 = (iArr[0] >> 3) & 1)
-     *  val i4 = (iArr[0] >> 4) & 1)
-     *  val i5 = (iArr[0] >> 5) & 1)
-     *  t0.d.H3(151, 0, i0);
-     *  t0.d.H3(151, 1, i1);
-     *  t0.d.H3(151, 2, i2);
-     *  t0.d.H3(151, 3, i3);
-     *  t0.d.H3(151, 4, i4);
-     *  t0.d.H3(151, 5, i5);
-     * kt.y0(1049, new int[]{6, ((((iArr[0] >> 0) & 1) << 2) & 4) |
-     * ((((iArr[0] >> 5) & 1) << 5) & 32) | ((((iArr[0] >> 2) & 1) << 6) & 64) |
-     * ((((iArr[0] >> 3) & 1) << 7) & 128) | (16 & (((iArr[0] >> 4) & 1) << 4)) |
-     * ((((iArr[0] >> 1) & 1) << 3) & 8)}, null, null);
-     **/
-    const val C_CANBUS_DOOR_SUPPORT = 1035
-    const val C_TURN_SIGNAL_SUPPORT = 1036
-    const val C_RADAR360_SUPPORT = 1037
+    const val C_SWITCH_RIGHT_SIDE_DRIVER = 1001
+    const val C_SWITCH_DOOR_SUPPORT = 1035
+    const val C_SWITCH_TURN_SIGNAL_SUPPORT = 1036
+    const val C_SWITCH_RADAR360_SUPPORT = 1037
+    const val C_SWITCH_OUTSIDE_TEMP_SUPPORT = 1045
+
 
     /* OEM / Brand Specific */
     const val C_CANBUS_AUDI_CAR_TYPE = 1033
@@ -76,24 +79,18 @@ object CanbusCommandCodes {
     const val C_CMD_JAGUAR_LZ = 1038
     const val C_CMD_CROSS_ZH_BUTTON = 1039
 
-    const val C_CMD_6606 = 1040
-
-    // const val C_... = 1041
-    const val C_DUDU_OBD = 1042
-    const val C_KEYCODE_STUDY = 1043 // [ints: [0/1]]
-
 
 }
 
 object CanbusUpdateCodes {
 
     const val DOORS_BEGIN = 0
-    const val U_DOOR_ENGINE = 0
+    const val U_DOOR_HOOD = 0
     const val U_DOOR_FL = 1
     const val U_DOOR_FR = 2
     const val U_DOOR_RL = 3
     const val U_DOOR_RR = 4
-    const val U_DOOR_BACK = 5
+    const val U_DOOR_TRUNK = 5
     const val DOORS_END = 6
 
 
@@ -218,10 +215,16 @@ object CanbusUpdateCodes {
 
     // DataCanbus.canbusId = value & 65535;
     // DataCanbus.carId = (value >> 16) & 65535;
-    const val U_CANBUS_ID = 1000
+    const val U_CANBUS_FULL_ID = 1000
     const val U_CANBUS_VER = 1005
-    const val U_CANBUS_TO_SERVICE_UI_FRAME = 1019
-    const val U_6606_CARINFO_FRAME = 1049
+
+    /**
+     * In case the Canbus WC2 protocol:
+     * [233, 90, 165, LEN, CMD, ...PAYLOAD, CHECKSUM]
+     */
+    const val U_CANBUS_FRAME_TO_SERVICE_UI = 1019
+    const val U_CANBUS_FRAME_TO_MTU = 1024
+    const val U_CARINFO_FRAME_PACKED = 1049
 
     const val U_AIR_POPUP_SWITCH = 1001
     const val U_DOOR_POPUP_SWITCH = 1002
@@ -247,7 +250,6 @@ object CanbusUpdateCodes {
     const val U_CANBUS_MAX_SUPPORTED_CNT = 1010
 
     const val U_CANBUS_AIR_VER = 1023
-    const val U_CANBUS_FRAME_TO_MCU = 1024
     const val U_CANBUS_SLAVECAR_TOUCH_CALI = 1025
     const val U_CANBUS_SLAVECAR_BACKLIGHT = 1026
     const val U_CANBUS_PM25_CAR_IN = 1027
@@ -275,11 +277,11 @@ object CanbusUpdateCodes {
     const val U_REAR_MOVE_TYPE = 1040
 
     /**
-     * # Audio, Radio, Bluetooth & OnStar
+     * # Audio, OEM Radio, Bluetooth & OnStar
      */
     const val U_CAR_BT_STATE = 1015
     const val U_ONSTAR_SYNC_ON = 1022
-    const val U_HIDE_RADIO = 1036
+    const val U_CAR_RADIO_HIDDEN = 1036
     const val U_BT_RECORD_5LIST = 1045
 
 
@@ -370,10 +372,10 @@ object CanbusUpdateCodes {
     const val U_AIR_REAR_SEAT_BLOW_LEFT = 90
     const val U_AIR_REAR_SEAT_BLOW_RIGHT = 91
     const val U_AIR_FRONT_ONLY = 92
-    const val U_AIR_MASSAGESEAT_LEFT = 93
-    const val U_AIR_MASSAGESEAT_RIGHT = 94
-    const val U_AIR_LUMBARSEAT_LEFT = 95
-    const val U_AIR_LUMBARSEAT_RIGHT = 96
+    const val U_AIR_MASSAGE_SEAT_LEFT = 93
+    const val U_AIR_MASSAGE_SEAT_RIGHT = 94
+    const val U_AIR_LUMBAR_SEAT_LEFT = 95
+    const val U_AIR_LUMBAR_SEAT_RIGHT = 96
     const val AIR_END = 97
 
     /**

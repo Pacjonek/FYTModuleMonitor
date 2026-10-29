@@ -73,9 +73,9 @@ object MainUpdateCodes {
     /**
      * # Storage & USB
      */
-    const val U_DEVICE_SD1_EXIST = 9
-    const val U_DEVICE_SD2_EXIST = 10
-    const val U_DEVICE_USB_EXIST = 11
+    const val U_BOARD_SD1_EXIST = 9
+    const val U_BOARD_SD2_EXIST = 10
+    const val U_BOARD_USB_EXIST = 11
     const val U_USB_ERROR_ENABLED = 100
     const val U_USB_INDEX = 118
 
@@ -117,10 +117,10 @@ object MainUpdateCodes {
     const val U_RADAR_RMR = 20
     const val U_RADAR_RR = 21
     const val U_BACKCAR_RADAR = 22
-    const val U_BACKCAR_RADAR_ENABLED = 27
+    const val U_BACKCAR_RADAR_SWITCH = 27
 
     const val U_RADAR_POWER = 75
-    const val U_RADAR_PARK_ENABLED = 86
+    const val U_RADAR_PARK_SWITCH = 86
 
     const val U_RADAR_RSF = 90
     const val U_RADAR_RSMF = 91
@@ -170,7 +170,7 @@ object MainUpdateCodes {
     const val U_MCU_DIRECTION_KEY = 60
     const val U_PANEL_KEY_TYPE_CNT = 63
     const val U_GESTURE = 64
-    const val U_MCU_PANEL_KEY_ENABLED = 82
+    const val U_MCU_PANEL_KEY_SWITCH = 82
     const val U_ROLL_KEY_TYPE = 89
 
     /**
@@ -193,7 +193,7 @@ object MainUpdateCodes {
     const val U_SPI_MCU_VER = 85
     const val U_MCU_MEMORY_CONTROL = 106
     const val U_VCOM_VOLTAGE = 109
-    const val U_DEVICE_VOLTAGE = 115
+    const val U_BOARD_VOLTAGE = 115
     const val U_AVDD = 116
 
     /**
@@ -274,15 +274,14 @@ object MainCommandCodes {
     /**
      * # Power, System & Sleep management
      */
-    const val C_APP_ID = 0
-    const val C_ANY_KEY_BOOT = 2
+    const val C_SET_ANY_KEY_BOOT = 2
     const val C_STANDBY = 18
     const val C_RESTART_LATER = 19
     const val C_FACTORY_RESET = 38
     const val C_SYSTEM_PROPERTIES = 41
     const val C_CUTACC_TURNOFF_LCDC = 42
     const val C_ECARLINK_SWITCH = 43
-    const val C_SLEEP_STATE = 46
+    const val C_SET_SLEEP_STATE = 46
     const val C_SLEEP_AIRPLANE_SWITCH = 48
     const val C_RESTART_NOW = 53
     const val C_START_STOP_SWITCH = 61
@@ -309,22 +308,23 @@ object MainCommandCodes {
     const val C_LAMPLET_ON_ALWAYS = 31
     const val C_LAMPLET_COLOR_CTRL = 32
     const val C_LAMPLET_CLEAN_ON = 49
-    const val C_LAMPLET_TIME = 136
     const val C_AMBIENT_LIGHT_C1 = 50
-    const val C_AMBIENT_LIGHT_O2 = 123
-    const val C_AMBIENT_LIGHT_SWITCH = 149
     const val C_LED_COLOR = 64
+    const val C_AMBIENT_LIGHT_O2 = 123
+    const val C_LAMPLET_TIME = 136
+    const val C_AMBIENT_LIGHT_SWITCH = 149
 
     /**
      * # Navigation
      */
-    const val C_NAVI_ON_BOOT = 3
-    const val C_NAVI_PKG_NAME = 9
+    const val C_SET_NAVI_ON_BOOT = 3
+    const val C_SET_NAVI_PKG_NAME = 9
 
     /**
      * # Keys, Touch & Controls
      */
-    const val C_JUMP_PAGE = 24
+    const val C_JUMP_TO_APP_ID = 0
+    const val C_JUMP_TO_APP_PAGE = 24
     const val C_KEY = 25
     const val C_PANEL_KEY_TYPE = 29
     const val C_GESTURE = 39
@@ -369,7 +369,7 @@ object MainCommandCodes {
     const val C_VIDEO_ID_C1 = 22
 
     /**
-    Setting media playback title: `{ints: [$appId, $playbackStatus], flts: null, strs: [$id3Title]}`
+    Setting media playback title: `{ints: [$appId, 0, $playbackStatus], flts: null, strs: [$id3Title]}`
      **/
     const val C_PLAYBACK_PARAMS = 23
     const val C_VIDEO_IMAGE = 36
@@ -385,17 +385,17 @@ object MainCommandCodes {
     /**
      * # MCU, Hardware & Vehicle peripheral control
      */
-    const val C_HANDBRAKE_SWITCH = 4
-    const val C_MCU_SERIAL = 14
+    const val C_SET_HANDBRAKE_STATE = 4
+    const val C_MCU_SERIAL_PORT = 14
     const val C_MCU_POWER_OPTION = 15
-    const val C_MCU_ON = 17
+    const val C_SET_MCU_ON = 17
     const val C_MCU_ERROR_CODE = 21
     const val C_LANGUAGE = 26
     const val C_MCU_UPGRADE = 27
     const val C_FAN_CYCLE = 34
     const val C_SHOW_FLASH_WRITE_ON = 52
     const val C_TRUNK_CONTROL_CMD = 58
-    const val C_MOTOR_DOWN_UP_BY_MCU = 62
+    const val C_SET_ENGINE_RUNNING_STATE = 62
     const val C_USB_ERROR_ENABLE = 65
     const val C_MCU_MEMORY_CONTROL = 70
     const val C_VCOM_VOLTAGE = 73
@@ -403,81 +403,8 @@ object MainCommandCodes {
     const val C_VAVDD = 79
     const val C_GPIO_JNI = 84
 
-    const val OPTION_BASE_BEGIN = 123
-
-    // 123
-    const val C_THIRD_DVR_SETUP = 124
-    const val C_CAMERA_POWER_ALWAYS_SUPPLY_ENABLE = 125
-    const val C_FRONT_CAMERA_ENABLE = 126
-    const val C_LOCK_PASSWORD = 127
-    const val C_UNLOCK_DEVICE_MAC = 128
-    const val C_LOCK_STATE = 129
-    const val C_STATIC_TRACK = 130
-    const val C_LOCK_ENABLE = 131
-    const val C_KEYCODE_2CUSTOMER = 132
-    const val C_ONCLICK_KEYCODE = 133
-    const val C_TURN_SIGNALS = 134
-    const val C_PREVIEW_MODE = 135
-    const val C_IMAGE_IC_INITIALIZE = 137
-    const val C_FOREGROUND_APP_CHANGE = 138
-    const val C_DOUBLE_FLASH = 139
-    const val C_IMAGE_IC_UPGRADE = 140
-    const val C_IMAGE_IC_UPGRADE_PROGRESS = 141
-    const val C_MCU_SHUTDOWN_DELAY = 142
-
-    // 143
-    const val C_FAN_AUTO_MODE = 144
-    const val C_FAN_AUTO_MODE_TEMPS = 145
-    const val C_CPU_RUNNING_TEMP = 146
-    const val C_BOOT_PLAY_VIDEO = 147
-    const val C_SOFT_UPGRADE = 148
-    const val C_APP_UI_WINDOW_FOCUS = 150
-    const val C_DOOR_STATE = 151
-
-    // 152
-    const val C_VIDEO_ID_O2 = 153
-    const val C_VIDEO_FORMAT = 154
-    const val C_VIDEO_SIGNAL = 155
-    const val C_VOICE_EXTRA_AUDIO = 156
-    const val C_NAVI_EXTRA_AUDIO = 157
-    const val C_TIPS_EXTRA_AUDIO = 158
-    const val C_CALLING_EXTRA = 159
-    const val C_CAMERA_POWER = 160
-    const val C_SET_PROPERTY = 161
-    const val C_USB_DVR_SWITCH_7731 = 162
-    const val C_SERIAL_PLUGIN_DEVICE = 163
-    const val C_VOICE_PKG = 164
-    const val C_ENTER_UI_REMEMBER = 165
-    const val C_CARLINK_WIRELESS_AUTO_CONN = 166
-    const val C_CARLINK_WIRED_AUTO_CONN = 167
-    const val C_SCREEN_ON = 168
-    const val C_REVERSE_CARPLAY_CONNECT = 169
-    const val C_CARLINK_CARPLAY_CALL_STATE = 170
-    const val C_BACKLIGHT_CTRL_TYPE = 171
-    const val C_EXTRA_MIC_ENABLE = 172
-    const val C_CAR_VIDEO_SIZE = 173
-    const val C_IMAGE_PARAM_8918 = 174
-    const val C_SHUTDOWN_SINGLE_DELAY = 175
-    const val C_OBSTACLE_FLAG = 176
-    const val C_SCREENSAVER_OP = 177
-    const val C_UI_MODE = 178
-    const val C_GNSS_POSITION = 179
-    const val C_REVERSE_ANTI_SHAKING = 180
-    const val C_MOBILE_LINK_STATUS = 182
-    const val C_GNSS_ALTITUDE_FIX_VALUE = 183
-    const val C_ANDROID_AUDIO_STATE = 184
-    const val C_CUSTOM_APP = 185
-    const val C_APP_TO_BE_KILLED = 186
-    const val C_SECOND_DISPLAY_BRIGHTNESS = 187
-    const val C_SECOND_DISPLAY_BLACK = 188
-    const val C_BOOT_BLACK_SCREEN = 189
-    const val C_CUSTOM_BOOT_APP = 190
-    const val C_SECOND_BOOT_BLACK_SCREEN = 191
-    const val C_SECOND_DISPLAY_VCOM_VOLTAGE = 192
-    const val C_ENABLE_RIGHTCAMERA7870 = 199
-
     // 200
-    const val C_DEBUG_LOG_TYPE = 201
+    const val C_SET_DEBUG_VIEW = 201
 }
 
 object MainGetCodes {
@@ -563,7 +490,6 @@ object PlatformCode {
     const val PLATFORM_2386 = 16
     const val PLATFORM_7865 = 17
     const val PLATFORM_6225 = 18
-
 }
 
 /**
@@ -578,7 +504,7 @@ object SyuAppId {
     const val APP_ID_BTPHONE = 2
     const val APP_ID_BTAV = 3
     const val APP_ID_DEFAULT_AUDIO_PLAYER = 8
-    const val APP_ID_VIDEO_PLAYER = 9
+    const val APP_ID_DEFAULT_VIDEO_PLAYER = 9
     const val APP_ID_THIRD_PLAYER = 10 // can be configured by user e.g. com.spotify.music
     const val APP_ID_CAR_RADIO = 11
     const val APP_ID_CAR_BTPHONE = 12
