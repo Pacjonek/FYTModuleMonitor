@@ -47,33 +47,51 @@ class MainActivity : AppCompatActivity() {
         val connectedMessage = "--- CONNECTED SUCCESSFULLY ---"
         IPCConnection(
             MODULE_CODE_MAIN,
-            loggingCallback(MODULE_CODE_MAIN.toLong(), "MAIN", "#2E7D32".toColorInt()),
+            loggingCallback(MODULE_CODE_MAIN.toLong(), "  MAIN", "#2E7D32".toColorInt()),
             (0..76) + (78..100) + (102..178) + (180..256),
             { mainController ->
-                appendLogLine("MAIN", "#2E7D32".toColorInt(), connectedMessage)
-                mainController.cmd(2, 0)
+                appendLogLine("  MAIN", "#2E7D32".toColorInt(), connectedMessage)
+                mainController.cmd(2, 1)
                 mainController.cmd(42, 1)
+                mainController.cmd(62, 1)
+                mainController.cmd(62, 0)
                 mainController.cmd(
                     MainCommandCodes.C_PLAYBACK_PARAMS,
-                    intArrayOf(10, 0),
+                    intArrayOf(10, 0, 0),
                     null,
                     arrayOf("Skręć w lewo")
                 )
-                mainController.cmd(201, intArrayOf(0, 1))
-                mainController.cmd(201, intArrayOf(10, 1))
+                mainController.cmd(
+                    MainCommandCodes.C_PLAYBACK_PARAMS,
+                    intArrayOf(10, 1, 0),
+                    null,
+                    arrayOf("Skręć w lewo")
+                )
+                mainController.cmd(
+                    MainCommandCodes.C_PLAYBACK_PARAMS,
+                    intArrayOf(10, 2, 0),
+                    null,
+                    arrayOf("Skręć w lewo")
+                )
+                mainController.cmd(
+                    MainCommandCodes.C_PLAYBACK_PARAMS,
+                    intArrayOf(10, 3, 0),
+                )
+                // mainController.cmd(201, intArrayOf(0, 1))
+                // mainController.cmd(201, intArrayOf(10, 1))
                 // mainController.cmd(201, intArrayOf(4, 1))
                 // mainController.cmd(201, intArrayOf(8, 1))
                 // LOG1 - LOG4
-                mainController.cmd(201, intArrayOf(11, 1))
-                mainController.cmd(201, intArrayOf(12, 1))
-                mainController.cmd(201, intArrayOf(13, 1))
-                mainController.cmd(201, intArrayOf(14, 1))
+                // mainController.cmd(201, intArrayOf(11, 1))
+                // mainController.cmd(201, intArrayOf(12, 1))
+                // mainController.cmd(201, intArrayOf(13, 1))
+                // mainController.cmd(201, intArrayOf(14, 1))
 
             }
         )
         IPCConnection(
             MODULE_CODE_BT,
-            loggingCallback(MODULE_CODE_BT.toLong(), "BT", "#1565C0".toColorInt()),
+            loggingCallback(MODULE_CODE_BT.toLong(), "    BT", "#1565C0".toColorInt()),
             (0..100),
             {
                 appendLogLine("    BT", "#1565C0".toColorInt(), connectedMessage)
@@ -82,10 +100,9 @@ class MainActivity : AppCompatActivity() {
         IPCConnection(
             MODULE_CODE_CANBUS,
             loggingCallback(MODULE_CODE_CANBUS.toLong(), "CANBUS", "#C62828".toColorInt()),
-            (0..9) + (98..177) + (0..300) + (1000..1032) + (1034..1200),
+            (98..177) + (500..560) + (1000..1032) + (1034..1200),
             { canbusController ->
                 appendLogLine("CANBUS", "#C62828".toColorInt(), connectedMessage)
-                canbusController.cmd(1010, 1000)
 //                moduleController.cmd(1010, 1000)
 //                moduleController.cmd(1035, 1)
 //                moduleController.cmd(U_CAR_LIGHT_ENABLED, 1)
@@ -116,12 +133,18 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 val droppedInts: IntArray? =
-                    if (ints != null && updateCode == CanbusUpdateCodes.U_CANBUS_TO_SERVICE_UI_FRAME && ints.size > 3) {
-                        ints.drop(2).dropLast(1).toIntArray()
+                    if (ints != null && updateCode == CanbusUpdateCodes.U_CANBUS_FRAME_TO_SERVICE_UI && ints[0] == 233 && ints[1] == 90 && ints.size > 3) {
+                        val len = ints[2]
+                        val d = ints.drop(3)
+                        val n = if (d.size - 1 == len) {
+                            1
+                        } else {
+                            0
+                        }
+                        d.dropLast(n).toIntArray()
                     } else {
                         ints
                     }
-
                 val values = formatPayloadValues(droppedInts, flts, strs)
                 logIfChanged(updateCode, values, moduleId, moduleName, moduleColor)
             }
